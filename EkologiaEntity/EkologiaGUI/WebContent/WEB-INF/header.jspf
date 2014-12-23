@@ -1,0 +1,15 @@
+<c:if test="${! empty connectedUser}">
+	<div style="text-align: right;">
+		<div style="display: inline-block;">
+			Bienvenue&nbsp;
+			<c:out value="${connectedUser.prenom}" />
+			&nbsp;
+			<c:out value="${connectedUser.nom}" />
+		</div>
+		<div style="display: inline-block;">
+			<form action="login" method="post">
+				<input type="submit" value="deconnecter" name="deconnection">
+			</form>
+		</div>
+	</div>
+</c:if>

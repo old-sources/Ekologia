@@ -1,0 +1,37 @@
+apply plugin: 'ear'
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+version = '1.0.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    //following dependencies will become the ear modules and placed in the ear root
+    deploy project(path: ':EkologiaGUI', configuration: 'archives')
+    //earlib project(path: ':EkologiaService', configuration: 'archives')
+    earlib project(path: ':EkologiaDTO', configuration: 'archives')
+    earlib project(path: ':EkologiaEntity', configuration: 'archives')
+    deploy project(path: ':EkologiaService', configuration: 'archives')
+    //deploy project(path: ':EkologiaDTO', configuration: 'archives')
+    //deploy project(path: ':EkologiaEntity', configuration: 'archives')
+}
+
+ear {
+    //appDirName 'src/main/app' // use application metadata found in this folder
+    libDirName '' // put dependency libraries into APP-INF/lib inside the generated EAR;
+                                // also modify the generated deployment descriptor accordingly
+    deploymentDescriptor { // custom entries for application.xml:
+        applicationName = "Ekologia"
+        //initializeInOrder = true
+        displayName = "Ekologia" // defaults to project.name
+        description = "Site internet et plateforme collaborative de Ekologia" // defaults to project.description
+        //webModule("imieWEB.war", "/imieWEB") // wouldn't deploy since my.war isn't a deploy depencency
+        //module("EkologiaService-${project.version}.jar", "ejb")
+	module("EkologiaDTO-${project.version}.jar", "java")
+	module("EkologiaEntity-${project.version}.jar", "java")
+	//webModule("imieWEB-${project.version}.war", "imieWEB")
+    }
+}

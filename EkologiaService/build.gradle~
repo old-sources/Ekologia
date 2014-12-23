@@ -1,0 +1,25 @@
+version = '1.0.0-SNAPSHOT'
+apply plugin: 'java'
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+sourceSets {
+ main {
+  java {
+   srcDir 'ejbModule'
+  }
+  resources {
+   srcDir 'ejbModule'
+  }
+ }
+}
+
+dependencies {
+ compile group: 'javax', name: 'javaee-api', version: '7.0'
+ compile project(':EkologiaDTO')
+ compile project(':EkologiaEntity')
+}
+

@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<application xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/application_6.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="6">
+  <application-name>Ekologia</application-name>
+  <description>Site internet et plateforme collaborative de Ekologia</description>
+  <display-name>Ekologia</display-name>
+  <module>
+    <java>EkologiaDTO-1.0.0-SNAPSHOT.jar</java>
+  </module>
+  <module>
+    <java>EkologiaEntity-1.0.0-SNAPSHOT.jar</java>
+  </module>
+</application>

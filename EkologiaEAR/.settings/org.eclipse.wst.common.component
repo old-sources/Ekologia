@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="EkologiaEAR">
+        <wb-resource deploy-path="/" source-path="/EarContent" tag="defaultRootSource"/>
+        <dependent-module archiveName="EkologiaGUI.war" deploy-path="/" handle="module:/resource/EkologiaGUI/EkologiaGUI">
+            <dependent-object/>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="EkologiaService.jar" deploy-path="/" handle="module:/resource/EkologiaService/EkologiaService">
+            <dependent-object/>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="EkologiaDTO.jar" deploy-path="/" handle="module:/resource/EkologiaDTO/EkologiaDTO">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="EkologiaEntity.jar" deploy-path="/" handle="module:/resource/EkologiaEntity/EkologiaEntity">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+    </wb-module>
+</project-modules>
