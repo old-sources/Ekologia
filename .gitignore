@@ -20,6 +20,7 @@ hs_err_pid*
 .settings
 .classpath
 .externalToolBuilders/
-.gradle/
 build/
 bin/
+.tern-project
+
