@@ -14,7 +14,8 @@ Commande de Ekologia pour IMIE Nantes. réalisé les stagiaires 4IM03.
 - à la racine lancer "gradle assemble"
 
 ## déploiement
-- dans l'interface d'administration de wyldly, onglet runtime, déployer l'EAR généré dans EkologiaEAR/buid
+- démarrer wildfly (sudo service wildfly start)
+- dans l'interface d'administration de wildly, onglet runtime, déployer l'EAR généré dans EkologiaEAR/buid
 
 # developpment sur Eclipse
 ## prés requis
