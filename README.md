@@ -17,6 +17,9 @@ Commande de Ekologia pour IMIE Nantes. réalisé les stagiaires 4IM03.
 - démarrer wildfly (sudo service wildfly start)
 - dans l'interface d'administration de wildly, onglet runtime, déployer l'EAR généré dans EkologiaEAR/buid
 
+## éxécution
+- dans un navigateur saisissez l'url ip:port/Ekologia/User
+
 # developpment sur Eclipse
 ## prés requis
 - eclipse luna
