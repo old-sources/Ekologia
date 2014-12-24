@@ -21,5 +21,6 @@ Commande de Ekologia pour IMIE Nantes. réalisé les stagiaires 4IM03.
 - eclipse luna
 - plugin JBoss
 - plugin gradlecontenu 
+
 ## intégration
 La procedure n'est pas encore bien établie. Le plugin eclipse pour gradle ne produit pas de structure et de contenu de fichier satisfaisante pour eclipse luna. Cela va sans doute s'arranger avec les mise à jour de gradle et de son plugion eclipse et eclipse-wtp. En attendant, la methode qui fonctionne le mieux est d'installer un plugin gradle sur eclipse pour importer les 4 projet gradle à partir des sources qui contiennent les fichiers build.gradle suffisants.
