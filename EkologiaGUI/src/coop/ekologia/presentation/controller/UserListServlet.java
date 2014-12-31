@@ -1,7 +1,6 @@
 package coop.ekologia.presentation.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -11,25 +10,24 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import coop.ekologia.DTO.FactionPB;
-import coop.ekologia.DTO.UserPB;
+import coop.ekologia.DTO.UserDTO;
 import coop.ekologia.service.UserServiceInterface;
 
 /**
  * Servlet implementation class User
  */
-@WebServlet("/User")
-public class UserServlet extends HttpServlet {
+@WebServlet("/admin/userList")
+public class UserListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
-	//@Inject @Named("session")
-	@EJB(beanName="instance")
+
+	// @Inject @Named("session")
+	@EJB
 	UserServiceInterface userService;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public UserServlet() {
+	public UserListServlet() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -40,12 +38,13 @@ public class UserServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-//		List<UserData> users = (List<UserData>) request.getSession()
-//				.getAttribute("users");
-		List<UserPB> users = userService.getAllUser();
-		
+		// List<UserData> users = (List<UserData>) request.getSession()
+		// .getAttribute("users");
+		List<UserDTO> users = userService.getAllUser();
+
 		request.setAttribute("filteredUsers", users);
-		request.getRequestDispatcher("WEB-INF/user.jsp").forward(request, response);
+		request.getRequestDispatcher(String.format("/WEB-INF/userList.jsp",request.getContextPath())).forward(request,
+				response);
 	}
 
 	/**
@@ -54,29 +53,15 @@ public class UserServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-//		List<UserData> users = (List<UserData>) request.getSession()
-//				.getAttribute("users");
-		List<UserPB> users=userService.getAllUser();
-		List<UserPB> filteredUsers = new ArrayList<UserPB>();
-		
+
+		List<UserDTO> users = userService.getAllUser();
+
 		String factionParameter = request.getParameter("faction");
-		
-		FactionPB faction =null;
-		
-		if(factionParameter!=null){
-			faction = FactionPB.valueOf(factionParameter);
-			//request.setAttribute("factionParameter", factionParameter);
-		}
-		
-		for (UserPB userData : users) {
-			if(faction==null || userData.getFaction() != null && userData.getFaction().equals(faction)){
-				filteredUsers.add(userData);
-			}
-		}
-		
-		request.setAttribute("filteredUsers", filteredUsers);
-		
-		request.getRequestDispatcher("WEB-INF/user.jsp").forward(request, response);
+
+		request.setAttribute("filteredUsers", users);
+
+		request.getRequestDispatcher("WEB-INF/user.jsp").forward(request,
+				response);
 	}
 
 }

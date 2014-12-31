@@ -10,7 +10,7 @@ import java.util.Date;
  * @author imie
  *
  */
-public class UserPB implements Serializable {
+public class UserDTO implements Serializable {
 	
 	/**
 	 * 
@@ -22,12 +22,11 @@ public class UserPB implements Serializable {
 	private Date dateNaiss;
 	private String eMail;
 	private String passw;
-	private FactionPB faction;
 	
 	/**
 	 * 
 	 */
-	public UserPB() {
+	public UserDTO() {
 		// TODO Auto-generated constructor stub
 	}
 	
@@ -89,16 +88,6 @@ public class UserPB implements Serializable {
 
 	public void setPassw(String passw) {
 		this.passw = passw;
-	}
-
-
-	public FactionPB getFaction() {
-		return faction;
-	}
-
-
-	public void setFaction(FactionPB faction) {
-		this.faction = faction;
 	}
 
 

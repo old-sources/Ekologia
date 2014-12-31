@@ -3,7 +3,7 @@
  */
 package coop.ekologia.service;
 
-import coop.ekologia.DTO.UserPB;
+import coop.ekologia.DTO.UserDTO;
 import coop.ekologia.entity.User;
 
 /**
@@ -19,17 +19,20 @@ public class UserMapper {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public UserPB mapFromEntity(User user){
-		UserPB retour = new UserPB();
-		retour.setNom(user.getEmail());
+	public UserDTO mapFromEntity(User user){
+		UserDTO retour = new UserDTO();
+		retour.setPrenom(user.getFirstName());
+		retour.setNom(user.getLastName());
 		retour.setPassw(user.getPassword());
 		return retour;
 	}
 	
-	public User mapToEntity(UserPB userPB){
+	public User mapToEntity(UserDTO userDTO){
 		User retour = new User();
-		retour.setEmail(userPB.getNom());
-		retour.setPassword(userPB.getPassw());
+		retour.setEmail(userDTO.geteMail());
+		retour.setFirstName(userDTO.getPrenom());
+		retour.setLastName(userDTO.getNom());
+		retour.setPassword(userDTO.getPassw());
 		return retour;
 	}
 

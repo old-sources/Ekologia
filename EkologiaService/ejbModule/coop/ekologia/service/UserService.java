@@ -11,7 +11,7 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import coop.ekologia.DTO.UserPB;
+import coop.ekologia.DTO.UserDTO;
 import coop.ekologia.entity.User;
 
 /**
@@ -19,7 +19,7 @@ import coop.ekologia.entity.User;
  *
  */
 // @Named("instance")
-@Stateless(name = "instance")
+@Stateless
 public class UserService implements UserServiceInterface {
 
 	@PersistenceContext
@@ -36,11 +36,11 @@ public class UserService implements UserServiceInterface {
 	}
 
 	@Override
-	public List<UserPB> getAllUser() {
+	public List<UserDTO> getAllUser() {
 
 		List<User> users = entityManager.createNamedQuery("User.findAll")
 				.getResultList();
-		List<UserPB> usersPB = new ArrayList<UserPB>();
+		List<UserDTO> usersPB = new ArrayList<UserDTO>();
 		for (User user : users) {
 			usersPB.add(userPBMapper.mapFromEntity(user));
 		}
@@ -49,14 +49,14 @@ public class UserService implements UserServiceInterface {
 	}
 
 	@Override
-	public UserPB getSecuredUser(UserPB userPB) {
+	public UserDTO getSecuredUser(UserDTO userPB) {
 		List<User> users = entityManager
 				.createQuery(
 						String.format(
 								"select u from User u where u.email='%s' and u.password='%s'",
-								userPB.getNom(), userPB.getPassw()))
+								userPB.geteMail(), userPB.getPassw()))
 				.getResultList();
-		UserPB retour = null;
+		UserDTO retour = null;
 		if (!users.isEmpty()) {
 			retour = userPBMapper.mapFromEntity(users.get(0));
 		}

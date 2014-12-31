@@ -7,7 +7,7 @@ import java.util.List;
 
 import javax.ejb.Local;
 
-import coop.ekologia.DTO.UserPB;
+import coop.ekologia.DTO.UserDTO;
 
 /**
  * @author imie
@@ -16,8 +16,8 @@ import coop.ekologia.DTO.UserPB;
 @Local
 public interface UserServiceInterface {
 
-	public List<UserPB> getAllUser();
+	public List<UserDTO> getAllUser();
 
-	UserPB getSecuredUser(UserPB userPB);
+	UserDTO getSecuredUser(UserDTO userPB);
 
 }

@@ -3,30 +3,35 @@ package coop.ekologia.entity;
 import java.io.Serializable;
 import javax.persistence.*;
 
-
 /**
  * The persistent class for the "user" database table.
  * 
  */
 @Entity
-@Table(name="\"user\"")
-@NamedQuery(name="User.findAll", query="SELECT u FROM User u")
+@Table(name = "\"user\"")
+@NamedQuery(name = "User.findAll", query = "SELECT u FROM User u")
 public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="\"id\"")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "\"id\"")
 	private int id;
 
-	@Column(name="\"email\"")
+	@Column(name = "\"email\"")
 	private String email;
 
-	@Column(name="\"password\"")
+	@Column(name = "\"password\"")
 	private String password;
 
-	@Column(name="\"phone_number\"")
+	@Column(name = "\"phone_number\"")
 	private String phoneNumber;
+
+	@Column(name = "\"first_name\"")
+	private String firstName;
+
+	@Column(name = "\"last_name\"")
+	private String lastName;
 
 	public User() {
 	}
@@ -63,4 +68,21 @@ public class User implements Serializable {
 		this.phoneNumber = phoneNumber;
 	}
 
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lasttName) {
+		this.lastName = lasttName;
+	}
+
+	
 }

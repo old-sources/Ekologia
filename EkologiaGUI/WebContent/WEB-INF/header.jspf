@@ -7,7 +7,7 @@
 			<c:out value="${connectedUser.nom}" />
 		</div>
 		<div style="display: inline-block;">
-			<form action="login" method="post">
+			<form action="<%=request.getContextPath()%>/login" method="post">
 				<input type="submit" value="deconnecter" name="deconnection">
 			</form>
 		</div>

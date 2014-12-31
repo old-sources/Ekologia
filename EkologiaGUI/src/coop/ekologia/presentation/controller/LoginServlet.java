@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import coop.ekologia.DTO.UserPB;
+import coop.ekologia.DTO.UserDTO;
 import coop.ekologia.service.UserServiceInterface;
 
 /**
@@ -22,8 +22,7 @@ public class LoginServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
-	// @Inject @Named("session")
-	@EJB(beanName = "instance")
+	@EJB
 	private UserServiceInterface userService;
 
 	/**
@@ -55,19 +54,21 @@ public class LoginServlet extends HttpServlet {
 
 		if (request.getParameter("deconnection") != null) {
 			request.getSession().removeAttribute("connectedUser");
-			response.sendRedirect("login.html");
+			//request.getRequestDispatcher("./").forward(request, response);
+			response.sendRedirect(request.getHeader("referer"));
 		} else {
 
-			String nomParameter = request.getParameter("login");
+			String loginParameter = request.getParameter("login");
 			String passwParameter = request.getParameter("passw");
-			UserPB loginUser = new UserPB();
-			loginUser.setNom(nomParameter);
+			UserDTO loginUser = new UserDTO();
+			loginUser.seteMail(loginParameter);
 			loginUser.setPassw(passwParameter);
 			loginUser = userService.getSecuredUser(loginUser);
 			if (loginUser != null) {
 				request.getSession().setAttribute("connectedUser", loginUser);
 			} else {
-				response.sendRedirect(WEB_INF_LOGIN_JSP);
+				//response.sendRedirect(WEB_INF_LOGIN_JSP);
+				request.getRequestDispatcher(WEB_INF_LOGIN_JSP).forward(request, response);
 			}
 		}
 
