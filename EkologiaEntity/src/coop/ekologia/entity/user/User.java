@@ -1,22 +1,26 @@
 package coop.ekologia.entity.user;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
  * The persistent class for the "user" database table.
- * 
  */
 @Entity
 @Table(name = "\"user\"")
-@NamedQuery(name = "User.findAll", query = "SELECT u FROM User u")
+@NamedQueries({
+	@NamedQuery(name = "User.findAll", query = "SELECT u FROM User u")
+})
 public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -34,13 +38,30 @@ public class User implements Serializable {
 	@Column(name = "\"phone_number\"")
 	private String phoneNumber;
 
-	// TODO: move these attributes to a subclass, for physical person (not an organisation)
-	/*@Column(name = "\"firstname\"")
-	private String firstName;
+	@Column(name = "\"addressstreet\"")
+	private String addressStreet;
 
-	@Column(name = "\"lastname\"")
-	private String lastName;
-*/
+	@Column(name = "\"addresszipcode\"")	
+	private String addressZipcode;
+
+	@Column(name = "\"addresscity\"")
+	private String addressCity;
+
+	@Column(name = "\"country\"")
+	private String country;
+
+	@Column(name = "\"avatar\"")
+	private String avatar;
+
+	@Column(name = "\"description\"")
+	private String description;
+	
+	@Column(name="roles")
+	private String roles;
+	
+	@OneToMany(mappedBy="group")
+	private List<UserGroup> userGroups;
+
 	public User() {
 	}
 
@@ -75,22 +96,82 @@ public class User implements Serializable {
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
-/*
-	public String getFirstName() {
-		return firstName;
+
+	public String getAddressStreet() {
+		return addressStreet;
 	}
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+	public void setAddressStreet(String addressStreet) {
+		this.addressStreet = addressStreet;
 	}
 
-	public String getLastName() {
-		return lastName;
+	public String getAddressZipcode() {
+		return addressZipcode;
 	}
 
-	public void setLastName(String lasttName) {
-		this.lastName = lasttName;
+	public void setAddressZipcode(String addressZipcode) {
+		this.addressZipcode = addressZipcode;
 	}
-*/
-	
+
+	public String getAddressCity() {
+		return addressCity;
+	}
+
+	public void setAddressCity(String addressCity) {
+		this.addressCity = addressCity;
+	}
+
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
+	public String getAvatar() {
+		return avatar;
+	}
+
+	public void setAvatar(String avatar) {
+		this.avatar = avatar;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getRoles() {
+		return roles;
+	}
+
+	public void setRoles(String roles) {
+		this.roles = roles;
+	}
+
+	public List<UserGroup> getUserGroups() {
+		return this.userGroups;
+	}
+
+	public void setUserGroups(List<UserGroup> userGroups) {
+		this.userGroups = userGroups;
+	}
+
+	public UserGroup addUserGroup(UserGroup userGroup) {
+		getUserGroups().add(userGroup);
+		userGroup.setUser(this);
+
+		return userGroup;
+	}
+
+	public UserGroup removeUserGroup(UserGroup userGroup) {
+		getUserGroups().remove(userGroup);
+		userGroup.setUser(null);
+
+		return userGroup;
+	}
 }

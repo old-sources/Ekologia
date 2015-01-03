@@ -4,93 +4,133 @@
 package coop.ekologia.DTO.user;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
 
-/**
- * @author imie
- *
- */
 public class UserDTO implements Serializable {
-	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1822397517797929630L;
+
 	private Integer id;
-	private String nom;
-	private String prenom;
-	private Date dateNaiss;
-	private String eMail;
-	private String passw;
-	
-	/**
-	 * 
-	 */
+	private String email;
+	private String password;
+	private String addressStreet;
+	private String addressZipcode;
+	private String addressCity;
+	private String phoneNumber;
+	private String avatar;
+	private String description;
+	private String country;
+	private List<String> roles;
+
 	public UserDTO() {
-		// TODO Auto-generated constructor stub
 	}
-	
 
 	public Integer getId() {
 		return id;
 	}
 
-
 	public void setId(Integer id) {
 		this.id = id;
 	}
 
-
-	public String getNom() {
-		return nom;
+	public String getEmail() {
+		return email;
 	}
 
-
-	public void setNom(String nom) {
-		this.nom = nom;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
-
-	public String getPrenom() {
-		return prenom;
+	public String getPassword() {
+		return password;
 	}
 
-
-	public void setPrenom(String prenom) {
-		this.prenom = prenom;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
-
-	public Date getDateNaiss() {
-		return dateNaiss;
+	public String getAddressStreet() {
+		return addressStreet;
 	}
 
-
-	public void setDateNaiss(Date dateNaiss) {
-		this.dateNaiss = dateNaiss;
+	public void setAddressStreet(String addressStreet) {
+		this.addressStreet = addressStreet;
 	}
 
-
-	public String geteMail() {
-		return eMail;
+	public String getAddressZipcode() {
+		return addressZipcode;
 	}
 
-
-	public void seteMail(String eMail) {
-		this.eMail = eMail;
+	public void setAddressZipcode(String addressZipcode) {
+		this.addressZipcode = addressZipcode;
 	}
 
-
-	public String getPassw() {
-		return passw;
+	public String getAddressCity() {
+		return addressCity;
 	}
 
-
-	public void setPassw(String passw) {
-		this.passw = passw;
+	public void setAddressCity(String addressCity) {
+		this.addressCity = addressCity;
 	}
 
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
 
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
 
+	public String getAvatar() {
+		return avatar;
+	}
 
+	public void setAvatar(String avatar) {
+		this.avatar = avatar;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
+	public List<String> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(List<String> roles) {
+		this.roles = roles;
+	}
+	
+	public void addRole(String role) {
+		roles.add(role);
+	}
+	
+	public void removeRole(String role) {
+		roles.remove(role);
+	}
+	
+	public boolean hasRole(String role) {
+		return roles.contains(role);
+	}
+	
+	public boolean hasRoles(String... roleList) {
+		return roles.containsAll(Arrays.asList(roleList));
+	}
+	
+	public boolean hasRoles(Collection<String> roleList) {
+		return roles.containsAll(roleList);
+	}
 }

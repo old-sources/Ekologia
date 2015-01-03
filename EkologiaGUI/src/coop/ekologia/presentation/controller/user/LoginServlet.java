@@ -1,7 +1,6 @@
 package coop.ekologia.presentation.controller.user;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.ejb.EJB;
 import javax.inject.Inject;
@@ -57,8 +56,8 @@ public class LoginServlet extends EkologiaServlet {
 			String loginParameter = request.getParameter("login");
 			String passwParameter = request.getParameter("passw");
 			UserDTO loginUser = new UserDTO();
-			loginUser.seteMail(loginParameter);
-			loginUser.setPassw(passwParameter);
+			loginUser.setEmail(loginParameter);
+			loginUser.setPassword(passwParameter);
 			loginUser = userService.getSecuredUser(loginUser);
 			if (loginUser != null) {
 				loginSession.setUser(loginUser);
