@@ -5,9 +5,6 @@
 	<persistence-unit name="Ekologia"
 		transaction-type="JTA">
 		<jta-data-source>java:/jdbc/Ekologia</jta-data-source>
-		<class>coop.ekologia.entity.user.Group</class>
-		<class>coop.ekologia.entity.user.UserGroup</class>
-		<class>coop.ekologia.entity.user.UserGroupPK</class>
 		<exclude-unlisted-classes>false</exclude-unlisted-classes>
 	</persistence-unit>
 </persistence>

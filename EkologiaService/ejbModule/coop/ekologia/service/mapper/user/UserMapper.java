@@ -1,9 +1,10 @@
-package coop.ekologia.service.mapper;
+package coop.ekologia.service.mapper.user;
 
 import javax.inject.Inject;
 
 import coop.ekologia.DTO.user.UserDTO;
 import coop.ekologia.entity.user.User;
+import coop.ekologia.service.mapper.Mapper;
 import coop.ekologia.service.utils.ListUtilitiesInterface;
 
 public class UserMapper implements Mapper<UserDTO, User> {

@@ -13,6 +13,8 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import coop.ekologia.entity.group.UserGroup;
+
 /**
  * The persistent class for the "user" database table.
  */

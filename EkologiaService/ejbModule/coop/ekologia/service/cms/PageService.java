@@ -12,7 +12,7 @@ import javax.persistence.PersistenceContext;
 
 import coop.ekologia.DTO.cms.PageDTO;
 import coop.ekologia.entity.cms.Page;
-import coop.ekologia.service.mapper.PageMapper;
+import coop.ekologia.service.mapper.cms.PageMapper;
 
 /**
  * @author imie

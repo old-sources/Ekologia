@@ -1,8 +1,10 @@
-package coop.ekologia.entity.user;
+package coop.ekologia.entity.group;
 
 import java.io.Serializable;
 
 import javax.persistence.*;
+
+import coop.ekologia.entity.user.User;
 
 import java.util.Date;
 

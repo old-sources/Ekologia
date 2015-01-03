@@ -1,4 +1,4 @@
-package coop.ekologia.DTO.user;
+package coop.ekologia.DTO.group;
 
 import java.io.Serializable;
 

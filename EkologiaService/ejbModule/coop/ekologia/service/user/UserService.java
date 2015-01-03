@@ -12,11 +12,11 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import coop.ekologia.DTO.user.GroupDTO;
+import coop.ekologia.DTO.group.GroupDTO;
 import coop.ekologia.DTO.user.UserDTO;
+import coop.ekologia.entity.group.UserGroup;
 import coop.ekologia.entity.user.User;
-import coop.ekologia.entity.user.UserGroup;
-import coop.ekologia.service.mapper.UserMapper;
+import coop.ekologia.service.mapper.user.UserMapper;
 
 /**
  * @author imie
@@ -67,6 +67,7 @@ public class UserService implements UserServiceInterface {
 		return retour;
 	}
 
+	@Override
 	public boolean isIntoGroup(UserDTO userDTO, GroupDTO groupDTO) {
 		Query query = entityManager.createNamedQuery(UserGroup.FIND);
         query.setParameter("userId", userDTO.getId());
