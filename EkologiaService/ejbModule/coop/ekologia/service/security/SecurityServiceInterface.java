@@ -1,8 +1,8 @@
-package coop.ekologia.service;
+package coop.ekologia.service.security;
 
 import javax.ejb.Local;
 
-import coop.ekologia.DTO.UserDTO;
+import coop.ekologia.DTO.user.UserDTO;
 
 @Local
 public interface SecurityServiceInterface {

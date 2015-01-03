@@ -1,4 +1,4 @@
-package coop.ekologia.DTO;
+package coop.ekologia.DTO.cms;
 
 public class PageDTO {
 	

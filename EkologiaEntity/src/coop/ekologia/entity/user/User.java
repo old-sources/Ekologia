@@ -1,7 +1,14 @@
-package coop.ekologia.entity;
+package coop.ekologia.entity.user;
 
 import java.io.Serializable;
-import javax.persistence.*;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 
 /**
  * The persistent class for the "user" database table.
@@ -27,12 +34,13 @@ public class User implements Serializable {
 	@Column(name = "\"phone_number\"")
 	private String phoneNumber;
 
-	@Column(name = "\"first_name\"")
+	// TODO: move these attributes to a subclass, for physical person (not an organisation)
+	/*@Column(name = "\"firstname\"")
 	private String firstName;
 
-	@Column(name = "\"last_name\"")
+	@Column(name = "\"lastname\"")
 	private String lastName;
-
+*/
 	public User() {
 	}
 
@@ -67,7 +75,7 @@ public class User implements Serializable {
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
-
+/*
 	public String getFirstName() {
 		return firstName;
 	}
@@ -83,6 +91,6 @@ public class User implements Serializable {
 	public void setLastName(String lasttName) {
 		this.lastName = lasttName;
 	}
-
+*/
 	
 }

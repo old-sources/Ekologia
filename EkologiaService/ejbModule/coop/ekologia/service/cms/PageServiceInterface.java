@@ -1,8 +1,8 @@
-package coop.ekologia.service;
+package coop.ekologia.service.cms;
 
 import javax.ejb.Local;
 
-import coop.ekologia.DTO.PageDTO;
+import coop.ekologia.DTO.cms.PageDTO;
 
 @Local
 public interface PageServiceInterface {

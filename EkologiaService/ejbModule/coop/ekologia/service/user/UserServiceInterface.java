@@ -1,13 +1,13 @@
 /**
  * 
  */
-package coop.ekologia.service;
+package coop.ekologia.service.user;
 
 import java.util.List;
 
 import javax.ejb.Local;
 
-import coop.ekologia.DTO.UserDTO;
+import coop.ekologia.DTO.user.UserDTO;
 
 /**
  * @author imie

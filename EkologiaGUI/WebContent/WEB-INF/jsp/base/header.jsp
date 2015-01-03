@@ -7,9 +7,12 @@
 	<div style="text-align: right;">
 		<div style="display: inline-block;">
 			Bienvenue&nbsp;
+			<!-- TODO: display "person firstName + lastName" or "company name" -->
+			<!--
 			<c:out value="${connectedUser.prenom}" />
 			&nbsp;
 			<c:out value="${connectedUser.nom}" />
+			-->
 		</div>
 		<div style="display: inline-block;">
 			<form action="<%=request.getContextPath()%>/login" method="post">

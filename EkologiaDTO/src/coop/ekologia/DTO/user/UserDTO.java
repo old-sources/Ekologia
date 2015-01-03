@@ -1,7 +1,7 @@
 /**
  * 
  */
-package coop.ekologia.DTO;
+package coop.ekologia.DTO.user;
 
 import java.io.Serializable;
 import java.util.Date;

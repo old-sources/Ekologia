@@ -1,7 +1,7 @@
 /**
  * 
  */
-package coop.ekologia.service;
+package coop.ekologia.service.cms;
 
 import java.util.List;
 
@@ -10,8 +10,9 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import coop.ekologia.DTO.PageDTO;
-import coop.ekologia.entity.Page;
+import coop.ekologia.DTO.cms.PageDTO;
+import coop.ekologia.entity.cms.Page;
+import coop.ekologia.service.mapper.PageMapper;
 
 /**
  * @author imie

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package coop.ekologia.service;
+package coop.ekologia.service.security;
 
 import java.util.List;
 
@@ -10,8 +10,9 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import coop.ekologia.DTO.UserDTO;
-import coop.ekologia.entity.Security;
+import coop.ekologia.DTO.user.UserDTO;
+import coop.ekologia.entity.security.Security;
+import coop.ekologia.service.user.UserServiceInterface;
 
 /**
  * @author imie

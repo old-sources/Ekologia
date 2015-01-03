@@ -1,7 +1,7 @@
 /**
  * 
  */
-package coop.ekologia.service;
+package coop.ekologia.service.user;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,8 +11,9 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import coop.ekologia.DTO.UserDTO;
-import coop.ekologia.entity.User;
+import coop.ekologia.DTO.user.UserDTO;
+import coop.ekologia.entity.user.User;
+import coop.ekologia.service.mapper.UserMapper;
 
 /**
  * @author imie
