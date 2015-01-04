@@ -32,6 +32,8 @@ public abstract class EkologiaServlet extends HttpServlet {
 	
 	protected void forwardToJsp(String name, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setAttribute("connectedUser", loginSession.getUser());
+		request.setAttribute("currentLanguage", getCurrentLanguage(request));
+		
 		RequestDispatcher result = request.getRequestDispatcher(getJsp(name));
 		result.forward(request, response);
 	}
@@ -56,5 +58,11 @@ public abstract class EkologiaServlet extends HttpServlet {
     	}
     	
     	return result.toString();
+    }
+    
+    protected String getCurrentLanguage(HttpServletRequest request) {
+    	String serverName = request.getServerName();
+    	String language = serverName.substring(0, serverName.indexOf('.'));
+    	return language;
     }
 }

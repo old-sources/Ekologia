@@ -5,6 +5,9 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
+import javax.ejb.Stateless;
+
+@Stateless
 public class ListUtilities implements ListUtilitiesInterface {
 	@Override
 	public String mkString(Collection<?> collection, String separator) {
@@ -29,8 +32,16 @@ public class ListUtilities implements ListUtilitiesInterface {
 	
 	@Override
 	public List<String> split(String str, String separator) {
-		ArrayList<String> result = new ArrayList<String>();
-		result.addAll(Arrays.asList(str.split(separator)));
-		return result;
+		if (str == null) {
+			return null;
+		} else if (separator == null) {
+			ArrayList<String> result = new ArrayList<String>();
+			result.add(str);
+			return result;
+		} else {
+			ArrayList<String> result = new ArrayList<String>();
+			result.addAll(Arrays.asList(str.split(separator)));
+			return result;
+		}
 	}
 }

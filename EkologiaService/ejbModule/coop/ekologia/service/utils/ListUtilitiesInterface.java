@@ -3,6 +3,9 @@ package coop.ekologia.service.utils;
 import java.util.Collection;
 import java.util.List;
 
+import javax.ejb.Local;
+
+@Local
 public interface ListUtilitiesInterface {
 
 	public abstract String mkString(Collection<?> collection, String separator);
