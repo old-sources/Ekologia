@@ -43,7 +43,9 @@ public class UserListServlet extends HttpServlet {
 		List<UserDTO> users = userService.getAllUser();
 
 		request.setAttribute("filteredUsers", users);
-		request.getRequestDispatcher(String.format("/WEB-INF/userList.jsp",request.getContextPath())).forward(request,
+//		request.getRequestDispatcher(String.format("/WEB-INF/userList.jsp",request.getContextPath())).forward(request,
+//				response);
+		request.getRequestDispatcher("/WEB-INF/userList.jsp").forward(request,
 				response);
 	}
 
@@ -60,7 +62,7 @@ public class UserListServlet extends HttpServlet {
 
 		request.setAttribute("filteredUsers", users);
 
-		request.getRequestDispatcher("WEB-INF/user.jsp").forward(request,
+		request.getRequestDispatcher("/WEB-INF/user.jsp").forward(request,
 				response);
 	}
 

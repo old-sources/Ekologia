@@ -20,4 +20,10 @@ public interface UserServiceInterface {
 
 	UserDTO getSecuredUser(UserDTO userPB);
 
+	public UserDTO getUserById(UserDTO dto);
+
+	public UserDTO updateUser(UserDTO dto);
+
+	public UserDTO insertUser(UserDTO dto);
+
 }
