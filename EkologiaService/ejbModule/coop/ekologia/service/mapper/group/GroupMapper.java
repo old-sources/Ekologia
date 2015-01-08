@@ -4,7 +4,7 @@ import coop.ekologia.DTO.group.GroupDTO;
 import coop.ekologia.entity.group.Group;
 import coop.ekologia.service.mapper.Mapper;
 
-public class GroupMapper implements Mapper<GroupDTO, Group>{
+public class GroupMapper extends Mapper<GroupDTO, Group>{
 	@Override
 	public GroupDTO mapFromEntity(Group group) {
 		GroupDTO groupDTO = new GroupDTO();

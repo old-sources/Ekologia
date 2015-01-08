@@ -21,6 +21,10 @@ public class LoginSession implements Serializable {
 	public void setUser(UserDTO user) {
 		this.user = user;
 	}
+	
+	public void removeUser() {
+	    setUser(null);
+	}
 
 	public String getPreviousUrl() {
 		return previousUrl;
@@ -28,5 +32,9 @@ public class LoginSession implements Serializable {
 
 	public void setPreviousUrl(String previous) {
 		this.previousUrl = previous;
+	}
+	
+	public void removePreviousUrl() {
+	    setPreviousUrl(null);
 	}
 }

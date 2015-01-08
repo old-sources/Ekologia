@@ -11,7 +11,7 @@ Nommage, packages et héritages/implémentations
 * Tous les DTO doivent avoir le suffixe `DTO` (ex: `UserDTO`, `pageDTO`)
 * Tous les mapper, permettant un mapping entité/DTO devront :
     * Etre dans le package `coop.ekologia.service.mapper`
-    * Etendre l'interface `coop.ekologia.service.mapper.Mapper`
+    * Etendre la classe `coop.ekologia.service.mapper.Mapper`
     * Posséder le suffixe `Mapper` (ex: `UserMapper`, `PageMapper`)
 * Tous les services doivent :
     * Avoir le suffixe `Service`

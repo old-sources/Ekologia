@@ -9,9 +9,16 @@ import java.util.List;
  * The persistent class for the group database table.
  */
 @Entity
-@NamedQuery(name="Group.findAll", query="SELECT g FROM Group g")
+@Table(name="\"group\"")
+@NamedQueries({
+	@NamedQuery(name=Group.FIND_ALL, query="SELECT g FROM Group g"),
+	@NamedQuery(name=Group.FIND_BY_CANONICAL, query="SELECT g FROM Group g WHERE g.canonical=:canonical")
+})
 public class Group implements Serializable {
 	private static final long serialVersionUID = 1L;
+	
+	public static final String FIND_ALL = "Group.findAll";
+	public static final String FIND_BY_CANONICAL = "Group.findByCanonical";
 
 	@Id
 	private Integer id;
