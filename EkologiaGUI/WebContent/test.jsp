@@ -3,6 +3,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link
+	href="<%=request.getContextPath()%>/uikit-2.15.0/css/uikit.gradient.min.css"
+	rel="stylesheet" type="text/css" />
 <meta charset="UTF-8">
 <title>Ekologia</title>
 </head>

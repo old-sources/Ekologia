@@ -1,5 +1,5 @@
-<%@ tag language="java" pageEncoding="UTF-8"%>
-
+<%@tag language="java"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,8 +10,7 @@
 	src="<%=request.getContextPath()%>/JQuery/jquery-2.1.3.min.js"></script>
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/uikit-2.15.0/js/uikit.min.js"></script>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+<meta http-equiv="Content-Type" content="text/html;UTF-8">
 <title>Ekologia</title>
 </head>
 <body>

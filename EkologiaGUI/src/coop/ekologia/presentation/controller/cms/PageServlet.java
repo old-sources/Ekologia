@@ -42,5 +42,4 @@ public class PageServlet extends EkologiaServlet {
 		}
 
 	}
-
 }

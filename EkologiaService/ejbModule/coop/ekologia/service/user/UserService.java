@@ -5,6 +5,8 @@ package coop.ekologia.service.user;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -25,6 +27,7 @@ import coop.ekologia.service.mapper.user.UserMapper;
 // @Named("instance")
 @Stateless
 public class UserService implements UserServiceInterface {
+    private static final Logger logger = Logger.getLogger(UserService.class.getName());
 
 	@PersistenceContext
 	private EntityManager entityManager;
@@ -69,6 +72,10 @@ public class UserService implements UserServiceInterface {
 
 	@Override
 	public boolean isIntoGroup(UserDTO userDTO, GroupDTO groupDTO) {
+	    if (userDTO == null || groupDTO == null) {
+	        logger.log(Level.INFO, "The userDTO or groupDTO is null.");
+	        return false;
+	    }
 		Query query = entityManager.createNamedQuery(UserGroup.FIND);
         query.setParameter("userId", userDTO.getId());
         query.setParameter("groupId", groupDTO.getId());
@@ -82,16 +89,13 @@ public class UserService implements UserServiceInterface {
 
 	@Override
 	public UserDTO updateUser(UserDTO dto) {
-		User userToUpdate = userMapper.mapToEntity(dto);
-		entityManager.merge(userToUpdate);
-		return userMapper.mapFromEntity(userToUpdate);
-	}
-	
-	@Override
-	public UserDTO insertUser(UserDTO dto) {
-		User userToUpdate = userMapper.mapToEntity(dto);
-		entityManager.persist(userToUpdate);
-		return userMapper.mapFromEntity(userToUpdate);
+		// TODO Auto-generated method stub
+		return null;
 	}
 
+	@Override
+	public UserDTO insertUser(UserDTO dto) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
