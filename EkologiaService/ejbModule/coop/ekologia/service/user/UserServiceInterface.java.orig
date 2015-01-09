@@ -1,0 +1,34 @@
+/**
+ * 
+ */
+package coop.ekologia.service.user;
+
+import java.util.List;
+
+import javax.ejb.Local;
+
+import coop.ekologia.DTO.group.GroupDTO;
+import coop.ekologia.DTO.user.UserDTO;
+
+/**
+ * @author imie
+ *
+ */
+@Local
+public interface UserServiceInterface {
+
+	public List<UserDTO> getAllUser();
+
+	UserDTO getSecuredUser(UserDTO userPB);
+
+<<<<<<< HEAD:EkologiaService/ejbModule/coop/ekologia/service/UserServiceInterface.java
+	public UserDTO getUserById(UserDTO dto);
+
+	public UserDTO updateUser(UserDTO dto);
+
+	public UserDTO insertUser(UserDTO dto);
+=======
+	boolean isIntoGroup(UserDTO userDTO, GroupDTO groupDTO);
+>>>>>>> 64090ac76510cec10666527f7271ea04d26a4c05:EkologiaService/ejbModule/coop/ekologia/service/user/UserServiceInterface.java
+
+}

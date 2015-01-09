@@ -15,12 +15,16 @@
 <title>Ekologia</title>
 </head>
 <body>
+<<<<<<< HEAD
 	<div
 		class="uk-container uk-container-center uk-margin-top uk-margin-large-bottom">
 	
+	<jsp:include page="/WEB-INF/header.jsp" />
+		<jsp:doBody />
+	</div>
+=======
 	<jsp:include page="/WEB-INF/jsp/base/header.jsp" />
 	<jsp:doBody/>
-	</div>
-
+>>>>>>> 64090ac76510cec10666527f7271ea04d26a4c05
 </body>
 </html>

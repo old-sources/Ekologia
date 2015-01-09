@@ -3,8 +3,8 @@
  */
 package coop.ekologia.service;
 
-import coop.ekologia.DTO.user.UserDTO;
-import coop.ekologia.entity.user.User;
+import coop.ekologia.DTO.UserDTO;
+import coop.ekologia.entity.User;
 
 /**
  * @author imie
@@ -21,16 +21,19 @@ public class UserMapper {
 
 	public UserDTO mapFromEntity(User user) {
 		UserDTO retour = new UserDTO();
-		retour.setEmail(user.getEmail());
-		retour.setPassword(user.getPassword());
+		retour.setPrenom(user.getFirstName());
+		retour.setNom(user.getLastName());
+		retour.setPassw(user.getPassword());
 		retour.setId(user.getId());
 		return retour;
 	}
 
 	public User mapToEntity(UserDTO userDTO) {
 		User retour = new User();
-		retour.setEmail(userDTO.getEmail());
-		retour.setPassword(userDTO.getPassword());
+		retour.setEmail(userDTO.geteMail());
+		retour.setFirstName(userDTO.getPrenom());
+		retour.setLastName(userDTO.getNom());
+		retour.setPassword(userDTO.getPassw());
 		if (userDTO.getId() != null) {
 			retour.setId(userDTO.getId());
 		}
