@@ -28,7 +28,7 @@ public class User implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id", nullable = false, insertable = true, updatable = true)
+	@Column(name = "\"id\"")
 	private Integer id;
 
 	@Column(name = "email")
@@ -36,33 +36,33 @@ public class User implements Serializable {
 
 	@Column(name = "password")
 	private String password;
-//TODO ok for those field but needs to be create in sript sql
-//	@Column(name = "phone_number")
-//	private String phoneNumber;
-//
-//	@Column(name = "addressstreet")
-//	private String addressStreet;
-//
-//	@Column(name = "addresszipcode")	
-//	private String addressZipcode;
-//
-//	@Column(name = "addresscity")
-//	private String addressCity;
-//
-//	@Column(name = "country")
-//	private String country;
-//
-//	@Column(name = "avatar")
-//	private String avatar;
-//
-//	@Column(name = "description")
-//	private String description;
-//	
-//	@Column(name="roles")
-//	private String roles;
-//	
-//	@OneToMany(mappedBy="group")
-//	private List<UserGroup> userGroups;
+
+	@Column(name = "phone_number")
+	private String phoneNumber;
+
+	@Column(name = "addressstreet")
+	private String addressStreet;
+
+	@Column(name = "addresszipcode")	
+	private String addressZipcode;
+
+	@Column(name = "addresscity")
+	private String addressCity;
+
+	@Column(name = "country")
+	private String country;
+
+	@Column(name = "avatar")
+	private String avatar;
+
+	@Column(name = "description")
+	private String description;
+	
+	@Column(name="roles")
+	private String roles;
+	
+	@OneToMany(mappedBy="group")
+	private List<UserGroup> userGroups;
 
 	public User() {
 	}

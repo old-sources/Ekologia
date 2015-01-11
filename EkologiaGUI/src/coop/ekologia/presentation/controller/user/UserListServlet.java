@@ -27,22 +27,6 @@ public class UserListServlet extends EkologiaServlet {
 
 	@EJB
 	UserServiceInterface userService;
-
-//	@Override
-//	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		List<UserDTO> users = userService.getAllUser();
-//
-//		request.setAttribute("filteredUsers", users);
-//		forwardToJsp("/userList.jsp", request, response);
-//	}
-//
-//	@Override
-//	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		List<UserDTO> users = userService.getAllUser();
-//		request.setAttribute("filteredUsers", users);
-//		forwardToJsp("/user/user.jsp", request, response);
-//	}
-	
 	
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
