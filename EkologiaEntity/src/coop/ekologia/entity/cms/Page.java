@@ -16,26 +16,26 @@ import javax.persistence.Table;
  * 
  */
 @Entity
-@Table(name="\"page\"")
+@Table(name="page")
 @NamedQuery(name="Page.findAll", query="SELECT p FROM Page p")
 public class Page implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="\"id\"")
+	@Column(name="id")
 	private int id;
 
-	@Column(name="\"css\"")
+	@Column(name="css")
 	private String css;
 
-	@Column(name="\"html\"")
+	@Column(name="html")
 	private String html;
 
-	@Column(name="\"javascript\"")
+	@Column(name="javascript")
 	private String javascript;
 
-	@Column(name="\"url\"")
+	@Column(name="url")
 	private String url;
 
 	

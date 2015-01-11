@@ -89,13 +89,15 @@ public class UserService implements UserServiceInterface {
 
 	@Override
 	public UserDTO updateUser(UserDTO dto) {
-		// TODO Auto-generated method stub
-		return null;
+		User user = userMapper.mapToEntity(dto);
+		user = entityManager.merge(user);
+		return userMapper.mapFromEntity(user);
 	}
 
 	@Override
 	public UserDTO insertUser(UserDTO dto) {
-		// TODO Auto-generated method stub
-		return null;
+		User user = userMapper.mapToEntity(dto);
+		entityManager.persist(user);
+		return userMapper.mapFromEntity(user);
 	}
 }
