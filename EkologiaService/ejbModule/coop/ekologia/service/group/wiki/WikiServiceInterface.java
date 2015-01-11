@@ -3,8 +3,8 @@ package coop.ekologia.service.group.wiki;
 import javax.ejb.Local;
 
 import coop.ekologia.DTO.group.GroupDTO;
+import coop.ekologia.DTO.group.wiki.WikiDTO;
 import coop.ekologia.DTO.user.UserDTO;
-import coop.ekologia.DTO.wiki.WikiDTO;
 
 @Local
 public interface WikiServiceInterface {

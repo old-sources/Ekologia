@@ -44,6 +44,18 @@ Documentation et commentaires
 * Pour des liens entre classes, méthodes et champs, utiliser la syntaxe `{@link MaClasse#maMethodOuMonChamp}`
 
 
+Script SQL
+----------
+
+Afin de faciliter la mise à jour des bases de données des différents membres de l'équipe, nous allons utiliser les conventions suivantes :
+* Chaque modification de la base de données doit se trouver dans le dossier `script\evolutions`
+* Le nom de ces fichiers est `<numero>.sql` où `<numero>` permet de connaître l'ordre d'exécution des scripts
+* Lors d'une mise à jour du code et donc de la base de données, seules les nouveaux fichiers SQL seront à exécuter
+* Si une erreur est remarquée dans un fichier SQL déjà commité, créer un nouveau fichier SQL corrigeant le problème, ne jamais modifier un fichier déjà commité
+* Lors du `merge` avant un `commit` et un `push`, des conflits peuvent exister. Le renommage du fichier sql vers le numéro suivant du dernier existant corrige le problème
+* Ne jamais récupérer un dump de la base de données, qui recréera l'ensemble des scripts de création de la base, sans pour autant corriger des erreurs existantes et pouvant amener à des conflits
+
+
 Divers
 ------
 
