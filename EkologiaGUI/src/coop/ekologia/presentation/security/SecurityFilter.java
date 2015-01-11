@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import coop.ekologia.DTO.user.UserDTO;
+import coop.ekologia.presentation.controller.cms.HomeServlet;
 import coop.ekologia.presentation.controller.user.LoginServlet;
 import coop.ekologia.presentation.session.LoginSession;
 import coop.ekologia.service.security.SecurityServiceInterface;
@@ -35,12 +36,14 @@ public class SecurityFilter implements Filter {
 	/**
 	 * @see Filter#destroy()
 	 */
+	@Override
 	public void destroy() {
 	}
 
 	/**
 	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
 	 */
+	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		HttpServletRequest httpServletRequest = (HttpServletRequest) request;
 		HttpServletResponse httpServletResponse = (HttpServletResponse) response;
@@ -64,19 +67,21 @@ public class SecurityFilter implements Filter {
 			chain.doFilter(request, response);
 		}
 
-		// le chain.doFilter à déclenché le post de login et donc rempli la
-		// session
-		if (connectedUser == null
-				&& loginSession.getUser()!=null) {
-			String urlRequired = loginSession.getPreviousUrl();
-			httpServletResponse.sendRedirect(urlRequired);
-			loginSession.setPreviousUrl(null);
-		}
+        // le chain.doFilter à déclenché le post de login et donc rempli la session
+        if (connectedUser == null && loginSession.getUser() != null) {
+            if (loginSession.getPreviousUrl() != null) {
+                httpServletResponse.sendRedirect(loginSession.getPreviousUrl());
+                loginSession.setPreviousUrl(null);
+            } else {
+                httpServletResponse.sendRedirect(HomeServlet.routing(httpServletRequest));
+            }
+        }
 	}
 
 	/**
 	 * @see Filter#init(FilterConfig)
 	 */
+	@Override
 	public void init(FilterConfig fConfig) throws ServletException {
 	}
 

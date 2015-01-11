@@ -17,6 +17,7 @@ import coop.ekologia.service.mapper.Mapper;
 import coop.ekologia.service.mapper.group.GroupMapper;
 import coop.ekologia.service.utils.DateUtilitiesInterface;
 import coop.ekologia.service.utils.NumberUtilitiesInterface;
+import coop.ekologia.service.utils.StringUtilitiesInterface;
 
 @Stateless
 public class WikiMapper extends Mapper<WikiDTO, Wiki> {
@@ -34,6 +35,9 @@ public class WikiMapper extends Mapper<WikiDTO, Wiki> {
 	
 	@EJB
 	private NumberUtilitiesInterface numberUtilities;
+	
+	@EJB
+	private StringUtilitiesInterface stringUtilities;
 	
 	@Override
 	public WikiDTO mapFromEntity(Wiki wiki) {
@@ -76,6 +80,7 @@ public class WikiMapper extends Mapper<WikiDTO, Wiki> {
         
         for (WikiversionDTO wikiversionDTO: wikiDTO.getVersions()) {
             wikiversionDTO.setWiki(wikiDTO);
+            wikiversionDTO.setHtmlContent(stringUtilities.htmlFromUserText(wikiversionDTO.getContent()));
         }
         
         // Find current version = last active version or last not active version if any active

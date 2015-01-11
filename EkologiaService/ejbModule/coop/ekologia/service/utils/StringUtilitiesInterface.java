@@ -51,4 +51,12 @@ public interface StringUtilitiesInterface {
 	 * @return       @{code True} if the two {@code String} are not equal
 	 */
 	boolean notEquals(String value1, String value2);
+
+	/**
+	 * Transforms a user text with defined code into a html text to be displayed into web page.
+	 * 
+	 * @param userText The user text
+	 * @return         The corresponding html.
+	 */
+    String htmlFromUserText(String userText);
 }

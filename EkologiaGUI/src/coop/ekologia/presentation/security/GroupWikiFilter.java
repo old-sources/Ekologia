@@ -50,6 +50,10 @@ public class GroupWikiFilter extends EkologiaFilter {
 
             GroupDTO groupDTO = groupService.findByCanonical(groupCanonical);
             request.setAttribute(GroupWikiConstants.ATTRIBUTE_GROUPDTO, groupDTO);
+            if (groupDTO == null) {
+                notFound(request, response, chain);
+                return;
+            }
 
             WikiDTO wikiDTO = null;
             if (wikiCanonical != null) {

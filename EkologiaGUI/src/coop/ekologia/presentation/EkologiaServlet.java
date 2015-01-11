@@ -51,7 +51,7 @@ public abstract class EkologiaServlet extends HttpServlet {
     		result.append("/");
     	}
     	
-    	if (route.matches("^/(.+)")) {
+    	if (route.matches("^/(.*)")) {
     		result.append(route.substring(1));
     	} else {
     		result.append(route);

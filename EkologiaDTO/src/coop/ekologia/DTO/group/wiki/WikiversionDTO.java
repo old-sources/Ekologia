@@ -15,6 +15,7 @@ public class WikiversionDTO implements Serializable {
 	private String image;
 	private WikiDTO wiki;
 	private UserDTO user;
+	private String htmlContent;
 
 	public Integer getId() {
 		return id;
@@ -79,4 +80,12 @@ public class WikiversionDTO implements Serializable {
 	public void setUser(UserDTO user) {
 		this.user = user;
 	}
+
+    public String getHtmlContent() {
+        return htmlContent;
+    }
+
+    public void setHtmlContent(String htmlContent) {
+        this.htmlContent = htmlContent;
+    }
 }
