@@ -28,4 +28,6 @@ public interface UserServiceInterface {
 
 	public UserDTO insertUser(UserDTO dto);
 
+	public UserDTO deleteUser(UserDTO dto);
+
 }

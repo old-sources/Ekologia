@@ -40,7 +40,7 @@
 								<span class="uk-icon-pencil"></span>
 							</button>
 							<button
-								class="editButton uk-button uk-button-mini uk-button-danger"
+								class="deleteButton uk-button uk-button-mini uk-button-danger"
 								data-id="${user.id}">
 								<span class="uk-icon-trash"></span>
 							</button> <%-- same with dropdown 
@@ -92,6 +92,15 @@
 							//console.log(userFormUrl);
 							window.location.href = userFormUrl;
 						});
-		console.log("hello");
+		$(".deleteButton")
+		.on(
+				"click",
+				function(e) {
+					var userFormUrl = "${req.scheme}://${req.serverName}:${req.serverPort}${req.contextPath}"
+							+ "/admin/userForm/delete/" + ($(this).data("id"))
+					//console.log(userFormUrl);
+					window.location.href = userFormUrl;
+				});
+	
 	})
 </script>

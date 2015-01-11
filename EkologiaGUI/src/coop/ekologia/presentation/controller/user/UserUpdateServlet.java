@@ -12,24 +12,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import coop.ekologia.DTO.user.UserDTO;
-import coop.ekologia.presentation.EkologiaServlet;
 import coop.ekologia.service.user.UserServiceInterface;
 
 /**
- * Servlet implementation class User
+ * Servlet implementation class UserCreate
  */
-@WebServlet("/admin/userForm/*")
-public class UserFormServlet extends EkologiaServlet {
+@WebServlet("/admin/userForm/update/*")
+public class UserUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	// @Inject @Named("session")
 	@EJB
 	UserServiceInterface userService;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public UserFormServlet() {
+	public UserUpdateServlet() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -40,23 +38,24 @@ public class UserFormServlet extends EkologiaServlet {
 	 */
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		Matcher m = Pattern.compile("\\w*\\/userForm\\/(\\S*)").matcher(
+		Matcher m = Pattern.compile("\\w*\\/userForm\\/update\\/(\\S*)").matcher(
 				request.getRequestURI());
 		if (m.find()) {
 			String idString = m.group(1);
-			if ("create".compareTo(idString) != 0) {
-
-				Integer id = Integer.valueOf(idString);
-				UserDTO dto = new UserDTO();
-				dto.setId(id);
-				dto = userService.getUserById(dto);
-				request.setAttribute("user", dto);
-			}
-			forwardToJsp("user/userForm.jsp", request, response);
-//			request.getRequestDispatcher("/WEB-INF/userForm.jsp").forward(
-//					request, response);
-
+			UserDTO dto = new UserDTO();
+			String eMail = request.getParameter("email");
+			dto.setEmail(eMail);
+			String password = request.getParameter("password");
+			dto.setPassword(password);
+			Integer id = Integer.valueOf(idString);
+			dto.setId(id);
+			dto = userService.updateUser(dto);
+			request.setAttribute("user", dto);
 		}
+
+
+		response.sendRedirect(String.format("%s/admin/userList",
+				request.getContextPath()));
 	}
 
 	/**
@@ -65,7 +64,7 @@ public class UserFormServlet extends EkologiaServlet {
 	 */
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		
+		// TODO Auto-generated method stub
 	}
 
 }

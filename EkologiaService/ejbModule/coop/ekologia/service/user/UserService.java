@@ -82,7 +82,6 @@ public class UserService implements UserServiceInterface {
         return query.getSingleResult() != null;
 }
 	public UserDTO getUserById(UserDTO dto) {
-		// TODO Auto-generated method stub
 		User user = entityManager.find(User.class, dto.getId());
 		return userMapper.mapFromEntity(user);
 	}
@@ -98,6 +97,14 @@ public class UserService implements UserServiceInterface {
 	public UserDTO insertUser(UserDTO dto) {
 		User user = userMapper.mapToEntity(dto);
 		entityManager.persist(user);
+		return userMapper.mapFromEntity(user);
+	}
+
+	@Override
+	public UserDTO deleteUser(UserDTO dto) {
+		User user = userMapper.mapToEntity(dto);
+		user = entityManager.merge(user);
+		entityManager.remove(user);
 		return userMapper.mapFromEntity(user);
 	}
 }

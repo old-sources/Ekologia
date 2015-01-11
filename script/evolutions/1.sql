@@ -23,14 +23,19 @@ ALTER TABLE ONLY security
 
 
 -- User creation
-CREATE TABLE "user" (
+CREATE TABLE "account" (
     id serial NOT NULL,
     email character varying,
     password character varying,
     phone_number character varying,
-    first_name character varying(512),
-    last_name character varying(512)
+	addressstreet character varying(255),
+addresszipcode character varying(255),
+addresscity character varying(255),
+country character varying(255),
+ avatar character varying(255),
+description text,
+roles character varying(255)
 );
 
-ALTER TABLE ONLY "user"
+ALTER TABLE ONLY "account"
     ADD CONSTRAINT user_pkey PRIMARY KEY (id);

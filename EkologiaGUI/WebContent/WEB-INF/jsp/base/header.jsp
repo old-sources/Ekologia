@@ -18,3 +18,11 @@
 		</div>
 	</div>
 </c:if>
+<nav class="uk-navbar">
+    <ul class="uk-navbar-nav">
+        <li><a href="<%=request.getContextPath()%>/"><i class="uk-icon-home"></i></a></li>
+        <li><a href="<%=request.getContextPath()%>/admin/userList">les comptes</a></li>
+        <li><a href="<%=request.getContextPath()%>/admin/pageList">cms</a></li>
+    </ul>
+    
+</nav>

@@ -1,5 +1,4 @@
-<%@tag language="java"
-	pageEncoding="UTF-8"%>
+<%@tag language="java" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,12 +13,24 @@
 <title>Ekologia</title>
 </head>
 <body>
-	<div
-		class="uk-container uk-container-center uk-margin-top uk-margin-large-bottom">
-	
-	<jsp:include page="/WEB-INF/jsp/base/header.jsp" />
-	<jsp:doBody/>
-	</div>
+
+
+	<header
+		class="uk-panel uk-panel-box uk-panel-box-secondary uk-position-up">
+		<jsp:include page="/WEB-INF/jsp/base/header.jsp"></jsp:include>
+	</header>
+	<section>
+		<jsp:doBody></jsp:doBody>
+	</section>
+	<footer
+		class="uk-panel uk-panel-box uk-panel-box-secondary uk-position-bottom uk-width-1-1">
+		<div class="uk-text-center">
+			<span>TP réulisé dans le cadre des cours de l'IMIE</span>
+		</div>
+	</footer>
+
+
+
 
 </body>
 </html>

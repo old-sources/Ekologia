@@ -28,7 +28,7 @@ public class User implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "\"id\"")
+	@Column(name="id", insertable=true, updatable=false)
 	private Integer id;
 
 	@Column(name = "email")
@@ -97,89 +97,89 @@ public class User implements Serializable {
 		this.password = password;
 	}
 
-//	public String getPhoneNumber() {
-//		return this.phoneNumber;
-//	}
-//
-//	public void setPhoneNumber(String phoneNumber) {
-//		this.phoneNumber = phoneNumber;
-//	}
-//
-//	public String getAddressStreet() {
-//		return addressStreet;
-//	}
-//
-//	public void setAddressStreet(String addressStreet) {
-//		this.addressStreet = addressStreet;
-//	}
-//
-//	public String getAddressZipcode() {
-//		return addressZipcode;
-//	}
-//
-//	public void setAddressZipcode(String addressZipcode) {
-//		this.addressZipcode = addressZipcode;
-//	}
-//
-//	public String getAddressCity() {
-//		return addressCity;
-//	}
-//
-//	public void setAddressCity(String addressCity) {
-//		this.addressCity = addressCity;
-//	}
-//
-//	public String getCountry() {
-//		return country;
-//	}
-//
-//	public void setCountry(String country) {
-//		this.country = country;
-//	}
-//
-//	public String getAvatar() {
-//		return avatar;
-//	}
-//
-//	public void setAvatar(String avatar) {
-//		this.avatar = avatar;
-//	}
-//
-//	public String getDescription() {
-//		return description;
-//	}
-//
-//	public void setDescription(String description) {
-//		this.description = description;
-//	}
-//
-//	public String getRoles() {
-//		return roles;
-//	}
-//
-//	public void setRoles(String roles) {
-//		this.roles = roles;
-//	}
-//
-//	public List<UserGroup> getUserGroups() {
-//		return this.userGroups;
-//	}
-//
-//	public void setUserGroups(List<UserGroup> userGroups) {
-//		this.userGroups = userGroups;
-//	}
-//
-//	public UserGroup addUserGroup(UserGroup userGroup) {
-//		getUserGroups().add(userGroup);
-//		userGroup.setUser(this);
-//
-//		return userGroup;
-//	}
-//
-//	public UserGroup removeUserGroup(UserGroup userGroup) {
-//		getUserGroups().remove(userGroup);
-//		userGroup.setUser(null);
-//
-//		return userGroup;
-//	}
+	public String getPhoneNumber() {
+		return this.phoneNumber;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+
+	public String getAddressStreet() {
+		return addressStreet;
+	}
+
+	public void setAddressStreet(String addressStreet) {
+		this.addressStreet = addressStreet;
+	}
+
+	public String getAddressZipcode() {
+		return addressZipcode;
+	}
+
+	public void setAddressZipcode(String addressZipcode) {
+		this.addressZipcode = addressZipcode;
+	}
+
+	public String getAddressCity() {
+		return addressCity;
+	}
+
+	public void setAddressCity(String addressCity) {
+		this.addressCity = addressCity;
+	}
+
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
+	public String getAvatar() {
+		return avatar;
+	}
+
+	public void setAvatar(String avatar) {
+		this.avatar = avatar;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getRoles() {
+		return roles;
+	}
+
+	public void setRoles(String roles) {
+		this.roles = roles;
+	}
+
+	public List<UserGroup> getUserGroups() {
+		return this.userGroups;
+	}
+
+	public void setUserGroups(List<UserGroup> userGroups) {
+		this.userGroups = userGroups;
+	}
+
+	public UserGroup addUserGroup(UserGroup userGroup) {
+		getUserGroups().add(userGroup);
+		userGroup.setUser(this);
+
+		return userGroup;
+	}
+
+	public UserGroup removeUserGroup(UserGroup userGroup) {
+		getUserGroups().remove(userGroup);
+		userGroup.setUser(null);
+
+		return userGroup;
+	}
 }
