@@ -53,9 +53,6 @@ public class UserFormServlet extends EkologiaServlet {
 				request.setAttribute("user", dto);
 			}
 			forwardToJsp("user/userForm.jsp", request, response);
-//			request.getRequestDispatcher("/WEB-INF/userForm.jsp").forward(
-//					request, response);
-
 		}
 	}
 
@@ -65,32 +62,7 @@ public class UserFormServlet extends EkologiaServlet {
 	 */
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		Matcher m = Pattern.compile("\\w*\\/userForm\\/(\\S*)").matcher(
-				request.getRequestURI());
-		if (m.find()) {
-			UserDTO dto = new UserDTO();
-			String eMail = request.getParameter("email");
-			dto.setEmail(eMail);
-			String password = request.getParameter("password");
-			dto.setPassword(password);
-			String idString = m.group(1);
-			if ("create".compareTo(idString) != 0) {
-				Integer id = Integer.valueOf(idString);
-				dto.setId(id);
-				dto = userService.updateUser(dto);
-				request.setAttribute("user", dto);
-			}else{
-				dto = userService.insertUser(dto);
-				request.setAttribute("user", dto);				
-			}
-			response.sendRedirect(String.format("%s/admin/userList",request.getContextPath()));
-		//	forwardToJsp("user/userList.jsp", request, response);
-			
-//			request.getRequestDispatcher("/WEB-INF/userList.jsp").forward(
-//					request, response);
-
-		}
-
+		
 	}
 
 }

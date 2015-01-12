@@ -19,7 +19,7 @@ import coop.ekologia.entity.group.UserGroup;
  * The persistent class for the "user" database table.
  */
 @Entity
-@Table(name = "\"user\"")
+@Table(name = "account")
 @NamedQueries({
 	@NamedQuery(name = "User.findAll", query = "SELECT u FROM User u")
 })
@@ -28,34 +28,34 @@ public class User implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "\"id\"")
+	@Column(name="id", insertable=true, updatable=false)
 	private Integer id;
 
-	@Column(name = "\"email\"")
+	@Column(name = "email")
 	private String email;
 
-	@Column(name = "\"password\"")
+	@Column(name = "password")
 	private String password;
 
-	@Column(name = "\"phone_number\"")
+	@Column(name = "phone_number")
 	private String phoneNumber;
 
-	@Column(name = "\"addressstreet\"")
+	@Column(name = "addressstreet")
 	private String addressStreet;
 
-	@Column(name = "\"addresszipcode\"")	
+	@Column(name = "addresszipcode")	
 	private String addressZipcode;
 
-	@Column(name = "\"addresscity\"")
+	@Column(name = "addresscity")
 	private String addressCity;
 
-	@Column(name = "\"country\"")
+	@Column(name = "country")
 	private String country;
 
-	@Column(name = "\"avatar\"")
+	@Column(name = "avatar")
 	private String avatar;
 
-	@Column(name = "\"description\"")
+	@Column(name = "description")
 	private String description;
 	
 	@Column(name="roles")
@@ -67,13 +67,19 @@ public class User implements Serializable {
 	public User() {
 	}
 
+
+
 	public Integer getId() {
 		return id;
 	}
 
+
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
+
+
 
 	public String getEmail() {
 		return this.email;

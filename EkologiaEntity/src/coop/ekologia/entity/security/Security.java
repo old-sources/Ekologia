@@ -16,20 +16,20 @@ import javax.persistence.Table;
  * 
  */
 @Entity
-@Table(name="\"security\"")
+@Table(name="security")
 @NamedQuery(name="Security.findAll", query="SELECT s FROM Security s")
 public class Security implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="\"id\"")
+	@Column(name="id")
 	private int id;
 
-	@Column(name="\"url\"")
+	@Column(name="url")
 	private String url;
 	
-	@Column(name="\"diseable\"")
+	@Column(name="diseable")
 	private Boolean diseable;
 
 	public Security() {

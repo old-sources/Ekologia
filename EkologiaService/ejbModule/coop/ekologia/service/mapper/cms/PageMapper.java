@@ -9,12 +9,19 @@ public class PageMapper extends Mapper<PageDTO, Page> {
 	public PageDTO mapFromEntity(Page page) {
 		PageDTO retour = new PageDTO();
 		retour.setHtml(page.getHtml());
+		retour.setUrl(page.getUrl());
+		retour.setId(page.getId());
 		return retour;
 	}
 
 	@Override
-	public Page mapToEntity(PageDTO userPB) {
+	public Page mapToEntity(PageDTO pagePB) {
 		Page retour = new Page();
+		if (pagePB.getId() != null) {
+			retour.setId(pagePB.getId());
+		}
+		retour.setUrl(pagePB.getUrl());
+		retour.setHtml(pagePB.getHtml());
 		return retour;
 	}
 
