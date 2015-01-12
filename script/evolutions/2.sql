@@ -25,4 +25,4 @@ ALTER TABLE user_group
     ADD CONSTRAINT fk_user_group_group_id FOREIGN KEY (group_id) REFERENCES "group" (id);
 
 ALTER TABLE user_group
-    ADD CONSTRAINT fk_user_group_user_id FOREIGN KEY (user_id) REFERENCES "user" (id);
+    ADD CONSTRAINT fk_user_group_user_id FOREIGN KEY (user_id) REFERENCES "account" (id);
