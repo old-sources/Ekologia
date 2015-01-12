@@ -20,13 +20,27 @@ public class I18nService {
         String propertyKey = key.substring(key.indexOf('.') + 1);
         Properties properties = new Properties();
         try {
-            properties.load(getInputStream(module, language));
-            String value = properties.getProperty(key);
-            if (value == null || "".equals(value)) {
-                properties.load(getInputStream(module, null));
-                return properties.getProperty(propertyKey);
+            InputStream stream = getInputStream(module, language);
+            if (stream != null) {
+                properties.load(stream);
+                String value = properties.getProperty(key);
+                if (value == null || "".equals(value)) {
+                    stream = getInputStream(module, null);
+                    if (stream != null) {
+                        properties.load(stream);
+                        value = properties.getProperty(propertyKey);
+                        if (value == null) {
+                            return "???" + key + "???";
+                        }
+                        return value;
+                    } else {
+                        return "???" + key + "???";
+                    }
+                } else {
+                    return value;
+                }
             } else {
-                return value;
+                return "???" + key + "???";
             }
         } catch (IOException e) {
             logger.log(Level.WARNING,
@@ -42,6 +56,10 @@ public class I18nService {
         } else {
             path = "i18n/" + module + ".properties";
         }
-        return this.getClass().getClassLoader().getResourceAsStream(path);
+        InputStream stream = this.getClass().getClassLoader().getResourceAsStream(path);
+        if (stream == null && language != null) {
+            return getInputStream(module, null);
+        }
+        return stream;
     }
 }

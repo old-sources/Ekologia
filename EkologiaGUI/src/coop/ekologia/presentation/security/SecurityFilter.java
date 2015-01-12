@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import coop.ekologia.DTO.user.UserDTO;
-import coop.ekologia.presentation.controller.cms.HomeServlet;
+import coop.ekologia.presentation.controller.cms.PageServlet;
 import coop.ekologia.presentation.controller.user.LoginServlet;
 import coop.ekologia.presentation.session.LoginSession;
 import coop.ekologia.service.security.SecurityServiceInterface;
@@ -73,7 +73,7 @@ public class SecurityFilter implements Filter {
                 httpServletResponse.sendRedirect(loginSession.getPreviousUrl());
                 loginSession.setPreviousUrl(null);
             } else {
-                httpServletResponse.sendRedirect(HomeServlet.routing(httpServletRequest));
+                httpServletResponse.sendRedirect(PageServlet.routingHome(httpServletRequest));
             }
         }
 	}

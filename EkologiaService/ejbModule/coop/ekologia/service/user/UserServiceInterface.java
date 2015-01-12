@@ -30,4 +30,6 @@ public interface UserServiceInterface {
 
 	public UserDTO deleteUser(UserDTO dto);
 
+    boolean existsByEmail(String email);
+
 }

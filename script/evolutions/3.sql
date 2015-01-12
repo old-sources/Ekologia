@@ -1,3 +1,4 @@
+-- NEVER CHANGE A FILE WHICH IS COMMITTED IN THIS DIRECTORY
 -- Wiki creation
 CREATE TABLE wiki
 (
@@ -33,7 +34,7 @@ CREATE TABLE wikiversion
 );
 
 ALTER TABLE wikiversion
-    ADD CONSTRAINT fk_wikiversion_user_id FOREIGN KEY (user_id) REFERENCES "account" (id);
+    ADD CONSTRAINT fk_wikiversion_user_id FOREIGN KEY (user_id) REFERENCES "user" (id);
 
 ALTER TABLE wikiversion
     ADD CONSTRAINT wikiversion_wiki_id_fkey FOREIGN KEY (wiki_id) REFERENCES wiki (id);
@@ -53,7 +54,7 @@ CREATE TABLE wikicomment
 );
 
 ALTER TABLE wikicomment
-    ADD CONSTRAINT fk_wikicomment_user_id FOREIGN KEY (user_id) REFERENCES "account" (id);
+    ADD CONSTRAINT fk_wikicomment_user_id FOREIGN KEY (user_id) REFERENCES "user" (id);
 
 ALTER TABLE wikicomment
     ADD CONSTRAINT wikicomment_parent_id_fkey FOREIGN KEY (parent_id) REFERENCES wikicomment (id);

@@ -4,6 +4,7 @@ import javax.ejb.Stateless;
 
 import org.apache.commons.validator.routines.DateValidator;
 import org.apache.commons.validator.routines.DoubleValidator;
+import org.apache.commons.validator.routines.EmailValidator;
 import org.apache.commons.validator.routines.IntegerValidator;
 import org.apache.commons.validator.routines.UrlValidator;
 
@@ -69,4 +70,24 @@ public class ConstraintsService implements ConstraintsServiceInterface {
 	public boolean isNotUrl(String value) {
 		return !isUrl(value);
 	}
+
+    @Override
+    public boolean isEmail(String value) {
+        return EmailValidator.getInstance().isValid(value);
+    }
+
+    @Override
+    public boolean isNotEmail(String value) {
+        return !isEmail(value);
+    }
+
+    @Override
+    public boolean isSecuredPassword(String value) {
+        return value.length() >= 8 && value.matches("(.*)[a-zA-Z](.*)") && value.matches("(.*)[0-9](.*)");
+    }
+
+    @Override
+    public boolean isNotSecuredPassword(String value) {
+        return !isSecuredPassword(value);
+    }
 }

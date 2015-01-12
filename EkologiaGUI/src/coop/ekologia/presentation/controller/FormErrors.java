@@ -28,7 +28,7 @@ public class FormErrors {
 		if (!errors.containsKey(error)) {
 			errors.put(key, new ArrayList<String>());
 		}
-		String i18nError = i18nService.translate(language, key);
+		String i18nError = i18nService.translate(language, error);
 		errors.get(key).add(i18nError);
 	}
 	

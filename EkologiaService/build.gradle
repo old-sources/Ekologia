@@ -28,9 +28,11 @@ dependencies {
   compile project(':EkologiaEntity')
   compile 'commons-validator:commons-validator:1.4.0'
   compile 'org.commonjava.googlecode.markdown4j:markdown4j:2.2-cj-1.0'
+  compile 'commons-codec:commons-codec:1.10'
   
   addjar 'commons-validator:commons-validator:1.4.0'
   addjar 'org.commonjava.googlecode.markdown4j:markdown4j:2.2-cj-1.0'
+  addjar 'commons-codec:commons-codec:1.10'
 }
 
 jar {

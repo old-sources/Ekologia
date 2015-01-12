@@ -1,3 +1,4 @@
+-- NEVER CHANGE A FILE WHICH IS COMMITTED IN THIS DIRECTORY
 -- Page creation
 CREATE TABLE page (
     id serial NOT NULL,
@@ -23,19 +24,14 @@ ALTER TABLE ONLY security
 
 
 -- User creation
-CREATE TABLE "account" (
+CREATE TABLE "user" (
     id serial NOT NULL,
     email character varying,
     password character varying,
     phone_number character varying,
-	addressstreet character varying(255),
-addresszipcode character varying(255),
-addresscity character varying(255),
-country character varying(255),
- avatar character varying(255),
-description text,
-roles character varying(255)
+    first_name character varying(512),
+    last_name character varying(512)
 );
 
-ALTER TABLE ONLY "account"
+ALTER TABLE ONLY "user"
     ADD CONSTRAINT user_pkey PRIMARY KEY (id);

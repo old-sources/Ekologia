@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,166 +21,175 @@ import coop.ekologia.entity.group.UserGroup;
  */
 @Entity
 @Table(name = "account")
+@DiscriminatorColumn(name="discriminator")
 @NamedQueries({
-	@NamedQuery(name = "User.findAll", query = "SELECT u FROM User u")
+    @NamedQuery(name = User.FIND_ALL, query = "SELECT u FROM User u"),
+    @NamedQuery(name = User.FIND_BY_EMAIL, query = "SELECT u FROM User u WHERE u.email = :email")
 })
 public class User implements Serializable {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
+    public static final String FIND_ALL = "User.findAll";
+    public static final String FIND_BY_EMAIL = "User.findByEmail";
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="id", insertable=true, updatable=false)
-	private Integer id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Integer id;
 
-	@Column(name = "email")
-	private String email;
+    @Column(name = "email")
+    private String email;
 
-	@Column(name = "password")
-	private String password;
+    @Column(name = "password")
+    private String password;
+    
+    @Column(name = "salt")
+    private String salt;
 
-	@Column(name = "phone_number")
-	private String phoneNumber;
+    @Column(name = "phone_number")
+    private String phoneNumber;
 
-	@Column(name = "addressstreet")
-	private String addressStreet;
+    @Column(name = "addressstreet")
+    private String addressStreet;
 
-	@Column(name = "addresszipcode")	
-	private String addressZipcode;
+    @Column(name = "addresszipcode")    
+    private String addressZipcode;
 
-	@Column(name = "addresscity")
-	private String addressCity;
+    @Column(name = "addresscity")
+    private String addressCity;
 
-	@Column(name = "country")
-	private String country;
+    @Column(name = "country")
+    private String country;
 
-	@Column(name = "avatar")
-	private String avatar;
+    @Column(name = "avatar")
+    private String avatar;
 
-	@Column(name = "description")
-	private String description;
-	
-	@Column(name="roles")
-	private String roles;
-	
-	@OneToMany(mappedBy="group")
-	private List<UserGroup> userGroups;
+    @Column(name = "description")
+    private String description;
+    
+    @Column(name="roles")
+    private String roles;
+    
+    @OneToMany(mappedBy="group")
+    private List<UserGroup> userGroups;
 
-	public User() {
-	}
+    public User() {
+    }
 
+    public Integer getId() {
+        return id;
+    }
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public Integer getId() {
-		return id;
-	}
+    public String getEmail() {
+        return this.email;
+    }
 
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
+    public String getPassword() {
+        return this.password;
+    }
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
+    public String getSalt() {
+        return salt;
+    }
 
+    public void setSalt(String salt) {
+        this.salt = salt;
+    }
 
-	public String getEmail() {
-		return this.email;
-	}
+    public String getPhoneNumber() {
+        return this.phoneNumber;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
 
-	public String getPassword() {
-		return this.password;
-	}
+    public String getAddressStreet() {
+        return addressStreet;
+    }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    public void setAddressStreet(String addressStreet) {
+        this.addressStreet = addressStreet;
+    }
 
-	public String getPhoneNumber() {
-		return this.phoneNumber;
-	}
+    public String getAddressZipcode() {
+        return addressZipcode;
+    }
 
-	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
-	}
+    public void setAddressZipcode(String addressZipcode) {
+        this.addressZipcode = addressZipcode;
+    }
 
-	public String getAddressStreet() {
-		return addressStreet;
-	}
+    public String getAddressCity() {
+        return addressCity;
+    }
 
-	public void setAddressStreet(String addressStreet) {
-		this.addressStreet = addressStreet;
-	}
+    public void setAddressCity(String addressCity) {
+        this.addressCity = addressCity;
+    }
 
-	public String getAddressZipcode() {
-		return addressZipcode;
-	}
+    public String getCountry() {
+        return country;
+    }
 
-	public void setAddressZipcode(String addressZipcode) {
-		this.addressZipcode = addressZipcode;
-	}
+    public void setCountry(String country) {
+        this.country = country;
+    }
 
-	public String getAddressCity() {
-		return addressCity;
-	}
+    public String getAvatar() {
+        return avatar;
+    }
 
-	public void setAddressCity(String addressCity) {
-		this.addressCity = addressCity;
-	}
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
 
-	public String getCountry() {
-		return country;
-	}
+    public String getDescription() {
+        return description;
+    }
 
-	public void setCountry(String country) {
-		this.country = country;
-	}
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-	public String getAvatar() {
-		return avatar;
-	}
+    public String getRoles() {
+        return roles;
+    }
 
-	public void setAvatar(String avatar) {
-		this.avatar = avatar;
-	}
+    public void setRoles(String roles) {
+        this.roles = roles;
+    }
 
-	public String getDescription() {
-		return description;
-	}
+    public List<UserGroup> getUserGroups() {
+        return this.userGroups;
+    }
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    public void setUserGroups(List<UserGroup> userGroups) {
+        this.userGroups = userGroups;
+    }
 
-	public String getRoles() {
-		return roles;
-	}
+    public UserGroup addUserGroup(UserGroup userGroup) {
+        getUserGroups().add(userGroup);
+        userGroup.setUser(this);
 
-	public void setRoles(String roles) {
-		this.roles = roles;
-	}
+        return userGroup;
+    }
 
-	public List<UserGroup> getUserGroups() {
-		return this.userGroups;
-	}
+    public UserGroup removeUserGroup(UserGroup userGroup) {
+        getUserGroups().remove(userGroup);
+        userGroup.setUser(null);
 
-	public void setUserGroups(List<UserGroup> userGroups) {
-		this.userGroups = userGroups;
-	}
-
-	public UserGroup addUserGroup(UserGroup userGroup) {
-		getUserGroups().add(userGroup);
-		userGroup.setUser(this);
-
-		return userGroup;
-	}
-
-	public UserGroup removeUserGroup(UserGroup userGroup) {
-		getUserGroups().remove(userGroup);
-		userGroup.setUser(null);
-
-		return userGroup;
-	}
+        return userGroup;
+    }
 }

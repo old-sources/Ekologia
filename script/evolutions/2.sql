@@ -1,3 +1,15 @@
+-- NEVER CHANGE A FILE WHICH IS COMMITTED IN THIS DIRECTORY
+-- User modification
+ALTER TABLE "user" ADD COLUMN addressstreet character varying(255);
+ALTER TABLE "user" ADD COLUMN addresszipcode character varying(255);
+ALTER TABLE "user" ADD COLUMN addresscity character varying(255);
+ALTER TABLE "user" ADD COLUMN country character varying(255);
+ALTER TABLE "user" ADD COLUMN avatar character varying(255);
+ALTER TABLE "user" ADD COLUMN description text;
+ALTER TABLE "user" ADD COLUMN roles character varying(255);
+ALTER TABLE "user" DROP COLUMN first_name;
+ALTER TABLE "user" DROP COLUMN last_name;
+
 
 -- Group creation
 CREATE TABLE "group"
@@ -25,4 +37,4 @@ ALTER TABLE user_group
     ADD CONSTRAINT fk_user_group_group_id FOREIGN KEY (group_id) REFERENCES "group" (id);
 
 ALTER TABLE user_group
-    ADD CONSTRAINT fk_user_group_user_id FOREIGN KEY (user_id) REFERENCES "account" (id);
+    ADD CONSTRAINT fk_user_group_user_id FOREIGN KEY (user_id) REFERENCES "user" (id);
