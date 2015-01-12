@@ -53,9 +53,6 @@ public class UserFormServlet extends EkologiaServlet {
 				request.setAttribute("user", dto);
 			}
 			forwardToJsp("user/userForm.jsp", request, response);
-//			request.getRequestDispatcher("/WEB-INF/userForm.jsp").forward(
-//					request, response);
-
 		}
 	}
 

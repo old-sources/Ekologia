@@ -27,7 +27,8 @@ import coop.ekologia.service.mapper.user.UserMapper;
 // @Named("instance")
 @Stateless
 public class UserService implements UserServiceInterface {
-    private static final Logger logger = Logger.getLogger(UserService.class.getName());
+	private static final Logger logger = Logger.getLogger(UserService.class
+			.getName());
 
 	@PersistenceContext
 	private EntityManager entityManager;
@@ -72,15 +73,16 @@ public class UserService implements UserServiceInterface {
 
 	@Override
 	public boolean isIntoGroup(UserDTO userDTO, GroupDTO groupDTO) {
-	    if (userDTO == null || groupDTO == null) {
-	        logger.log(Level.INFO, "The userDTO or groupDTO is null.");
-	        return false;
-	    }
+		if (userDTO == null || groupDTO == null) {
+			logger.log(Level.INFO, "The userDTO or groupDTO is null.");
+			return false;
+		}
 		Query query = entityManager.createNamedQuery(UserGroup.FIND);
-        query.setParameter("userId", userDTO.getId());
-        query.setParameter("groupId", groupDTO.getId());
-        return query.getSingleResult() != null;
-}
+		query.setParameter("userId", userDTO.getId());
+		query.setParameter("groupId", groupDTO.getId());
+		return query.getSingleResult() != null;
+	}
+
 	public UserDTO getUserById(UserDTO dto) {
 		User user = entityManager.find(User.class, dto.getId());
 		return userMapper.mapFromEntity(user);

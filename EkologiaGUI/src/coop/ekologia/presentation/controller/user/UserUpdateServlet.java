@@ -12,13 +12,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import coop.ekologia.DTO.user.UserDTO;
+import coop.ekologia.presentation.EkologiaServlet;
 import coop.ekologia.service.user.UserServiceInterface;
 
 /**
  * Servlet implementation class UserCreate
  */
 @WebServlet("/admin/userForm/update/*")
-public class UserUpdateServlet extends HttpServlet {
+public class UserUpdateServlet extends EkologiaServlet {
 	private static final long serialVersionUID = 1L;
 
 	@EJB
@@ -38,8 +39,31 @@ public class UserUpdateServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		Matcher m = Pattern.compile("\\w*\\/userForm\\/update\\/(\\S*)").matcher(
-				request.getRequestURI());
+		Matcher m = Pattern.compile("\\w*\\/userForm\\/update\\/(\\S*)")
+				.matcher(request.getRequestURI());
+		if (m.find()) {
+			String idString = m.group(1);
+
+			Integer id = Integer.valueOf(idString);
+			UserDTO dto = new UserDTO();
+			dto.setId(id);
+			dto = userService.getUserById(dto);
+			request.setAttribute("user", dto);
+
+		}
+
+		forwardToJsp("user/userForm.jsp", request, response);
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+
+		Matcher m = Pattern.compile("\\w*\\/userForm\\/update\\/(\\S*)")
+				.matcher(request.getRequestURI());
 		if (m.find()) {
 			String idString = m.group(1);
 			UserDTO dto = new UserDTO();
@@ -53,18 +77,9 @@ public class UserUpdateServlet extends HttpServlet {
 			request.setAttribute("user", dto);
 		}
 
-
 		response.sendRedirect(String.format("%s/admin/userList",
 				request.getContextPath()));
-	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doPost(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 	}
 
 }

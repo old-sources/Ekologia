@@ -17,7 +17,7 @@
 					<div class="uk-width-8-10">liste des users</div>
 					<div class="uk-width-2-10">
 						<button
-							class="editButton uk-button uk-button-mini uk-button-primary uk-button-success"
+							class="createButton uk-button uk-button-mini uk-button-primary uk-button-success"
 							data-id="create">
 							<span class="uk-icon-plus"></span>
 						</button>
@@ -83,24 +83,35 @@
 </et:front>
 <script>
 	$(function() {
+		$(".createButton")
+				.on(
+						"click",
+						function(e) {
+							var userFormUrl = "${req.scheme}://${req.serverName}:${req.serverPort}${req.contextPath}"
+									+ "/admin/userForm/create"
+							//console.log(userFormUrl);
+							window.location.href = userFormUrl;
+						});
 		$(".editButton")
 				.on(
 						"click",
 						function(e) {
 							var userFormUrl = "${req.scheme}://${req.serverName}:${req.serverPort}${req.contextPath}"
-									+ "/admin/userForm/" + ($(this).data("id"))
+									+ "/admin/userForm/update/"
+									+ ($(this).data("id"))
 							//console.log(userFormUrl);
 							window.location.href = userFormUrl;
 						});
 		$(".deleteButton")
-		.on(
-				"click",
-				function(e) {
-					var userFormUrl = "${req.scheme}://${req.serverName}:${req.serverPort}${req.contextPath}"
-							+ "/admin/userForm/delete/" + ($(this).data("id"))
-					//console.log(userFormUrl);
-					window.location.href = userFormUrl;
-				});
-	
+				.on(
+						"click",
+						function(e) {
+							var userFormUrl = "${req.scheme}://${req.serverName}:${req.serverPort}${req.contextPath}"
+									+ "/admin/userForm/delete/"
+									+ ($(this).data("id"))
+							//console.log(userFormUrl);
+							window.location.href = userFormUrl;
+						});
+
 	})
 </script>

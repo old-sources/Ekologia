@@ -12,13 +12,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import coop.ekologia.DTO.user.UserDTO;
+import coop.ekologia.presentation.EkologiaServlet;
 import coop.ekologia.service.user.UserServiceInterface;
 
 /**
  * Servlet implementation class UserCreate
  */
 @WebServlet("/admin/userForm/delete/*")
-public class UserDeleteServlet extends HttpServlet {
+public class UserDeleteServlet extends EkologiaServlet {
 	private static final long serialVersionUID = 1L;
 
 	@EJB

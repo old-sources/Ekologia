@@ -1,4 +1,5 @@
 <%@tag language="java" pageEncoding="UTF-8"%>
+<%@attribute name="head" fragment="true" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,6 +10,7 @@
 	src="<%=request.getContextPath()%>/JQuery/jquery-2.1.3.min.js"></script>
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/uikit-2.15.0/js/uikit.min.js"></script>
+<jsp:invoke fragment="head"/>	
 <meta http-equiv="Content-Type" content="text/html;UTF-8">
 <title>Ekologia</title>
 </head>
@@ -25,7 +27,7 @@
 	<footer
 		class="uk-panel uk-panel-box uk-panel-box-secondary uk-position-bottom uk-width-1-1">
 		<div class="uk-text-center">
-			<span>TP réulisé dans le cadre des cours de l'IMIE</span>
+			<span>Ekologia</span>
 		</div>
 	</footer>
 

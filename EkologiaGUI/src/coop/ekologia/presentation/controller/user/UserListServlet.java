@@ -34,15 +34,10 @@ public class UserListServlet extends EkologiaServlet {
 	 */
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		// List<UserData> users = (List<UserData>) request.getSession()
-		// .getAttribute("users");
+
 		List<UserDTO> users = userService.getAllUser();
 
 		request.setAttribute("filteredUsers", users);
-//		request.getRequestDispatcher(String.format("/WEB-INF/userList.jsp",request.getContextPath())).forward(request,
-//				response);
-//		request.getRequestDispatcher("/WEB-INF/userList.jsp").forward(request,
-//				response);
 		
 		forwardToJsp("user/userList.jsp", request, response);
 	}
