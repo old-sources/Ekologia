@@ -9,7 +9,7 @@ import java.util.List;
  * The persistent class for the group database table.
  */
 @Entity
-@Table(name="group")
+@Table(name="\"group\"")
 @NamedQueries({
 	@NamedQuery(name=Group.FIND_ALL, query="SELECT g FROM Group g"),
 	@NamedQuery(name=Group.FIND_BY_CANONICAL, query="SELECT g FROM Group g WHERE g.canonical=:canonical")

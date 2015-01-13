@@ -32,9 +32,23 @@ public abstract class EkologiaFilter implements Filter {
         doHttpFilter((HttpServletRequest) request, (HttpServletResponse) response, chain);
     }
     
+    /**
+     * Does the filter (replaces {@link #doFilter(ServletRequest, ServletResponse, FilterChain)} of {@link Filter}).
+     * 
+     * @param request  The request as {@link HttpServletRequest}
+     * @param response The response as {@link HttpServletResponse}
+     * @param chain    The filter chain
+     */
     protected abstract void doHttpFilter(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
             throws IOException, ServletException;
 
+    /**
+     * Sends a forbidden to the client.
+     * 
+     * @param request  The current request
+     * @param response The current response
+     * @param chain    The chain filter
+     */
     protected void forbidden(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
         if (loginSession.getUser() == null) {
             loginSession.setPreviousUrl(request.getRequestURI());
@@ -45,20 +59,48 @@ public abstract class EkologiaFilter implements Filter {
         }
     }
 
+    /**
+     * Sends a not found to the client.
+     * 
+     * @param request  The current request
+     * @param response The current response
+     * @param chain    The chain filter
+     */
     protected void notFound(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
         // TODO: pretty print
         response.sendError(404);
     }
 
+    /**
+     * Sends a bad request to the client.
+     * 
+     * @param request  The current request
+     * @param response The current response
+     * @param chain    The chain filter
+     */
     protected void badRequest(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
         // TODO: pretty print
         response.sendError(400);
     }
     
+    /**
+     * Sends a success to the client.
+     * It means to continue the request to right servlet.
+     * 
+     * @param request  The current request
+     * @param response The current response
+     * @param chain    The chain filter
+     */
     protected void success(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
         chain.doFilter(request, response);
     }
     
+    /**
+     * Returns the current language from request.
+     * 
+     * @param request The current request
+     * @return        The language of the request
+     */
     protected String getCurrentLanguage(HttpServletRequest request) {
         // TODO: group this method with the one in EkologiaServlet
         String serverName = request.getServerName();

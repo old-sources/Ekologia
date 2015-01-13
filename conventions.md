@@ -24,6 +24,7 @@ Nommage, packages et héritages/implémentations
     * Avoir le suffixe `Servlet` (ex: `LoginServlet`, `PageServlet`)
     * Posséder une méthode `public static final String routing(HttpServletRequest, <params>)` permettant de générer une url vers cette servlet selon les arguments passés en paramètre (comme les paramètres sont variables, nous n'utilisons pas d'interface)
     * Etre dans un sous-package de `coop.ekologia.presentation.controller`
+    * L'appel aux jsp doit se faire grâce à la fonction `EkologiaServlet.forwardToJsp(String, HttpServletRequest, HttpServletResponse)` (cf. javadoc pour plus d'explication)
 * Tous les filtres d'accès aux servlet doivent :
     * Avoir le suffixe `Filter`
     * Etre dans le package ou un sous-package de `coop.ekologia.presentation.security`
@@ -55,6 +56,59 @@ Afin de faciliter la mise à jour des bases de données des différents membres de 
 * Lors du `merge` avant un `commit` et un `push`, des conflits peuvent exister. Le renommage du fichier sql vers le numéro suivant du dernier existant corrige le problème
 * Ne jamais récupérer un dump de la base de données, qui recréera l'ensemble des scripts de création de la base, sans pour autant corriger des erreurs existantes et pouvant amener à des conflits
 
+Internationalisation
+--------------------
+
+Aussi appelé `i18n` car 18 lettres entre `i` et `n` (terme utilisé dans le code sur internet).
+
+* Préparation:
+    * Créer un fichier dans `EkologiaGUI/src/i18n` un fichier nommé `<module>.properties` où `<module>` est votre module. si ce sont des sous-modules, collez les noms (ex: `groupwiki` pour `group/wiki`). Ce fichier contient les traduction par défaut, en anglais.
+    * Créer autant de propriétés de d'éléments à traduire.
+    * Convention de nommage: `aaa.bbb.ccc` sans accent, en essayant de regrouper les noms comme des packages (ex: `registration.usertype.label`, cf. `jsp/user/registration.jsp` pour exemples).
+    * Les traductions par langue sont dans les fichiers `<module>_<lang>.properties` (ex: `groupwiki_fr.properties`, `groupwiki_en.properties`).
+* Utilisation:
+    * Depuis une JSP:
+        * Ajouter `<fmt:setLocale value="${ currentLanguage }" />` au début du fichier. `currentLanguage` est une variable fournie par la méthode `EkologiaServlet.forwardToJsp(String, HttpServletRequest, HttpServletResponse)`
+        * Ajouter en dessous `<fmt:setBundle basename="i18n.<module>"/>` en remplaçant `<module>` par votre nom de module (cf. partie `Préparation`)
+        * Utiliser `<fmt:message key="your.key" />` pour un affichage direct (en dehors de tout balise)
+        * Utiliser `<fmt:message key="your.key" var="message" />`, puis `${ message }` pour des textes dans les balises (cf. `jsp/user/registration.jsp` pour exemples)
+    * Depuis java:
+        * Injecter le service `I18nService` (`EkologiaGUI` seulement)
+        * Appeler la méthode `translate(String, String)`.
+            * Le premier paramètre est la langue (obtenue via `EkologiaServlet.getCurrentLanguage(HttpServletRequest)`).
+            * Le second est la clef, préfixée par votere module (ex: `user.registration.email.empty` pour la clef `registration.email.empty` du module `user`). Cette convention est obligatoire pour que ça marche.
+
+Gestion des erreurs dans les formulaires
+----------------------------------------
+
+Vous trouverez la classe `FormErrors` qui permettra de gérer les erreurs et les traductions associées. Voici comment l'utiliser :
+* Dans java:
+    * Injecter le service `FormErrors`
+    * Avant de l'utiliser, effectuer un `FormErrors.setLanguage(getCurrentLanguage(request))`. Lorsque nous aurons trouver un moyen de récupérer directement depuis la requête, cette opération ne sera plus nécessaire.
+    * Pour chaque erreur, ajouter une erreur via `FormErrors.addError(String, String)`
+        * Le premier paramètre est le nom de votre champ
+        * Le second, la clef qui sera utilisée par le service `I18nService` (cf. partie `Internationalisation`)
+    * Chaque clef peut avoir plusieurs erreurs
+    * Pour savoir s'il existe des erreurs, utiliser `FormErrors.isEmpty()`
+* Dans JSP (on suppose que la liste de erreurs se nomme `errors`):
+    * ```
+        <c:if test="${ errors != null && errors.get('myfield') != null }">
+            <c:forEach var="error" items="${ errors.get('myfield') }">
+                <c:out value="${ error }" />
+            </c:forEach>
+        </c:if>
+      ```
+* Cf. `registration.jsp` et `RegistrationServlet`
+
+Utilisation de constantes
+-------------------------
+
+Afin d'éviter les erreurs de copies, ainsi que de ne pas casser un existant, il est conseillé d'exporter l'ensemble des constantes dans une classe externe.
+Ces cosntants seront dans le packages `coop.ekologia.presentation.constants`.
+Nous utiliserons une interface par module (et sous module) dont le nom est `ModuleConstants` ou `SousModuleConstants`.
+Toutes les constantes sont des objets ou primitifs (`int`, `long`, etc.), déclarées sans modificateur de visibilité (`String AAA = "aaa"`et non `public static final String AAA = "aaa"`).
+Le nom des constantes sont en majuscules, séparées par des underscores (ex: `AAA_BBB_CCC`).
+Préfixer les constantes par leur type (ex: `PARAMETER_*` ou `ATTRIBUTE_*`).
 
 Divers
 ------

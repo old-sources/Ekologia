@@ -11,6 +11,15 @@ public class I18nService {
 
     // TODO: how to get language from current request?
 
+    /**
+     * Returns the translation of the given key in the given language.
+     * If the translation does not exists in the given language, returns the default translation.
+     * If the key is not found in both languages, return the key as {@code ???key???}.
+     * 
+     * @param language The current language
+     * @param key      The key of the translation, prefixed by your module name (ex: `module.my.key`)
+     * @return         The translation
+     */
     public String translate(String language, String key) {
         if (language == null || key == null) {
             logger.log(Level.WARNING, "The language or the key is null. Operation aborted.");
