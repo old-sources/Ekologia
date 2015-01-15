@@ -1,4 +1,4 @@
-package coop.ekologia.presentation.controller.cms;
+package coop.ekologia.presentation.controller.group;
 
 import java.io.IOException;
 import java.util.regex.Matcher;
@@ -11,24 +11,28 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import coop.ekologia.DTO.cms.PageDTO;
+import coop.ekologia.DTO.group.GroupDTO;
 import coop.ekologia.presentation.EkologiaServlet;
-import coop.ekologia.service.cms.PageServiceInterface;
+import coop.ekologia.service.group.GroupServiceInterface;
+import coop.ekologia.service.utils.CanonicalizerServiceInterface;
 
 /**
- * Servlet implementation class UserCreate
+ * Servlet implementation class GroupUpdateServlet
  */
-@WebServlet("/admin/pageForm/update/*")
-public class PageUpdateServlet extends EkologiaServlet {
+@WebServlet("/group/groupForm/update/*")
+public class GroupUpdateServlet extends EkologiaServlet {
 	private static final long serialVersionUID = 1L;
 
 	@EJB
-	PageServiceInterface pageService;
+	private GroupServiceInterface groupService;
+
+	@EJB
+	private CanonicalizerServiceInterface canonicalService;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public PageUpdateServlet() {
+	public GroupUpdateServlet() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -39,21 +43,20 @@ public class PageUpdateServlet extends EkologiaServlet {
 	 */
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		Matcher m = Pattern.compile("\\w*\\/pageForm\\/update\\/(\\S*)")
+		Matcher m = Pattern.compile("\\w*\\/groupForm\\/update\\/(\\S*)")
 				.matcher(request.getRequestURI());
-		if (m.find()) { 
+		if (m.find()) {
 			String idString = m.group(1);
 
 			Integer id = Integer.valueOf(idString);
-			PageDTO dto = new PageDTO();
+			GroupDTO dto = new GroupDTO();
 			dto.setId(id);
-			dto = pageService.getPageById(dto);
-			request.setAttribute("page", dto);
-
+			dto = groupService.getGroupById(dto);
+			request.setAttribute("group", dto);
 
 		}
 
-		forwardToJsp("cms/pageForm.jsp", request, response);
+		forwardToJsp("group/groupForm.jsp", request, response);
 	}
 
 	/**
@@ -62,22 +65,20 @@ public class PageUpdateServlet extends EkologiaServlet {
 	 */
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		Matcher m = Pattern.compile("\\w*\\/pageForm\\/update\\/(\\S*)")
+		Matcher m = Pattern.compile("\\w*\\/groupForm\\/update\\/(\\S*)")
 				.matcher(request.getRequestURI());
 		if (m.find()) {
 			String idString = m.group(1);
-			PageDTO dto = new PageDTO();
-			String url = request.getParameter("url");
-			dto.setUrl(url);
-			;
-			String html = request.getParameter("html");
-			dto.setHtml(html);
+			GroupDTO dto = new GroupDTO();
+			String name = request.getParameter("name");
+			dto.setName(name);
+			dto.setCanonical(canonicalService.strToUrl(name));
 			Integer id = Integer.valueOf(idString);
 			dto.setId(id);
-			dto = pageService.updatePage(dto);
+			dto = groupService.updateGroup(dto);
 		}
 
-		response.sendRedirect(String.format("%s/admin/pageList",
+		response.sendRedirect(String.format("%s/group/groupList",
 				request.getContextPath()));
 	}
 

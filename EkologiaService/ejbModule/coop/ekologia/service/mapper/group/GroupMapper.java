@@ -17,7 +17,17 @@ public class GroupMapper extends Mapper<GroupDTO, Group>{
 	@Override
 	public Group mapToEntity(GroupDTO groupDTO) {
 		Group group = new Group();
-		group.setId(groupDTO.getId());
+		if (groupDTO.getId() != null) {
+			group.setId(groupDTO.getId());
+		}
+		group.setCanonical(groupDTO.getCanonical());
+		group.setName(groupDTO.getName());
+		return group;
+	}
+
+	public Group mapToEntityInsert(GroupDTO groupDTO, Integer maxId) {
+		Group group = new Group();
+		group.setId(++maxId);
 		group.setCanonical(groupDTO.getCanonical());
 		group.setName(groupDTO.getName());
 		return group;

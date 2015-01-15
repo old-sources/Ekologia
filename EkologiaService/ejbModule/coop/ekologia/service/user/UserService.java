@@ -15,7 +15,6 @@ import javax.persistence.Query;
 import coop.ekologia.DTO.group.GroupDTO;
 import coop.ekologia.DTO.user.UserDTO;
 import coop.ekologia.entity.group.UserGroup;
-import coop.ekologia.entity.group.wiki.Wiki;
 import coop.ekologia.entity.user.User;
 import coop.ekologia.service.mapper.user.UserMapper;
 import coop.ekologia.service.utils.StringUtilitiesInterface;

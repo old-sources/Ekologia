@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 import coop.ekologia.DTO.cms.PageDTO;
 import coop.ekologia.presentation.EkologiaServlet;
 import coop.ekologia.service.cms.PageServiceInterface;
-import coop.ekologia.service.user.UserServiceInterface;
 
 /**
  * Servlet implementation class UserCreate

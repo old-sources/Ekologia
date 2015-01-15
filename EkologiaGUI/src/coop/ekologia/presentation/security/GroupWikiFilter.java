@@ -48,7 +48,7 @@ public class GroupWikiFilter extends EkologiaFilter {
 
             UserDTO userDTO = loginSession.getUser();
 
-            GroupDTO groupDTO = groupService.findByCanonical(groupCanonical);
+            GroupDTO groupDTO = groupService.findGroupByCanonical(groupCanonical);
             request.setAttribute(GroupWikiConstants.ATTRIBUTE_GROUPDTO, groupDTO);
             if (groupDTO == null) {
                 notFound(request, response, chain);

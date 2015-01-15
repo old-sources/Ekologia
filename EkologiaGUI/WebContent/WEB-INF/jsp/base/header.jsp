@@ -23,6 +23,7 @@
         <li><a href="<%=request.getContextPath()%>/"><i class="uk-icon-home"></i></a></li>
         <li><a href="<%=request.getContextPath()%>/admin/userList">les comptes</a></li>
         <li><a href="<%=request.getContextPath()%>/admin/pageList">cms</a></li>
+        <li><a href="<%=request.getContextPath()%>/group/groupList">liste des groupes</a></li>
     </ul>
     
 </nav>
