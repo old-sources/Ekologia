@@ -14,6 +14,9 @@ hs_err_pid*
 # temporary files
 *~
 
+# merge conflict
+*.orig
+
 # build and IDE specific files and directories 
 .gradle/
 .project

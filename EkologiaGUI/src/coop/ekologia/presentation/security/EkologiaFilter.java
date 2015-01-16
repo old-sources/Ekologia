@@ -12,7 +12,6 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import coop.ekologia.presentation.controller.user.LoginServlet;
 import coop.ekologia.presentation.session.LoginSession;
 
 public abstract class EkologiaFilter implements Filter {
@@ -38,7 +37,7 @@ public abstract class EkologiaFilter implements Filter {
     protected void forbidden(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
         if (loginSession.getUser() == null) {
             loginSession.setPreviousUrl(request.getRequestURI());
-            response.sendRedirect(LoginServlet.routing(request));
+            response.sendRedirect("login");
         } else {
             // TODO: pretty print
             response.sendError(403);

@@ -33,5 +33,6 @@ ear {
 	module("EkologiaDTO-${project.version}.jar", "java")
 	module("EkologiaEntity-${project.version}.jar", "java")
 	//webModule("imieWEB-${project.version}.war", "imieWEB")
-    }
+	webModule("EkologiaGUI-${project.version}.war", "Ekologia")    
+   }
 }

@@ -32,16 +32,16 @@ public class ListUtilities implements ListUtilitiesInterface {
 	
 	@Override
 	public List<String> split(String str, String separator) {
+		List<String> result = new ArrayList<String>();
 		if (str == null) {
-			return null;
+			result =null;
 		} else if (separator == null) {
-			ArrayList<String> result = new ArrayList<String>();
 			result.add(str);
-			return result;
+			result =result;
 		} else {
-			ArrayList<String> result = new ArrayList<String>();
 			result.addAll(Arrays.asList(str.split(separator)));
-			return result;
+			result = result;
 		}
+		return result;
 	}
 }

@@ -72,7 +72,7 @@ public class UserService implements UserServiceInterface {
 	}
 
 	@Override
-	public boolean isIntoGroup(UserDTO userDTO, GroupDTO groupDTO) {
+	public Boolean isIntoGroup(UserDTO userDTO, GroupDTO groupDTO) {
 		if (userDTO == null || groupDTO == null) {
 			logger.log(Level.INFO, "The userDTO or groupDTO is null.");
 			return false;

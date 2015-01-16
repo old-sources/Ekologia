@@ -33,7 +33,7 @@
 	<jsp:body>
 	<div classe="uk-grid">
 		<form
-				class="uk-form uk-form-horizontal uk-panel uk-panel-box uk-panel-header uk-width-1-2 uk-container-center"
+				class="uk-form uk-form-horizontal uk-panel uk-panel-box uk-panel-header uk-width-4-5 uk-container-center"
 				method="post">
 			<h3 class="uk-panel-title">
 

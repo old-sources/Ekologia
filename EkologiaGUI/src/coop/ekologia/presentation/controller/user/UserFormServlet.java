@@ -44,14 +44,13 @@ public class UserFormServlet extends EkologiaServlet {
 				request.getRequestURI());
 		if (m.find()) {
 			String idString = m.group(1);
-			if ("create".compareTo(idString) != 0) {
 
-				Integer id = Integer.valueOf(idString);
-				UserDTO dto = new UserDTO();
-				dto.setId(id);
-				dto = userService.getUserById(dto);
-				request.setAttribute("user", dto);
-			}
+			Integer id = Integer.valueOf(idString);
+			UserDTO dto = new UserDTO();
+			dto.setId(id);
+			dto = userService.getUserById(dto);
+			request.setAttribute("user", dto);
+
 			forwardToJsp("user/userForm.jsp", request, response);
 		}
 	}
@@ -62,7 +61,7 @@ public class UserFormServlet extends EkologiaServlet {
 	 */
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		
+
 	}
 
 }

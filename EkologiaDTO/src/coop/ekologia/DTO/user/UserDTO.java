@@ -4,6 +4,7 @@
 package coop.ekologia.DTO.user;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
@@ -24,6 +25,7 @@ public class UserDTO implements Serializable {
 	private List<String> roles;
 
 	public UserDTO() {
+		roles=new ArrayList<String>();
 	}
 
 	public Integer getId() {
@@ -132,5 +134,15 @@ public class UserDTO implements Serializable {
 	
 	public boolean hasRoles(Collection<String> roleList) {
 		return roles.containsAll(roleList);
+	}
+	
+	public Boolean getAdmin(){
+		Boolean retour =false;
+		for (String role : getRoles()) {
+			if (role.compareTo("admin")==0){
+				retour=true;
+			}
+		}
+		return retour;
 	}
 }

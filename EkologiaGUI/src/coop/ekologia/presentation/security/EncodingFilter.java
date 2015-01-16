@@ -2,6 +2,7 @@ package coop.ekologia.presentation.security;
 
 import java.io.IOException;
 
+import javax.servlet.DispatcherType;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -13,7 +14,7 @@ import javax.servlet.annotation.WebFilter;
 /**
  * Filter to set the input encoding as UTF-8.
  */
-@WebFilter(filterName="encodingFilter", urlPatterns = { "/*" })
+@WebFilter(dispatcherTypes = { DispatcherType.REQUEST }, urlPatterns = { "/*" })
 public class EncodingFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {

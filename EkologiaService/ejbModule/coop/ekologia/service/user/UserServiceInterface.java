@@ -21,7 +21,7 @@ public interface UserServiceInterface {
 
 	UserDTO getSecuredUser(UserDTO userPB);
 
-	boolean isIntoGroup(UserDTO userDTO, GroupDTO groupDTO);
+	public Boolean isIntoGroup(UserDTO userDTO, GroupDTO groupDTO);
 	public UserDTO getUserById(UserDTO dto);
 
 	public UserDTO updateUser(UserDTO dto);
