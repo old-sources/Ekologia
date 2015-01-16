@@ -20,6 +20,14 @@ public class FormErrors {
 	// TODO: how to get this value from request?
 	private String language = null;
 	
+	/**
+	 * Add an error for the given key.
+	 * The key name is free, but you should use the field name as key.
+	 * A given key can have several errors.
+	 * 
+	 * @param key   The key for the error list
+	 * @param error The error code, it will be translated with {@link I18nService}
+	 */
 	public void addError(String key, String error) {
 		if (language == null) {
 			throw new FormErrorsLanguageException();
@@ -28,14 +36,21 @@ public class FormErrors {
 		if (!errors.containsKey(error)) {
 			errors.put(key, new ArrayList<String>());
 		}
-		String i18nError = i18nService.translate(language, key);
+		String i18nError = i18nService.translate(language, error);
 		errors.get(key).add(i18nError);
 	}
 	
+	/**
+	 * Returns The map of errors indexed by keys.
+	 */
 	public Map<String, List<String>> getErrors() {
 		return errors;
 	}
 	
+	/**
+	 * Checks if there is any error.
+	 * @return {@code true} if there is at least one error, {@code false} otherwise
+	 */
 	public boolean isEmpty() {
 		for (String key: errors.keySet()) {
 			if (!errors.get(key).isEmpty()) {

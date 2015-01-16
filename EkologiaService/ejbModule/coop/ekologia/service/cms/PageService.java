@@ -12,9 +12,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import coop.ekologia.DTO.cms.PageDTO;
-import coop.ekologia.DTO.user.UserDTO;
 import coop.ekologia.entity.cms.Page;
-import coop.ekologia.entity.user.User;
 import coop.ekologia.service.mapper.cms.PageMapper;
 
 /**

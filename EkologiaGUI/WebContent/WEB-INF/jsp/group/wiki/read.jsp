@@ -11,6 +11,6 @@
 	<img src="${ wiki.currentVersion.image }" alt="${ wiki.title }" />
 	
 	<p>
-		<c:out value="${ wiki.currentVersion.content }" />
+		<c:out value="${ wiki.currentVersion.htmlContent }" escapeXml="false" />
 	</p>
 </et:front>

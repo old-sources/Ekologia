@@ -5,8 +5,6 @@ import java.util.List;
 import javax.ejb.Local;
 
 import coop.ekologia.DTO.cms.PageDTO;
-import coop.ekologia.DTO.group.GroupDTO;
-import coop.ekologia.DTO.user.UserDTO;
 
 @Local
 public interface PageServiceInterface {

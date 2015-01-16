@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -19,6 +20,7 @@ import coop.ekologia.DTO.user.UserDTO;
 import coop.ekologia.entity.group.UserGroup;
 import coop.ekologia.entity.user.User;
 import coop.ekologia.service.mapper.user.UserMapper;
+import coop.ekologia.service.utils.StringUtilitiesInterface;
 
 /**
  * @author imie
@@ -33,15 +35,14 @@ public class UserService implements UserServiceInterface {
 	@PersistenceContext
 	private EntityManager entityManager;
 
-	@Inject
-	UserMapper userMapper;
+    @Inject
+    private UserMapper userMapper;
+    
+    @EJB
+    private StringUtilitiesInterface stringUtilities;
 
-	/**
-	 * 
-	 */
-	public UserService() {
-		// TODO Auto-generated constructor stub
-	}
+    public UserService() {
+    }
 
 	@Override
 	public List<UserDTO> getAllUser() {
@@ -56,20 +57,22 @@ public class UserService implements UserServiceInterface {
 		return usersPB;
 	}
 
-	@Override
-	public UserDTO getSecuredUser(UserDTO userDTO) {
-		List<User> users = entityManager
-				.createQuery(
-						String.format(
-								"select u from User u where u.email='%s' and u.password='%s'",
-								userDTO.getEmail(), userDTO.getPassword()))
-				.getResultList();
-		UserDTO retour = null;
-		if (!users.isEmpty()) {
-			retour = userMapper.mapFromEntity(users.get(0));
-		}
-		return retour;
-	}
+    @Override
+    public UserDTO getSecuredUser(UserDTO userDTO) {
+        Query query = entityManager.createNamedQuery(User.FIND_BY_EMAIL);
+        query.setParameter("email", userDTO.getEmail());
+        if (query.getResultList().isEmpty()) {
+            return null;
+        } else {
+            User user = (User) query.getResultList().get(0);
+            String cryptedPassword = stringUtilities.crypt(userDTO.getPassword(), user.getSalt());
+            if (stringUtilities.equals(user.getPassword(), cryptedPassword)) {
+                return userMapper.mapFromEntity(user);
+            } else {
+                return null;
+            }
+        }
+    }
 
 	@Override
 	public Boolean isIntoGroup(UserDTO userDTO, GroupDTO groupDTO) {
@@ -109,4 +112,11 @@ public class UserService implements UserServiceInterface {
 		entityManager.remove(user);
 		return userMapper.mapFromEntity(user);
 	}
+	
+    @Override
+    public boolean existsByEmail(String email) {
+        Query query = entityManager.createNamedQuery(User.FIND_BY_EMAIL);
+        query.setParameter("email", email);
+        return !query.getResultList().isEmpty();
+    }
 }

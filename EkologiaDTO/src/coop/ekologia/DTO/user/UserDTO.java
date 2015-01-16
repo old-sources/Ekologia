@@ -15,6 +15,7 @@ public class UserDTO implements Serializable {
 	private Integer id;
 	private String email;
 	private String password;
+	private String salt;
 	private String addressStreet;
 	private String addressZipcode;
 	private String addressCity;
@@ -23,6 +24,9 @@ public class UserDTO implements Serializable {
 	private String description;
 	private String country;
 	private List<String> roles;
+	
+	// form fields
+	private String usertype;
 
 	public UserDTO() {
 		roles=new ArrayList<String>();
@@ -50,6 +54,14 @@ public class UserDTO implements Serializable {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	
+	public String getSalt() {
+	    return salt;
+	}
+	
+	public void setSalt(String salt) {
+	    this.salt = salt;
 	}
 
 	public String getAddressStreet() {
@@ -135,6 +147,14 @@ public class UserDTO implements Serializable {
 	public boolean hasRoles(Collection<String> roleList) {
 		return roles.containsAll(roleList);
 	}
+
+    public String getUsertype() {
+        return usertype;
+    }
+
+    public void setUsertype(String usertype) {
+        this.usertype = usertype;
+    }
 	
 	public Boolean getAdmin(){
 		Boolean retour =false;

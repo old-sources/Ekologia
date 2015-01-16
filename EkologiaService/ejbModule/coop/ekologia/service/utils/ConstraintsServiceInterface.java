@@ -27,4 +27,12 @@ public interface ConstraintsServiceInterface {
 	boolean isUrl(String value);
 	
 	boolean isNotUrl(String value);
+	
+	boolean isEmail(String value);
+	
+	boolean isNotEmail(String value);
+	
+	boolean isSecuredPassword(String value);
+	
+	boolean isNotSecuredPassword(String value);
 }

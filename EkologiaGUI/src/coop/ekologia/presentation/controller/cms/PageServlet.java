@@ -7,7 +7,6 @@ import java.util.regex.Pattern;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -24,6 +23,10 @@ public class PageServlet extends EkologiaServlet {
 	
 	public static final String routing(HttpServletRequest request, String canonical) {
 		return getUrl(request, "/page/" + canonical);
+	}
+	
+	public static final String routingHome(HttpServletRequest request) {
+	    return routing(request, "home");
 	}
 
 	@EJB

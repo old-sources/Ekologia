@@ -11,6 +11,15 @@ public class I18nService {
 
     // TODO: how to get language from current request?
 
+    /**
+     * Returns the translation of the given key in the given language.
+     * If the translation does not exists in the given language, returns the default translation.
+     * If the key is not found in both languages, return the key as {@code ???key???}.
+     * 
+     * @param language The current language
+     * @param key      The key of the translation, prefixed by your module name (ex: `module.my.key`)
+     * @return         The translation
+     */
     public String translate(String language, String key) {
         if (language == null || key == null) {
             logger.log(Level.WARNING, "The language or the key is null. Operation aborted.");
@@ -20,13 +29,27 @@ public class I18nService {
         String propertyKey = key.substring(key.indexOf('.') + 1);
         Properties properties = new Properties();
         try {
-            properties.load(getInputStream(module, language));
-            String value = properties.getProperty(key);
-            if (value == null || "".equals(value)) {
-                properties.load(getInputStream(module, null));
-                return properties.getProperty(propertyKey);
+            InputStream stream = getInputStream(module, language);
+            if (stream != null) {
+                properties.load(stream);
+                String value = properties.getProperty(key);
+                if (value == null || "".equals(value)) {
+                    stream = getInputStream(module, null);
+                    if (stream != null) {
+                        properties.load(stream);
+                        value = properties.getProperty(propertyKey);
+                        if (value == null) {
+                            return "???" + key + "???";
+                        }
+                        return value;
+                    } else {
+                        return "???" + key + "???";
+                    }
+                } else {
+                    return value;
+                }
             } else {
-                return value;
+                return "???" + key + "???";
             }
         } catch (IOException e) {
             logger.log(Level.WARNING,
@@ -42,6 +65,10 @@ public class I18nService {
         } else {
             path = "i18n/" + module + ".properties";
         }
-        return this.getClass().getClassLoader().getResourceAsStream(path);
+        InputStream stream = this.getClass().getClassLoader().getResourceAsStream(path);
+        if (stream == null && language != null) {
+            return getInputStream(module, null);
+        }
+        return stream;
     }
 }
