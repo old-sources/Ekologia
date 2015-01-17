@@ -69,8 +69,6 @@ public class UserUpdateServlet extends EkologiaServlet {
 			UserDTO dto = new UserDTO();
 			String eMail = request.getParameter("email");
 			dto.setEmail(eMail);
-			String password = request.getParameter("password");
-			dto.setPassword(password);
 			String role = request.getParameter("role");
 			dto.addRole(role);			
 			Integer id = Integer.valueOf(idString);

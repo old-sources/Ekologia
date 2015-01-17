@@ -40,15 +40,17 @@
 				</div>
 
 			</div>
-			<div class="uk-form-row ">
-				<div>
-					<label class="uk-form-label" for="name">password</label>
-				</div>
-				<div class="uk-form-controls">
-					<input id="name" type="text" name="password" />
-				</div>
+			<c:if test="${empty user}">
+				<div class="uk-form-row ">
+					<div>
+						<label class="uk-form-label" for="name">password</label>
+					</div>
+					<div class="uk-form-controls">
+						<input id="name" type="text" name="password" />
+					</div>
 
-			</div>
+				</div>
+			</c:if>
 			<div class="uk-form-row ">
 				<div>
 					<label class="uk-form-label" for="name">role</label>

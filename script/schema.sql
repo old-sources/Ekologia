@@ -4,7 +4,7 @@
 
 -- Dumped from database version 9.3.4
 -- Dumped by pg_dump version 9.3.4
--- Started on 2015-01-12 02:41:19 CET
+-- Started on 2015-01-17 19:18:54 CET
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -50,7 +50,15 @@ CREATE TABLE account (
     country character varying(255),
     avatar character varying(255),
     description text,
-    roles character varying(255)
+    roles character varying(255),
+    salt character varying(255),
+    discriminator character varying(255),
+    firstname character varying(255),
+    lastname character varying(255),
+    birthday timestamp without time zone,
+    orgname character varying(255),
+    activity character varying(255),
+    type character varying(255)
 );
 
 
@@ -509,7 +517,7 @@ ALTER TABLE ONLY wikiversion
     ADD CONSTRAINT wikiversion_wiki_id_fkey FOREIGN KEY (wiki_id) REFERENCES wiki(id);
 
 
--- Completed on 2015-01-12 02:41:19 CET
+-- Completed on 2015-01-17 19:18:54 CET
 
 --
 -- PostgreSQL database dump complete
