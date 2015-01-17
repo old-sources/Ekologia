@@ -57,10 +57,14 @@ public class UserCreateServlet extends EkologiaServlet {
 		dto.setEmail(eMail);
 		
 		String password = request.getParameter("password");
-        String salt = stringUtilities.generateCryptSalt();
-        dto.setPassword(stringUtilities.crypt(password, salt));
-        dto.setSalt(salt);
+        //moved to Service Layer
+		//String salt = stringUtilities.generateCryptSalt();
+        //dto.setPassword(stringUtilities.crypt(password, salt));
+        //dto.setSalt(salt);
 		dto.setPassword(password);
+		
+		String role = request.getParameter("role");
+		dto.addRole(role);	
 		
 		dto = userService.insertUser(dto);
 

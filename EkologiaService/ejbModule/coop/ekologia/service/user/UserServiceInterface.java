@@ -28,7 +28,7 @@ public interface UserServiceInterface {
 
 	public UserDTO insertUser(UserDTO dto);
 
-	public UserDTO deleteUser(UserDTO dto);
+	public void deleteUser(UserDTO dto);
 
     boolean existsByEmail(String email);
 

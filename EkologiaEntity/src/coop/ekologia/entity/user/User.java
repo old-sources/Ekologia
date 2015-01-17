@@ -5,10 +5,13 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -21,7 +24,9 @@ import coop.ekologia.entity.group.UserGroup;
  */
 @Entity
 @Table(name = "account")
+@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name="discriminator")
+@DiscriminatorValue("u")
 @NamedQueries({
     @NamedQuery(name = User.FIND_ALL, query = "SELECT u FROM User u"),
     @NamedQuery(name = User.FIND_BY_EMAIL, query = "SELECT u FROM User u WHERE u.email = :email")

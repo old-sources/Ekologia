@@ -3,6 +3,9 @@ package coop.ekologia.service.mapper;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import coop.ekologia.DTO.user.UserDTO;
+import coop.ekologia.entity.user.User;
+
 public abstract class Mapper<DTO, Entity> {
 	public abstract DTO mapFromEntity(Entity entity);
 	
@@ -22,5 +25,10 @@ public abstract class Mapper<DTO, Entity> {
 			result.add(mapToEntity(entity));
 		}
 		return result;
+	}
+
+	public User mapToEntity(UserDTO userDTO, User user) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

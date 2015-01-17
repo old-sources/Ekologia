@@ -45,8 +45,7 @@
 					<label class="uk-form-label" for="name">password</label>
 				</div>
 				<div class="uk-form-controls">
-					<input id="name" type="text" value="${user.password}"
-						name="password" />
+					<input id="name" type="text" name="password" />
 				</div>
 
 			</div>

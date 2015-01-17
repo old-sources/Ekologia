@@ -30,13 +30,15 @@ public class UserMapper extends Mapper<UserDTO, User> {
 		    useriDTO.setLastname(useri.getLastname());
 		    useriDTO.setBirthday(useri.getBirthday());
 		    retour  = useriDTO;
-		} else {
+		} else if (user instanceof UserOrganization) {
 		    UserOrganization usero = (UserOrganization)user;
 		    UserOrganizationDTO useroDTO = new UserOrganizationDTO();
 		    useroDTO.setName(usero.getName());
 		    useroDTO.setActivity(usero.getActivity());
 		    useroDTO.setType(usero.getType());
 		    retour = useroDTO;
+		}else{
+			retour = new UserDTO();
 		}
 		retour.setId(user.getId());
 		retour.setEmail(user.getEmail());
@@ -58,46 +60,65 @@ public class UserMapper extends Mapper<UserDTO, User> {
 
 	@Override
 	public User mapToEntity(UserDTO userDTO){
-        if (userDTO == null) {
+		if (userDTO == null) {
             return null;
         }
-		User retour;
+		User user;
+		if (userDTO instanceof UserIndividualDTO) {
+            UserIndividual useri = new UserIndividual();
+            user  = useri;
+        } else if(userDTO instanceof UserOrganizationDTO) {
+            UserOrganization usero = new UserOrganization();
+            user = usero;
+        }else{
+        	user = new User();
+        }
+		
+		mapToEntity(userDTO, user);
+		
+		return user;
+	}
+	
+	@Override
+	public User mapToEntity(UserDTO userDTO,User user){
+		if (userDTO == null) {
+            return null;
+        }
 		if (userDTO instanceof UserIndividualDTO) {
             UserIndividualDTO useriDTO = (UserIndividualDTO)userDTO;
-            UserIndividual useri = new UserIndividual();
+            UserIndividual useri = (UserIndividual)user;
             useri.setFirstname(useriDTO.getFirstname());
             useri.setLastname(useriDTO.getLastname());
             useri.setBirthday(useriDTO.getBirthday());
-            retour  = useri;
-        } else {
+        } else if(userDTO instanceof UserOrganizationDTO) {
             UserOrganizationDTO useroDTO = (UserOrganizationDTO)userDTO;
-            UserOrganization usero = new UserOrganization();
+            UserOrganization usero = (UserOrganization)user;
             usero.setName(useroDTO.getName());
             usero.setActivity(useroDTO.getActivity());
             usero.setType(useroDTO.getType());
-            retour = usero;
         }
 		
-		retour.setId(userDTO.getId());
+		user.setId(userDTO.getId());
 		if (userDTO.getEmail() != null) {
-			retour.setEmail(userDTO.getEmail());
+			user.setEmail(userDTO.getEmail());
 		}
 		if (userDTO.getPassword() != null) {
-			retour.setPassword(userDTO.getPassword());
+			user.setPassword(userDTO.getPassword());
 		}
-		retour.setPhoneNumber(userDTO.getPhoneNumber());
-		retour.setAddressStreet(userDTO.getAddressStreet());
-		retour.setAddressZipcode(userDTO.getAddressZipcode());
-		retour.setAddressCity(userDTO.getAddressCity());
-		retour.setCountry(userDTO.getCountry());
-		retour.setAvatar(userDTO.getAvatar());
-		retour.setDescription(userDTO.getDescription());
+		user.setPhoneNumber(userDTO.getPhoneNumber());
+		user.setAddressStreet(userDTO.getAddressStreet());
+		user.setAddressZipcode(userDTO.getAddressZipcode());
+		user.setAddressCity(userDTO.getAddressCity());
+		user.setCountry(userDTO.getCountry());
+		user.setAvatar(userDTO.getAvatar());
+		user.setDescription(userDTO.getDescription());
 		if (userDTO.getRoles() == null) {
-		    retour.setRoles("");
+			user.setRoles("");
 		} else {
-		    retour.setRoles(listUtilities.mkString(userDTO.getRoles(), ","));
+			user.setRoles(listUtilities.mkString(userDTO.getRoles(), ","));
 		}
-		return retour;
+		return user;
+		
 	}
 
 }

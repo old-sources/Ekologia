@@ -46,8 +46,8 @@ public class UserDeleteServlet extends EkologiaServlet {
 			UserDTO dto = new UserDTO();
 			Integer id = Integer.valueOf(idString);
 			dto.setId(id);
-			dto = userService.deleteUser(dto);
-			request.setAttribute("user", dto);
+			userService.deleteUser(dto);
+			//request.setAttribute("user", dto);
 		}
 
 

@@ -22,6 +22,9 @@ sourceSets {
 dependencies {
  providedCompile project(':EkologiaService')
  providedCompile group: 'javax', name: 'javaee-api', version: '7.0'
+ compile 'commons-validator:commons-validator:1.4.0'
+ compile 'org.commonjava.googlecode.markdown4j:markdown4j:2.2-cj-1.0'
+ compile 'commons-codec:commons-codec:1.10'
 }
 
 jar.enabled = false
