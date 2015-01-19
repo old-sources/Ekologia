@@ -1,6 +1,6 @@
 <%@tag language="java" pageEncoding="UTF-8"%>
 <%@attribute name="head" fragment="true"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <fmt:setLocale value="${currentLanguage}" />
@@ -11,8 +11,19 @@
 <link
 	href="${pageContext.request.contextPath}/uikit-2.15.0/css/uikit.gradient.min.css"
 	rel="stylesheet" type="text/css" />
-<link href="${pageContext.request.contextPath}/main.css"
+<link href="${pageContext.request.contextPath}/css/main.css"
 	rel="stylesheet" type="text/css" />
+<c:choose>
+	<c:when test="${! empty connectedUser && connectedUser.admin}">
+		<link href="${pageContext.request.contextPath}/css/admin.css"
+			rel="stylesheet" type="text/css" />
+	</c:when>
+	<c:otherwise>
+		<link href="${pageContext.request.contextPath}/css/normal.css"
+			rel="stylesheet" type="text/css" />
+
+	</c:otherwise>
+</c:choose>
 
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/JQuery/jquery-2.1.3.min.js"></script>
