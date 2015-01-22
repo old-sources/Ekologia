@@ -17,10 +17,13 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="security")
-@NamedQuery(name="Security.findAll", query="SELECT s FROM Security s")
+@NamedQuery(name=Security.FIND_ALL, query="SELECT s FROM Security s")
 public class Security implements Serializable {
+	
 	private static final long serialVersionUID = 1L;
 
+	public static final String FIND_ALL= "Security.findAll";
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id")

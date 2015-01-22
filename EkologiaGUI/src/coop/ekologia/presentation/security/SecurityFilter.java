@@ -51,7 +51,7 @@ public class SecurityFilter implements Filter {
 		HttpServletResponse httpServletResponse = (HttpServletResponse) response;
 		UserDTO connectedUser = loginSession.getUser();
 		Boolean resourceAllow = true;
-		if (!httpServletRequest.getRequestURI().contains("login") && connectedUser == null) {
+		if (!httpServletRequest.getRequestURI().contains("login")) {
 
 			Matcher m = Pattern.compile(String.format("\\w*\\%s\\/(\\S*)", httpServletRequest.getContextPath())).matcher(
 					httpServletRequest.getRequestURI());
