@@ -4,7 +4,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
-
 <et:front>
 
 	<jsp:attribute name="head">
@@ -48,6 +47,76 @@
 				<div class="uk-form-controls">
 					<input id="name" type="text" value="${group.name}" name="name" />
 				</div>
+				<div>
+					<label class="uk-form-label" for="name">Description</label>
+				</div>
+				<div class="uk-form-controls">
+					<textarea id="description" name="description">
+					${group.description}
+					</textarea>
+				</div>
+				<div>
+					<label class="uk-form-label" for="name">Icône du groupe</label>
+				</div>
+				<div class="uk-form-controls">
+					<input id="icon" type="file" value="${group.icon}" name="icon" />
+				</div>
+				<div>
+					<label class="uk-form-label" for="name">Administrateur du groupe</label>
+				</div>
+				<div class="uk-form-controls">
+					<select name="user" id="user">
+						<c:choose>
+							<c:when test="${empty group}">
+								<c:forEach items="${users}" var="user">
+	                              	<option value="${user.id}">${user.email}</option>
+	                            </c:forEach>
+							</c:when>
+							<c:otherwise>
+								<c:forEach items="${users}" var="user">
+									<c:choose>
+										<c:when test="${group.firstAdmin eq user}">
+		                              		<option selected value="${user.id}">${user.email}</option>
+		                              	</c:when>
+		  								<c:otherwise>
+		  									<option value="${user.id}">${user.email}</option>
+		  								</c:otherwise>
+	  								</c:choose>
+                              </c:forEach>
+                              
+							</c:otherwise>
+						</c:choose>
+					</select>
+				</div>
+				<c:choose>
+					<c:when test="${not empty group}">
+						<div>
+							<label class="uk-form-label" for="name">Utilisateurs dans le groupe</label>
+						</div>
+						<div class="uk-form-controls">
+							<select id='availableUsers' size='10'>
+								<c:forEach items="${users}" var="user">
+		                            <option value="${user.id}">${user.email}</option>
+		                        </c:forEach>
+							</select>
+							<button class="addButton uk-button">
+									<span class="uk-icon-plus"></span>
+							</button>
+							<button class="removeButton uk-button">
+									<span class="uk-icon-trash"></span>
+							</button>
+							<select id='selectedAdminUsers' size='10'>
+								<c:forEach items="${usersInGroup}" var="userInGroup">
+	                              	<option value="${userInGroup.id}">${userInGroup.email}</option>
+	                            </c:forEach>
+							</select>
+							
+						</div>			
+					</c:when>
+					<c:otherwise>
+					
+					</c:otherwise>
+				</c:choose>
 
 			</div>
 			<div class="uk-form-row">
@@ -79,3 +148,38 @@
 	</div>
 	</jsp:body>
 </et:front>
+<script>
+	$(function() {
+		$(".addButton").on(
+				"click",
+				function(e) {
+					var ai = document.getElementById("availableUsers");
+					var si = document.getElementById("selectedAdminUsers");
+					for (i = 0; i < ai.options.length; i++) {
+						if (ai.options[i].selected) {
+							var opt = ai.options[i];
+							si.options[si.options.length] = new Option(
+									opt.innerHTML, opt.value);
+							ai.options[i] = null;
+							i = i - 1;
+						}
+					}
+				});
+		$(".removeButton").on(
+				"click",
+				function(e) {
+					var si = document.getElementById("availableUsers");
+					var ai = document.getElementById("selectedAdminUsers");
+					for (i = 0; i < ai.options.length; i++) {
+						if (ai.options[i].selected) {
+							var opt = ai.options[i];
+							si.options[si.options.length] = new Option(
+									opt.innerHTML, opt.value);
+							ai.options[i] = null;
+							i = i - 1;
+						}
+					}
+				});
+
+	})
+</script>

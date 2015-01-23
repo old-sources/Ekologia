@@ -19,6 +19,8 @@ public class UserMapper extends Mapper<UserDTO, User> {
 	
 	@Override
 	public UserDTO mapFromEntity(User user){
+		//TODO #warning FROM Joffrey 
+		//Si ajout groupDTO dans User penser à ajouter un boulean security pour ne pas planter le GroupMapper
 	    if (user == null) {
             return null;
         }

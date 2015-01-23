@@ -1,12 +1,23 @@
 package coop.ekologia.entity.group;
 
 import java.io.Serializable;
+import java.util.Date;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.IdClass;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import coop.ekologia.entity.user.User;
-
-import java.util.Date;
 
 
 /**
@@ -14,24 +25,22 @@ import java.util.Date;
  */
 @Entity
 @Table(name="user_group")
-@IdClass(UserGroupPK.class)
 @NamedQueries({
 	@NamedQuery(name=UserGroup.FIND_ALL, query="SELECT u FROM UserGroup u"),
-	@NamedQuery(name=UserGroup.FIND, query="SELECT ug FROM UserGroup ug WHERE ug.userId=:userId AND ug.groupId=:groupId")
+	@NamedQuery(name=UserGroup.FIND, query="SELECT ug FROM UserGroup ug WHERE ug.userGroupPK.userId=:userId AND ug.userGroupPK.groupId=:groupId"),
+	@NamedQuery(name=UserGroup.FIND_BY_GROUPID, query="SELECT ug FROM UserGroup ug WHERE ug.userGroupPK.groupId=:groupId"),
+	@NamedQuery(name=UserGroup.FIND_BY_USERID, query="SELECT ug FROM UserGroup ug WHERE ug.userGroupPK.userId=:userId")
 })
 public class UserGroup implements Serializable {
 	private static final long serialVersionUID = 1L;
 	public static final String FIND_ALL = "UserGroup.findAll";
 	public static final String FIND = "UserGroup.find";
+	public static final String FIND_BY_GROUPID = "UserGroup.findByGroupId";
+	public static final String FIND_BY_USERID = "UserGroup.findByUserId";
 
-	@Id
-	@Column(name="user_id")
-	private Integer userId;
+	@EmbeddedId
+	protected UserGroupPK userGroupPK;
 	
-	@Id
-	@Column(name="group_id")
-	private Integer groupId;
-
 	@Temporal(TemporalType.DATE)
 	private Date accepted;
 
@@ -40,33 +49,18 @@ public class UserGroup implements Serializable {
 	
 	@Column(name="roles")
 	private String roles;
-
-	@ManyToOne
-	@PrimaryKeyJoinColumn(name="group_id", referencedColumnName="id")
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="group_id", referencedColumnName="id", insertable = false, updatable = false)
 	private Group group;
 
-	@ManyToOne
-	@PrimaryKeyJoinColumn(name="user_id", referencedColumnName="id")
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="user_id", referencedColumnName="id", insertable = false, updatable = false)
 	private User user;
 
 	public UserGroup() {
 	}
 
-	public Integer getUserId() {
-		return userId;
-	}
-
-	public void setUserId(Integer userId) {
-		this.userId = userId;
-	}
-
-	public Integer getGroupId() {
-		return groupId;
-	}
-
-	public void setGroupId(Integer groupId) {
-		this.groupId = groupId;
-	}
 
 	public Date getAccepted() {
 		return this.accepted;
@@ -107,4 +101,16 @@ public class UserGroup implements Serializable {
 	public void setRoles(String roles) {
 		this.roles = roles;
 	}
+
+
+	public UserGroupPK getUserGroupPK() {
+		return userGroupPK;
+	}
+
+
+	public void setUserGroupPK(UserGroupPK userGroupPK) {
+		this.userGroupPK = userGroupPK;
+	}
+	
+	
 }

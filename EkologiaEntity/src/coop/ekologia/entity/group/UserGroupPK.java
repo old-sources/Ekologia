@@ -10,10 +10,10 @@ import javax.persistence.*;
 public class UserGroupPK implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@Column(name="user_id", insertable=false, updatable=false)
+	@Column(name="user_id")
 	private Integer userId;
 
-	@Column(name="group_id", insertable=false, updatable=false)
+	@Column(name="group_id")
 	private Integer groupId;
 
 	public UserGroupPK() {
