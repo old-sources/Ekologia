@@ -8,7 +8,7 @@ header {
 	z-index: 999;
 }
 
-section {
-	padding: 60px 0;
+.corps {
+	padding-top: 200px;
 	margin: 0 auto;
 }

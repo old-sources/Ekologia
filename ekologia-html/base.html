@@ -1,0 +1,241 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Prototype - Accueil</title>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="foundation.css" media="all" />
+        <link rel="stylesheet" href="style.css" media="all" />
+		<link rel="stylesheet" href="uikit.css" media="all" />
+		<link rel="stylesheet" href="uikit.almost-flat.css" media="all" />
+		<script type="text/javascript" src="uikit.min.js"></script>
+        <script type="text/javascript" src="foundation.min.js"></script>
+    </head>
+    <body>
+        <!--
+            On veut une ligne de 3 colonnes de largeur 2, 8 et 2.
+            La colonne de largeur 8 a une ligne de quatre colonnes de largeur 3 chacune (se basant sur la largeur de la colonne de largeur 8)
+            
+            Rendu souhaité schématisé:
+            parent: |--|-------|--|
+            enfant:    |.|.|.|.|
+            
+        -->
+        <header>
+			<div class="header-degrade">
+				<!-- .row implique max-width: 62.5rem, soit quelque chose de limité ^^' -->
+				<!-- Equivalent à .container .row de Bootstrap -->
+				<div class="row">
+					<!-- Equivalent à .col-lg-2 de Bootstrap -->
+					<div class="logo large-2 columns">
+						<!--blablabla-->
+						<a href=""></a>
+					</div>
+					
+					<!-- Equivalent à .col-lg-8 de Bootstrap -->
+					<div class="large-8 columns"> 
+						<!-- Ici, .row réinitialise une grille de 12 colonnes, donc la largeur des colonnes sera moins importante que pour le .row parent (cf. ligne 14) -->
+						<!-- Les sauts de ligne mettent en évidence les différentes lignes. -->
+						<ul class="row no-bullet">
+							<li class="large-3 columns"><a class="header-link" href="#">Qui sommes nous?</a></li>
+							<li class="large-3 columns"><a class="header-link" href="#">La communauté</a></li>
+							<li class="large-3 columns"><a class="header-link" href="#">Forum ouvert</a></li>
+						<!--	<li class="large-3 columns"><a class="header-link" href="#">Page 1</a></li>
+							
+							<li class="large-3 columns"><a class="header-link" href="#">Page 2</a></li>
+							<li class="large-3 columns"><a class="header-link" href="#">Page 3</a></li>
+							<li class="large-3 columns"><a class="header-link" href="#">Page 4</a></li>
+							<li class="large-3 columns"><a class="header-link" href="#">Autre page</a></li>
+							
+							<li class="large-3 columns"><a class="header-link" href="#">Lien X</a></li>
+							<li class="large-3 columns"><a class="header-link" href="#">Lien Y</a></li>-->
+					   </ul>
+					</div>
+
+					<!-- Equivalent à .col-lg-2 de Bootstrap -->
+					<!-- Pas de système de panel comme Bootstrap, soit on fait un truc classique comme là, soit je peux faire le composant si besoin. -->
+					<!-- Preuve d'une difference de Bootstrap: plus complet (mais toujours moins permissif ;) ) -->
+					<div class="large-2 columns">
+						<!-- styles à exporter en css plus tard, jsute des tests rapides ici -->
+						<div style="border:1px solid #aaa;border-radius:2px;padding:0">
+							<h5 style="text-align:center;padding: 5px; margin: 0;background-color: #eee">Mon compte</h5>
+							<hr style="margin: 0; padding: 2px"/>
+							<ul class="no-bullet" style="font-size:12px;margin: 5px">
+								<li><a href="inscription.html">Créer un compte</a></li>
+								<li><a href="#">Se connecter</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+        </header>
+
+        <div class="contain-to-grid sticky">
+			<div class="nav-bar-color">
+				<nav class="top-bar" data-topbar role="navigation" data-options="sticky_on: large">
+					<ul class="title-area">
+						<li class="name">
+						  <h1><a href="#">Ekologia</a></h1>
+						</li>
+					</ul>
+
+					<section class="top-bar-section">
+						<ul class="right"></ul>
+						<ul class="left">
+							<li class="active"><a href="#">Home</a></li>
+							<li><a href="#">Page 1</a></li>
+							<li class="has-dropdown">
+								<a href="#">Page 2</a>
+								<ul class="dropdown">
+									<li><a href="#">Sous-page 2.1</a></li>
+									<li><a href="#">Sous-page 2.2</a></li>
+								</ul>
+							</li>
+						</ul>
+					</section>
+				</nav>
+			</div>
+        </div>
+        
+        <!-- Le reste est à faire :) -->
+        <div id="body">
+            <div class="row">
+                <ul class="breadcrumbs">
+                    <li><a href="#">Ekologia</a></li>
+                    <li><a href="current">Home</a></li>
+                </ul>
+            </div>
+            
+            <div class="container">
+                    <div id="fb-root"></div>
+        <script>(function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) return;
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v2.0";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
+    <div class="row">
+        <div class="large-8 columns">
+            <div class="content articl">
+                <h2>Bienvenue sur le site Ekologia !</h2>
+                <p>
+
+Circa hos dies Lollianus primae lanuginis adulescens, Lampadi filius ex praefecto, exploratius causam Maximino spectante, convictus codicem noxiarum artium nondum per aetatem firmato consilio descripsisse, exulque mittendus, ut sperabatur, patris inpulsu provocavit ad principem, et iussus ad eius comitatum duci, de fumo, ut aiunt, in flammam traditus Phalangio Baeticae consulari cecidit funesti carnificis manu.
+
+Raptim igitur properantes ut motus sui rumores celeritate nimia praevenirent, vigore corporum ac levitate confisi per flexuosas semitas ad summitates collium tardius evadebant. et cum superatis difficultatibus arduis ad supercilia venissent fluvii Melanis alti et verticosi, qui pro muro tuetur accolas circumfusus, augente nocte adulta terrorem quievere paulisper lucem opperientes. arbitrabantur enim nullo inpediente transgressi inopino adcursu adposita quaeque vastare, sed in cassum labores pertulere gravissimos.
+
+Proinde die funestis interrogationibus praestituto imaginarius iudex equitum resedit magister adhibitis aliis iam quae essent agenda praedoctis, et adsistebant hinc inde notarii, quid quaesitum esset, quidve responsum, cursim ad Caesarem perferentes, cuius imperio truci, stimulis reginae exsertantis aurem subinde per aulaeum, nec diluere obiecta permissi nec defensi periere conplures.
+
+Ac ne quis a nobis hoc ita dici forte miretur, quod alia quaedam in hoc facultas sit ingeni, neque haec dicendi ratio aut disciplina, ne nos quidem huic uni studio penitus umquam dediti fuimus. Etenim omnes artes, quae ad humanitatem pertinent, habent quoddam commune vinculum, et quasi cognatione quadam inter se continentur.
+
+Sed quid est quod in hac causa maxime homines admirentur et reprehendant meum consilium, cum ego idem antea multa decreverim, que magis ad hominis dignitatem quam ad rei publicae necessitatem pertinerent? Supplicationem quindecim dierum decrevi sententia mea. Rei publicae satis erat tot dierum quot C. Mario ; dis immortalibus non erat exigua eadem gratulatio quae ex maximis bellis. Ergo ille cumulus dierum hominis est dignitati tributus.
+</p>
+            </div>
+
+            <div class="row">
+                <div class="large-6 columns">
+                    <h3>Page Facebook</h3>
+                    <div class="fb-like-box" data-href="https://www.facebook.com/pages/Ekologia/274611082672069?fref=ts" data-colorscheme="light" data-show-faces="false" data-header="false" data-stream="true" data-show-border="false"></div>
+                </div>
+                <div class="large-6 columns">
+                    <h3>Groupe Facebook</h3>
+                </div>
+            </div>
+        </div>
+		
+        <div class="large-4 columns">
+            <div class="row">
+                <button type="button"  href="#" class="button tiny">Faire un don</button>
+                <button href="/ekologia-s2/web/app_dev.php/fr/register/?type=p" class="button tiny">Inscription personne physique</button>
+            </div>
+<!--
+            <div class="aside">-->
+			<div class="row personn">
+                <h5>Les Personnes morales adhérentes</h5>
+
+                
+				<ul class="small-block-grid-3" style="text-align:center"> 
+				<li> 
+                    <!--<img class="th" src="/ekologia-s2/web/img/vignette-rouge.png" alt="1" />-->
+					<span class="vignette"></span>
+						</br>
+						Vignette rouge
+                </li>
+				<li> 
+                    <!--<img class="th" src="/ekologia-s2/web/img/vignette-bleue.png" alt="1" />-->
+					<span class="vignette"></span>
+						</br>
+						Vignette bleue
+                </li>
+				<li> 
+                    <!--<img class="th" src="/ekologia-s2/web/img/vignette-bleue.png" alt="1" />-->
+					<span class="vignette"></span>
+						</br>
+						Vignette bleue
+                </li>
+				<li> 
+                    <!--<img class="th" src="/ekologia-s2/web/img/vignette-rouge.png" alt="1" />-->
+					<span class="vignette"></span>
+						</br>
+						Vignette rouge
+                </li>
+				</ul>
+                
+			</div>
+			</br>
+                <a href="/ekologia-s2/web/app_dev.php/fr/register/?type=c" class="button tiny">Inscription personne morale</a>
+            <!--</div>-->
+<!--
+            <div class="aside">-->
+			<div class="row group">
+                <h5>Partenaire</h5>
+
+                
+				<ul class="small-block-grid-3" style="text-align:center"> 
+				<li> 
+                    <!--<img class="th" src="/ekologia-s2/web/img/vignette-rouge.png" alt="1" />-->
+					<span class="vignette"></span>
+						</br>
+						Vignette rouge
+                </li>
+				<li> 
+                    <!--<img class="th" src="/ekologia-s2/web/img/vignette-bleue.png" alt="1" />-->
+					<span class="vignette"></span>
+						</br>
+						Vignette bleue
+                </li>
+				<li> 
+                   <!--<img class="th" src="/ekologia-s2/web/img/vignette-bleue.png" alt="1" />-->
+					<span class="vignette"></span>
+						</br>
+						Vignette bleue
+                </li>
+				<li> 
+                    <!--<img class="th" src="/ekologia-s2/web/img/vignette-rouge.png" alt="1" />-->
+					<span class="vignette"></span>
+						</br>
+						Vignette rouge
+                </li>
+				</ul>
+                
+			</div>
+			</br>
+                <a href="#" class="button tiny">Devenir partenaire</a>
+            <!--</div>-->
+        </div>
+    </div>
+            </div>
+        </div>
+
+        <div id="footer">
+            <div class="row">
+               <ul class="right">
+                    <button type="button" class="button tiny">Groupes</button>
+                    <button type="button" class="button tiny">Contacter les administrateurs du site</button>
+                    <button type="button" class="button tiny">Contacts</button>
+                    <button type="button" class="button tiny">Informations légales</button>
+               </ul>
+            </div>
+        </div>
+    </body>
+</html>
