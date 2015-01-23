@@ -1,0 +1,81 @@
+header .logo a {
+  display: block;
+  background-image: url('WebContent/image/logo.png');
+  background-size:111px 115px;
+  background-position: center;
+  background-repeat:no-repeat;
+  /*width: 100%;*/
+  height: 120px;
+  
+}
+
+.vignette{
+display:block;
+background-color:red;
+width:50px;
+height:50px;
+margin:auto;
+}
+
+header {
+    /* Utile ? */
+    /* margin-bottom: 5px; */
+	margin-top: 10px;
+}
+.header-degrade {
+background-image:linear-gradient(#FFFFFF 90%, #242D00 120px);
+}
+
+.nav-bar-color{
+background-color: #242D00;
+}
+.breadcrumbs{
+background-color: rgba(0,0,0,0)!important;
+border-color:rgba(0,0,0,0)!important;
+}
+
+.articl{
+background-color: #F0FCC6;
+border-radius: 10px;
+border: 1px solid;
+border-color: rgba(0,0,0,0.2) ;
+padding-left: 20px;
+padding-right: 20px;
+padding-top: 50 px;
+}
+
+.personn{
+background-color: #B2D5DF;
+border-radius: 10px;
+border: 1px solid;
+border-color: rgba(0,0,0,0.2) ;
+padding-left: 20px;
+padding-right: 20px;
+}
+.group{
+background-color: #B2D5DF;
+border-radius: 10px;
+border: 1px solid;
+border-color: rgba(0,0,0,0.2) ;
+padding-left: 20px;
+padding-right: 20px;
+}
+
+.header-link{
+color:#6B8600;
+}
+
+
+/*.top-bar,.top-bar-section *{
+background-color: rgba(0,0,0,0)!important;
+background: rgba(0,0,0,0);
+}
+
+.top-bar,.top-bar-section, .has-dropdown *{
+background-color: rgba(0,0,0,0)!important;
+background: background-color: #6B8600!important;
+}
+*/
+#body {
+    padding-top: 5px;
+}

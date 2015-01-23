@@ -68,24 +68,24 @@ public class PageService implements PageServiceInterface {
 
 	@Override
 	public PageDTO updatePage(PageDTO dto) {
-		Page page= pageMapper.mapToEntity(dto);
+		Page page = pageMapper.mapToEntity(dto);
 		page = entityManager.merge(page);
 		return pageMapper.mapFromEntity(page);
 	}
 
 	@Override
 	public PageDTO insertPage(PageDTO dto) {
-		Page page= pageMapper.mapToEntity(dto);
+		Page page = pageMapper.mapToEntity(dto);
 		entityManager.persist(page);
 		return pageMapper.mapFromEntity(page);
 	}
 
 	@Override
 	public void deletePage(PageDTO dto) {
-		Page page= pageMapper.mapToEntity(dto);
+		Page page = pageMapper.mapToEntity(dto);
 		page = entityManager.merge(page);
 		entityManager.remove(page);
-		
+
 	}
 
 }

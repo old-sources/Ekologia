@@ -1,0 +1,285 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Prototype - Accueil</title>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="foundation.css" media="all" />
+        <link rel="stylesheet" href="style.css" media="all" />
+		<link rel="stylesheet" href="uikit.css" media="all" />
+		<link rel="stylesheet" href="uikit.almost-flat.css" media="all" />
+		<script type="text/javascript" src="uikit.min.js"></script>
+        <script type="text/javascript" src="foundation.min.js"></script>
+    </head>
+    <body>
+        <!--
+            On veut une ligne de 3 colonnes de largeur 2, 8 et 2.
+            La colonne de largeur 8 a une ligne de quatre colonnes de largeur 3 chacune (se basant sur la largeur de la colonne de largeur 8)
+            
+            Rendu souhaité schématisé:
+            parent: |--|-------|--|
+            enfant:    |.|.|.|.|
+            
+        -->
+        <header>
+            <!-- .row implique max-width: 62.5rem, soit quelque chose de limité ^^' -->
+            <!-- Equivalent à .container .row de Bootstrap -->
+            <div class="row">
+                <!-- Equivalent à .col-lg-2 de Bootstrap -->
+                <div class="logo large-2 columns">
+                    <!--blablabla-->
+                    <a href="#"></a>
+                </div>
+
+                <!-- Equivalent à .col-lg-8 de Bootstrap -->
+                <div class="large-8 columns"> 
+                    <!-- Ici, .row réinitialise une grille de 12 colonnes, donc la largeur des colonnes sera moins importante que pour le .row parent (cf. ligne 14) -->
+                    <!-- Les sauts de ligne mettent en évidence les différentes lignes. -->
+                    <ul class="row no-bullet">
+                     	<li class="large-3 columns"><a class="header-link" href="#">Qui sommes nous?</a></li>
+							<li class="large-3 columns"><a class="header-link" href="#">La communauté</a></li>
+							<li class="large-3 columns"><a class="header-link" href="#">Forum ouvert</a></li>
+						<!--	<li class="large-3 columns"><a class="header-link" href="#">Page 1</a></li>
+							
+							<li class="large-3 columns"><a class="header-link" href="#">Page 2</a></li>
+							<li class="large-3 columns"><a class="header-link" href="#">Page 3</a></li>
+							<li class="large-3 columns"><a class="header-link" href="#">Page 4</a></li>
+							<li class="large-3 columns"><a class="header-link" href="#">Autre page</a></li>
+							
+							<li class="large-3 columns"><a class="header-link" href="#">Lien X</a></li>
+							<li class="large-3 columns"><a class="header-link" href="#">Lien Y</a></li>-->
+                   </ul>
+                </div>
+
+                <!-- Equivalent à .col-lg-2 de Bootstrap -->
+                <!-- Pas de système de panel comme Bootstrap, soit on fait un truc classique comme là, soit je peux faire le composant si besoin. -->
+                <!-- Preuve d'une difference de Bootstrap: plus complet (mais toujours moins permissif ;) ) -->
+                <div class="large-2 columns">
+                    <!-- styles à exporter en css plus tard, jsute des tests rapides ici -->
+                    <div style="border:1px solid #aaa;border-radius:2px;padding:0">
+                        <h5 style="text-align:center;padding: 5px; margin: 0;background-color: #eee">Mon compte</h5>
+                        <hr style="margin: 0; padding: 2px"/>
+                        <ul class="no-bullet" style="font-size:12px;margin: 5px">
+                            <li><a href="inscription.html">Créer un compte</a></li>
+                            <li><a href="#">Se connecter</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="contain-to-grid sticky">
+            <nav class="top-bar" data-topbar role="navigation" data-options="sticky_on: large">
+                <ul class="title-area">
+                    <li class="name">
+                      <h1><a href="#">Ekologia</a></h1>
+                    </li>
+                </ul>
+
+                <section class="top-bar-section">
+                    <ul class="right"></ul>
+                    <ul class="left">
+                        <li class="active"><a href="#">Home</a></li>
+                        <li><a href="#">Page 1</a></li>
+                        <li class="has-dropdown">
+                            <a href="#">Page 2</a>
+                            <ul class="dropdown">
+                                <li><a href="#">Sous-page 2.1</a></li>
+                                <li><a href="#">Sous-page 2.2</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </section>
+            </nav>
+        </div>
+        
+        <!-- Le reste est à faire :) -->
+        <div id="body">
+
+			<form>
+			
+				
+				<div class="row">
+					<div class="small-2 columns">
+						<label for="left-label" class="right inline">ekologia.user.registration.cuser.name.label</label>
+					</div>
+					<div class="small-4 columns">
+						<!--<label>ekologia.user.registration.user-type.label-->
+							<select id="left-label">
+								<option value="ekologia.user.registrationformtype.usertype.cuser">ekologia.user.registrationformtype.usertype.cuser</option>
+								<option value="ekologia.user.registrationformtype.usertype.puser">ekologia.user.registrationformtype.usertype.puser</option>
+							</select>
+						<!--</label>-->
+					</div>
+					<div class="small-2 columns">
+						<label for="right-label" class="right inline">ekologia.user.registration.cuser.name.label</label>
+					</div>
+					<div class="small-4 columns">
+						<input type="text" id="right-label" placeholder="ekologia.user.registration.cuser.name.label" />
+					</div>
+				</div>
+				
+				
+				<div class="row">
+					<div class="small-2 columns">
+						<label for="left-label" class="right inline">form.username</label>
+					</div>
+					<div id="left-label" class="small-4 columns">
+						<input type="text" placeholder="form.username" />
+					</div>
+					<div class="small-2 columns">
+						<label for="right-label" class="right inline">ekologia.user.registration.cuser.activity.label</label>
+					</div>
+					<div class="small-4 columns">
+						<input id="right-label" type="text" placeholder="ekologia.user.registration.cuser.activity.label" />
+					</div>
+				</div>
+				
+				
+				
+				
+				
+				
+				
+				
+				<div class="row">
+					<div class="small-2 columns">
+						<label for="left-label" class="right inline">form.email</label>
+					</div>
+					<div class="small-4 columns">
+						<input id="left-label" type="text" placeholder="form.email" />
+					</div>
+					
+					<div class="small-2 columns">
+						<label for="right-label" class="right inline">ekologia.user.registration.cuser.type.label</label>
+					</div>
+					<div class="small-4 columns">
+						<select id="right-label">
+							<option value="ekologia.user.cusertype.type.association">ekologia.user.cusertype.type.association</option>
+							<option value="ekologia.user.cusertype.type.business">ekologia.user.cusertype.type.business</option>
+							<option value="ekologia.user.cusertype.type.ngo">ekologia.user.cusertype.type.ngo</option>
+							<option value="ekologia.user.cusertype.type.media">ekologia.user.cusertype.type.media</option>
+							<option value="ekologia.user.cusertype.type.syndicate">ekologia.user.cusertype.type.syndicate</option>
+						</select>
+					</div>
+				</div>
+				
+				
+				
+				<div class="row">
+					<div class="small-2 columns">
+						<label for="left-label" class="right inline">form.password</label>
+					</div>
+					<div class="small-4 columns">
+						<input id="left-label" type="text" placeholder="form.password" />
+					</div>
+					
+					<div class="small-2 columns">
+						<label for="right-label" class="right inline">ekologia.user.registration.avatar.label</label>
+					</div>
+					<div class="small-4 columns">
+						<input id="right-label" type="text" placeholder="ekologia.user.registration.cuser.activity.label" value="http://localhost/projects/G4-Projet-Ekologia/web/img/avatar-default.png" />
+					</div>
+				</div>
+		
+				<div class="row">
+					<div class="small-2 columns">
+						<label for="left-label" class="right inline">form.password_confirmation</label>
+					</div>
+					<div class="small-4 columns small-uncentered">
+						<input id="left-label" type="text" placeholder="form.password_confirmation" />
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="small-2 columns">
+						<label for="left-label" class="right inline">ekologia.user.registration.address.street.label</label>
+					</div>
+					<div class="small-4 columns small-uncentered">
+						<input id="left-label" type="text" placeholder="ekologia.user.registration.address.street.label" />
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="small-2 columns">
+						<label for="left-label" class="right inline">ekologia.user.registration.address.zip-code.label</label>
+					</div>
+					<div class="small-4 columns small-uncentered">
+						<input class="error" id="left-label" type="text" placeholder="ekologia.user.registration.address.zip-code.label" />
+						 <small class="error">Invalid entry</small>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="small-2 columns">
+						<label for="left-label" class="right inline">ekologia.user.registration.address.city.label</label>
+					</div>
+					<div class="small-4 columns small-uncentered">
+						<input id="left-label" type="text" placeholder="ekologia.user.registration.address.city.label" />
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="small-2 columns">
+						<label for="left-label" class="right inline">ekologia.user.registration.country.label</label>
+					</div>
+					<div class="small-4 columns small-uncentered">
+						<input id="left-label" type="text" placeholder="ekologia.user.registration.country.label" />
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="small-2 columns">
+						<label for="left-label" class="right inline">ekologia.user.registration.phone-number.label</label>
+					</div>
+					<div class="small-4 columns small-uncentered">
+						<input id="left-label" type="text" placeholder="ekologia.user.registration.phone-number.label" />
+					</div>
+				</div>
+		
+				<div class="row">
+					<ul class="right inline">
+						<a href="base.html" type="button" class="button tiny" >Retour</a>
+						<button type="submit" class="button tiny">Envoyer</button>
+					</ul>
+				</div>
+				
+				
+				
+				
+				
+				
+				
+
+			</form>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+        </div>
+
+        <div id="footer">
+            <div class="row">
+               <ul class="right">
+                    <button type="button" class="button tiny">Groupes</button>
+                    <button type="button" class="button tiny">Contacter les administrateurs du site</button>
+                    <button type="button" class="button tiny">Contacts</button>
+                    <button type="button" class="button tiny">Informations légales</button>
+               </ul>
+            </div>
+        </div>
+    </body>
+</html>

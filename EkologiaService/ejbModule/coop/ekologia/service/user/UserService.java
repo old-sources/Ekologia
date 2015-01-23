@@ -64,6 +64,9 @@ public class UserService implements UserServiceInterface {
 
 	@Override
 	public UserDTO getSecuredUser(UserDTO userDTO) {
+		if(userDTO==null){
+			return null;
+		}
 		Query query = entityManager.createNamedQuery(User.FIND_BY_EMAIL);
 		query.setParameter("email", userDTO.getEmail());
 		if (query.getResultList().isEmpty()) {

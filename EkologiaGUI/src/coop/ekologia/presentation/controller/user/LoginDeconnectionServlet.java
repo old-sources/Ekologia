@@ -18,6 +18,10 @@ import coop.ekologia.presentation.session.LoginSession;
 @WebServlet("/login/deconnection")
 public class LoginDeconnectionServlet extends EkologiaServlet {
 	private static final long serialVersionUID = 1L;
+
+	public static final String routing(HttpServletRequest request) {
+		return getUrl(request, "/login/deconnection");
+	}
        
 	@Inject
 	LoginSession loginSession;
