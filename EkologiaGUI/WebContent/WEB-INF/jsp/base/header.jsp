@@ -8,8 +8,7 @@
 <div style="display: flex; width: 100%; background-color: #b1df00;"">
 	<div style="flex-basis: 150px; background-color: white">
 		<a href="${pageContext.request.contextPath}/">
-			<div
-				style="display: flex; justify-content: center; align-items: center">
+			<div style="display: flex; justify-content: center; align-items: center">
 				<div style="flex-grow: 1;">
 					<img style="height: 60px" class="uk-img-preserve"
 						src="https://lh6.googleusercontent.com/-S2uT3YsPddo/VLxG2Po0MBI/AAAAAAAAC9o/Zm9h5p7jyVw/w411-h400-no/logo%2Bseul.png" />
