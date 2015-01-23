@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import coop.ekologia.DTO.cms.PageDTO;
 import coop.ekologia.presentation.EkologiaServlet;
-import coop.ekologia.presentation.request.TestRequestScope;
+import coop.ekologia.presentation.request.GlobalRequestScope;
 import coop.ekologia.service.cms.PageServiceInterface;
 
 /**
@@ -24,7 +24,7 @@ public class PageServlet extends EkologiaServlet {
 	private static final long serialVersionUID = 1L;
 	
 	@Inject
-	private TestRequestScope requestScope;
+	private GlobalRequestScope requestScope;
 	
 	
 	public static final String routing(HttpServletRequest request, String canonical) {

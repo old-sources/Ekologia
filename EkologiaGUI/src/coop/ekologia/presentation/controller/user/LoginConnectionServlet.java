@@ -18,6 +18,10 @@ import coop.ekologia.presentation.session.LoginSession;
 @WebServlet("/login/connection")
 public class LoginConnectionServlet extends EkologiaServlet {
 	private static final long serialVersionUID = 1L;
+
+	public static final String routing(HttpServletRequest request) {
+		return getUrl(request, "/login/connection");
+	}
        
 	@Inject
 	LoginSession loginSession;

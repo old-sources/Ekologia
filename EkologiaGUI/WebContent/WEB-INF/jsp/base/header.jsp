@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ page import="coop.ekologia.presentation.controller.user.LoginConnectionServlet" %>
 <fmt:setLocale value="${ currentLanguage }" />
 <fmt:setBundle basename="i18n.main" />
 <div style="display: flex; width: 100%; background-color: #b1df00;"">
@@ -37,14 +38,12 @@
 
 				<div>
 					<a class="uk-button uk-width-1-1"
-						"
 						href="${pageContext.request.contextPath}/login/createAccount">créer
 						un compte</a>
 				</div>
 				<div>
-					<a class="uk-button uk-width-1-1"
-						"
-						href="${pageContext.request.contextPath}/login/connection">connection</a>
+					<!-- <a class="uk-button uk-width-1-1" href="${uriConnection}">connection</a>-->
+					<a class="uk-button uk-width-1-1" href="<%= LoginConnectionServlet.routing(request) %>">connection</a>
 				</div>
 			</c:when>
 			<c:otherwise>

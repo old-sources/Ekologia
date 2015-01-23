@@ -20,6 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 import coop.ekologia.DTO.user.UserDTO;
 import coop.ekologia.presentation.controller.cms.PageServlet;
 import coop.ekologia.presentation.controller.user.LoginServlet;
+import coop.ekologia.presentation.request.GlobalRequestScope;
 import coop.ekologia.presentation.session.LoginSession;
 import coop.ekologia.service.security.SecurityServiceInterface;
 
@@ -32,6 +33,9 @@ public class SecurityFilter implements Filter {
 	SecurityServiceInterface securityService;
 	
 	@Inject LoginSession loginSession;
+	
+	@Inject
+	GlobalRequestScope globalRequestScope;
 
 	/**
 	 * @see Filter#destroy()
@@ -45,39 +49,55 @@ public class SecurityFilter implements Filter {
 	 */
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-
-		//System.out.println("securityFilter");
 		HttpServletRequest httpServletRequest = (HttpServletRequest) request;
 		HttpServletResponse httpServletResponse = (HttpServletResponse) response;
-		UserDTO connectedUser = loginSession.getUser();
-		Boolean resourceAllow = true;
-		if (!httpServletRequest.getRequestURI().contains("login")) {
-
-			Matcher m = Pattern.compile(String.format("\\w*\\%s\\/(\\S*)", httpServletRequest.getContextPath())).matcher(
-					httpServletRequest.getRequestURI());
-			if (m.find()) {
-				String resource= m.group(1);
-				resourceAllow = securityService.isResourceAllow(resource, connectedUser);
+		
+		if (globalRequestScope.getLanguage() != null) {
+			String requestURI = globalRequestScope.getInternalUrl();
+			// Language detected and we already forwarded the request to concrete servlet.
+			UserDTO connectedUser = loginSession.getUser();
+			Boolean resourceAllow = true;
+			if (!requestURI.contains("login") && connectedUser == null) {
+	
+				Matcher m = Pattern.compile("\\w*\\/(\\S*)").matcher(requestURI);
+				if (m.find()) {
+					String resource= m.group(1);
+					resourceAllow = securityService.isResourceAllow(resource, connectedUser);
+				}
+			}
+	
+			if (!resourceAllow) {
+				loginSession.setPreviousUrl(httpServletRequest.getRequestURL().toString());
+				httpServletResponse.sendRedirect(LoginServlet.routing(httpServletRequest));
+			} else {
+				// We use forward instead of chain.doFilter because of change of URL.
+				request.setAttribute("language", "fr");
+				request.getRequestDispatcher(requestURI).forward(request, response);
+			}
+	
+	        // le chain.doFilter a déclenché le post de login et donc rempli la session
+	        if (connectedUser == null && loginSession.getUser() != null) {
+	            if (loginSession.getPreviousUrl() != null) {
+	                httpServletResponse.sendRedirect(loginSession.getPreviousUrl());
+	                loginSession.setPreviousUrl(null);
+	            } else {
+	                httpServletResponse.sendRedirect(PageServlet.routingHome(httpServletRequest));
+	            }
+	        }
+		} else {
+			// Language not detected - redirection to home FR
+			String home1 = httpServletRequest.getContextPath();
+			String home2 = home1 + "/";
+			String uri = httpServletRequest.getRequestURI();
+			if (home1.equalsIgnoreCase(uri) || home2.equalsIgnoreCase(uri)) {
+				// Home, but no language => redirect to home FR
+				request.setAttribute("language", "fr");
+				httpServletResponse.sendRedirect(PageServlet.routingHome(httpServletRequest));
+			} else {
+				// Resource or 404 - anyway, we continue
+				chain.doFilter(httpServletRequest, httpServletResponse);
 			}
 		}
-
-		if (!resourceAllow) {
-			loginSession.setPreviousUrl(httpServletRequest.getRequestURL().toString());
-			httpServletResponse.sendRedirect(LoginServlet.routing(httpServletRequest));
-		} else {
-			// pass the request along the filter chain
-			chain.doFilter(request, response);
-		}
-
-        // le chain.doFilter à déclenché le post de login et donc rempli la session
-        if (connectedUser == null && loginSession.getUser() != null) {
-            if (loginSession.getPreviousUrl() != null) {
-                httpServletResponse.sendRedirect(loginSession.getPreviousUrl());
-                loginSession.setPreviousUrl(null);
-            } else {
-                httpServletResponse.sendRedirect(PageServlet.routingHome(httpServletRequest));
-            }
-        }
 	}
 
 	/**
