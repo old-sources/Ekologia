@@ -46,7 +46,7 @@ public class PageServlet extends EkologiaServlet {
 			String page = m.group(1);
 			PageDTO pageDTO = pageService.getPageFromUrl(page);
 			if (pageDTO != null) {
-				request.getSession().setAttribute("pageDTO", pageDTO);
+				request.setAttribute("pageDTO", pageDTO);
 				forwardToJsp("/cms/polymorph.jsp", request, response);
 			}
 		}
