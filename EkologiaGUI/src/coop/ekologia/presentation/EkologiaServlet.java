@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import coop.ekologia.presentation.request.GlobalRequestScope;
 import coop.ekologia.presentation.session.LoginSession;
 
 public abstract class EkologiaServlet extends HttpServlet {
@@ -16,6 +17,9 @@ public abstract class EkologiaServlet extends HttpServlet {
 	
 	@Inject
 	private LoginSession loginSession;
+	
+	@Inject
+	protected GlobalRequestScope globalRequestScope;
 
 	/**
 	 * Returns the absolute path to the jsp.
@@ -47,7 +51,7 @@ public abstract class EkologiaServlet extends HttpServlet {
 	 */
 	protected void forwardToJsp(String name, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setAttribute("connectedUser", loginSession.getUser());
-		request.setAttribute("currentLanguage", getCurrentLanguage(request));
+		request.setAttribute("currentLanguage", globalRequestScope.getLanguage());
 		
 		RequestDispatcher result = request.getRequestDispatcher(getJsp(name));
 		result.forward(request, response);
@@ -62,7 +66,7 @@ public abstract class EkologiaServlet extends HttpServlet {
     }
     
 	/**
-	 * Return an absolute url (depends on all context variables).
+	 * Returns an absolute url (depends on all context variables).
 	 * 
 	 * @param request The current request
 	 * @param route   The route to send the user (ex: {@code /group/wiki/group-1/wiki-1})
@@ -77,6 +81,9 @@ public abstract class EkologiaServlet extends HttpServlet {
     		result.append("/");
     	}
     	
+    	// Adds the current language to route.
+    	result.append(getCurrentLanguage(request)).append("/");
+    	
     	if (route.matches("^/(.*)")) {
     		result.append(route.substring(1));
     	} else {
@@ -87,18 +94,13 @@ public abstract class EkologiaServlet extends HttpServlet {
     }
     
     /**
-     * Returns the current language in terms of client url. ({@code fr.ekologia.coop} should give {@code fr}).
+     * Returns the current language in terms of client url. ({@code ekologia.coop/<ctx>/fr} should give {@code fr}).
      * 
      * @param request The current request
      * @return        The current language
      */
-    protected String getCurrentLanguage(HttpServletRequest request) {
-    	String serverName = request.getServerName();
-    	
-    	String language = "fr";
-    	//TODO code commented cause by bug at URL http://localhost:8080/EkologiaGUI/
-    	//TODO this code is for url as http://fr.ekologia.coop/xxx
-    	//String language = serverName.substring(0, serverName.indexOf('.'));
-    	return language;
+    protected static String getCurrentLanguage(HttpServletRequest request) {
+    	String language = (String)request.getAttribute("language");
+		return language;
     }
 }
