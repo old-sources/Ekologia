@@ -1,6 +1,6 @@
 header .logo a {
   display: block;
-  background-image: url('WebContent/image/logo.png');
+  background-image: url('../image/logo.png');
   background-size:111px 115px;
   background-position: center;
   background-repeat:no-repeat;
@@ -23,7 +23,8 @@ header {
 	margin-top: 10px;
 }
 .header-degrade {
-background-image:linear-gradient(#FFFFFF 90%, #242D00 120px);
+	background-color: white;
+	/*background-image:linear-gradient(#FFFFFF 90%, #242D00 120px);*/
 }
 
 .nav-bar-color{
@@ -78,4 +79,26 @@ background: background-color: #6B8600!important;
 */
 #body {
     padding-top: 5px;
+}
+
+.hidden {
+	display: none;
+}
+
+body > footer {
+	margin-top: 25px;
+}
+
+header {
+	width: 100%;
+	height: 60px;
+	position: fixed;
+	top: 0;
+	z-index: 999;
+	background-color: white;
+}
+
+.corps {
+	padding-top: 200px;
+	margin: 0 auto;
 }

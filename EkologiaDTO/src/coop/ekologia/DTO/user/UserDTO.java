@@ -157,6 +157,8 @@ public class UserDTO implements Serializable {
     }
 	
 	public Boolean getAdmin(){
+	    // TODO #question from Gaëtan to Simon
+	    // Why not use List#contains or String#equals?
 		Boolean retour =false;
 		for (String role : getRoles()) {
 			if (role.compareTo("admin")==0){

@@ -17,9 +17,13 @@ import coop.ekologia.service.group.GroupServiceInterface;
 /**
  * Servlet implementation class GroupListServlet
  */
-@WebServlet("/group/groupList")
+@WebServlet("/admin/group/groupList")
 public class GroupListServlet extends EkologiaServlet {
 	private static final long serialVersionUID = 1L;
+    
+    public static final String routing(HttpServletRequest request) {
+        return getUrl(request, "/admin/group/groupList");
+    }
        
 	@EJB
 	private GroupServiceInterface groupService;

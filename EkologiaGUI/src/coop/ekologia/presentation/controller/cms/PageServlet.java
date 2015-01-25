@@ -31,8 +31,10 @@ public class PageServlet extends EkologiaServlet {
 		return getUrl(request, "/page/" + canonical);
 	}
 	
+	@Deprecated
+	/** @deprecated since 2015-01-23: use {@link HomeServlet#routing(HttpServleRequest)} instead. */
 	public static final String routingHome(HttpServletRequest request) {
-	    return routing(request, "home");
+	    return HomeServlet.routing(request);
 	}
 
 	@EJB

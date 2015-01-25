@@ -1,4 +1,4 @@
-package coop.ekologia.presentation.home;
+package coop.ekologia.presentation.controller.cms;
 
 import java.io.IOException;
 
@@ -14,6 +14,13 @@ import coop.ekologia.service.cms.PageServiceInterface;
 
 @WebServlet("/home")
 public class HomeServlet extends EkologiaServlet {
+	private static final long serialVersionUID = -4096633312380583816L;
+	
+	
+	public static final String routing(HttpServletRequest request) {
+		return getUrl(request, "/home");
+	}
+	
 	@EJB
 	private PageServiceInterface pageService;
 

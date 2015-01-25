@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import coop.ekologia.DTO.user.UserDTO;
 import coop.ekologia.presentation.EkologiaServlet;
+import coop.ekologia.presentation.controller.cms.HomeServlet;
+import coop.ekologia.presentation.controller.cms.PageServlet;
 import coop.ekologia.presentation.session.LoginSession;
 import coop.ekologia.service.user.UserServiceInterface;
 
@@ -58,7 +60,15 @@ public class LoginServlet extends EkologiaServlet {
 		loginUser.setPassword(passwParameter);
 		loginUser = userService.getSecuredUser(loginUser);
 		if (loginUser != null) {
+			// Problem when we are in filter with the addition of language management.
+			// So we moved redirection here.
 			loginSession.setUser(loginUser);
+			if (loginSession.getPreviousUrl() != null) {
+                response.sendRedirect(loginSession.getPreviousUrl());
+                loginSession.setPreviousUrl(null);
+            } else {
+                response.sendRedirect(HomeServlet.routing(request));
+            }
 		} else {
 			forwardToJsp(WEB_INF_LOGIN_JSP, request, response);
 		}

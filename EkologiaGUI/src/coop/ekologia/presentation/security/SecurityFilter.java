@@ -74,16 +74,6 @@ public class SecurityFilter implements Filter {
 				request.setAttribute("language", "fr");
 				request.getRequestDispatcher(requestURI).forward(request, response);
 			}
-	
-	        // le chain.doFilter a déclenché le post de login et donc rempli la session
-	        if (connectedUser == null && loginSession.getUser() != null) {
-	            if (loginSession.getPreviousUrl() != null) {
-	                httpServletResponse.sendRedirect(loginSession.getPreviousUrl());
-	                loginSession.setPreviousUrl(null);
-	            } else {
-	                httpServletResponse.sendRedirect(PageServlet.routingHome(httpServletRequest));
-	            }
-	        }
 		} else {
 			// Language not detected - redirection to home FR
 			String home1 = httpServletRequest.getContextPath();

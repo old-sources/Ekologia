@@ -19,6 +19,10 @@ import coop.ekologia.service.cms.PageServiceInterface;
 @WebServlet("/admin/pageList")
 public class PageListServlet extends EkologiaServlet {
 	private static final long serialVersionUID = 1L;
+    
+    public static final String routing(HttpServletRequest request) {
+        return getUrl(request, "/admin/pageList");
+    }
 	
 
 	@EJB
