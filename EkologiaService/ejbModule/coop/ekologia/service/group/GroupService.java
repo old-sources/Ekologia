@@ -10,8 +10,12 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import coop.ekologia.DTO.group.GroupDTO;
+import coop.ekologia.DTO.user.UserDTO;
 import coop.ekologia.entity.group.Group;
+import coop.ekologia.entity.group.UserGroup;
+import coop.ekologia.entity.user.User;
 import coop.ekologia.service.mapper.group.GroupMapper;
+import coop.ekologia.service.mapper.user.UserMapper;
 
 @Stateless
 public class GroupService implements GroupServiceInterface {
@@ -20,6 +24,9 @@ public class GroupService implements GroupServiceInterface {
 
 	@Inject
 	private GroupMapper groupMapper;
+
+	@Inject
+	private UserMapper userMapper;
 
 	@Override
 	public GroupDTO findGroupByCanonical(String canonical) {
@@ -51,7 +58,7 @@ public class GroupService implements GroupServiceInterface {
 	@Override
 	public GroupDTO findGroupByName(String name) {
 		Query query = em
-				.createNamedQuery("SELECT g FROM Group g WHERE g.name=:name");
+				.createNamedQuery("SELECT g FROM Group g WHERE g.name = :name");
 		query.setParameter("name", name);
 		if (query.getResultList().isEmpty()) {
 			return null;
@@ -67,27 +74,47 @@ public class GroupService implements GroupServiceInterface {
 		group = em.merge(group);
 		return groupMapper.mapFromEntity(group);
 	}
+	
+	@Override
+	public void updateUserGroup(GroupDTO groupDTO) {
+		Group group = groupMapper.mapToEntity(groupDTO);
+		User user = userMapper.mapToEntity(groupDTO.getFirstAdmin());
+		em.merge(user);
+		UserGroup userGroup = groupMapper.createUserGroup(group, user);		
+		em.merge(userGroup);		
+
+	}
 
 	@Override
 	public GroupDTO insertGroup(GroupDTO groupDTO) {
-		Integer maxId = 0;
-		if (findGroupAll() != null && !findGroupAll().isEmpty()) {
-			List<GroupDTO> groupList = findGroupAll();
-			for (GroupDTO dto : groupList) {
-				if (dto.getId() > maxId) {
-					maxId = dto.getId();
-				}
-			}
-		}
-		Group group = groupMapper.mapToEntityInsert(groupDTO, maxId);
+		Group group = groupMapper.mapToEntity(groupDTO);
 		em.persist(group);
 		return groupMapper.mapFromEntity(group);
+	}
+
+	@Override
+	public void insertUserGroup(GroupDTO groupDTO) {
+		Group group = groupMapper.mapToEntity(groupDTO);
+		User user = userMapper.mapToEntity(groupDTO.getFirstAdmin());
+
+		em.merge(user);
+
+		UserGroup userGroup = groupMapper.createUserGroup(group, user);
+
+		em.persist(userGroup);
+
 	}
 
 	@Override
 	public void deleteGroup(GroupDTO groupDTO) {
 		Group group = groupMapper.mapToEntity(groupDTO);
 		group = em.merge(group);
+		List<UserGroup> listUserGroup = getListUserGroup(groupDTO.getId());
+		if (!listUserGroup.isEmpty()) {
+			for (UserGroup userGroup : listUserGroup) {
+				em.remove(userGroup);
+			}
+		}
 		em.remove(group);
 	}
 
@@ -95,6 +122,21 @@ public class GroupService implements GroupServiceInterface {
 	public GroupDTO getGroupById(GroupDTO dto) {
 		Group group = em.find(Group.class, dto.getId());
 		return groupMapper.mapFromEntity(group);
+	}
+
+	@Override
+	public List<UserGroup> getListUserGroup(Integer groupId){
+		List<UserGroup> listUserGroup = new ArrayList<UserGroup>();
+		Query query = em
+				.createNamedQuery(UserGroup.FIND_BY_GROUPID);
+		query.setParameter("groupId", groupId);
+		if (query.getResultList().isEmpty()) {
+			return null;
+		} else {
+			listUserGroup = query.getResultList();	
+		}
+		return listUserGroup;
+		
 	}
 
 }

@@ -141,6 +141,13 @@ public class UserService implements UserServiceInterface {
 
 		//user.setId(dto.getId());
 		//user = entityManager.merge(user);
+		
+		List<UserGroup> listUserGroup = getListUserGroup(dto.getId());
+		if (!listUserGroup.isEmpty()) {
+			for (UserGroup userGroup : listUserGroup) {
+				entityManager.remove(userGroup);
+			}
+		}
 		entityManager.remove(user);
 	}
 
@@ -149,5 +156,20 @@ public class UserService implements UserServiceInterface {
 		Query query = entityManager.createNamedQuery(User.FIND_BY_EMAIL);
 		query.setParameter("email", email);
 		return !query.getResultList().isEmpty();
+	}
+	
+	@Override
+	public List<UserGroup> getListUserGroup(Integer userId){
+		List<UserGroup> listUserGroup = new ArrayList<UserGroup>();
+		Query query = entityManager
+				.createNamedQuery(UserGroup.FIND_BY_USERID);
+		query.setParameter("userId", userId);
+		if (query.getResultList().isEmpty()) {
+			return null;
+		} else {
+			listUserGroup = query.getResultList();	
+		}
+		return listUserGroup;
+		
 	}
 }

@@ -9,6 +9,7 @@ import javax.ejb.Local;
 
 import coop.ekologia.DTO.group.GroupDTO;
 import coop.ekologia.DTO.user.UserDTO;
+import coop.ekologia.entity.group.UserGroup;
 
 /**
  * @author imie
@@ -31,5 +32,7 @@ public interface UserServiceInterface {
 	public void deleteUser(UserDTO dto);
 
     boolean existsByEmail(String email);
+
+	List<UserGroup> getListUserGroup(Integer userId);
 
 }

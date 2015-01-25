@@ -5,6 +5,9 @@ import java.util.List;
 import javax.ejb.Local;
 
 import coop.ekologia.DTO.group.GroupDTO;
+import coop.ekologia.DTO.user.UserDTO;
+import coop.ekologia.entity.group.Group;
+import coop.ekologia.entity.group.UserGroup;
 
 @Local
 public interface GroupServiceInterface {
@@ -43,7 +46,7 @@ public interface GroupServiceInterface {
 	 * Insert a new group
 	 * 
 	 * @param groupDTO the group to insert
-	 * @return
+	 * @return a GroupDTO
 	 */
 	public abstract GroupDTO insertGroup(GroupDTO groupDTO);
 
@@ -62,4 +65,27 @@ public interface GroupServiceInterface {
 	 * @return          The group with this id or null if any exists
 	 */
 	public abstract GroupDTO getGroupById(GroupDTO dto);
+
+	/**
+	 * Insert a user in the group
+	 * 
+	 * @param groupDTO
+	 */
+	public abstract void insertUserGroup(GroupDTO groupDTO);
+
+	/**
+	 * Get a list of UserGroup by a groupId
+	 * 
+	 * @param group
+	 * @return
+	 */
+	public abstract List<UserGroup> getListUserGroup(Integer groupId);
+
+	/**
+	 * Update a UserGroup
+	 * 
+	 * @param groupDTO
+	 * @return
+	 */
+	public abstract void updateUserGroup(GroupDTO groupDTO);
 }

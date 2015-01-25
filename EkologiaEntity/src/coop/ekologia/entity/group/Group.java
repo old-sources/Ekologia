@@ -1,8 +1,18 @@
 package coop.ekologia.entity.group;
 
 import java.io.Serializable;
-import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 
 /**
@@ -21,16 +31,23 @@ public class Group implements Serializable {
 	public static final String FIND_BY_CANONICAL = "Group.findByCanonical";
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
 	private Integer id;
 
 	private String canonical;
 
 	private String name;
+	
+	private String description;
+	
+	private String icon;
 
 	@OneToMany(mappedBy="group")
 	private List<UserGroup> userGroups;
 
 	public Group() {
+		this.userGroups = new ArrayList<UserGroup>();
 	}
 
 	public Integer getId() {
@@ -77,6 +94,22 @@ public class Group implements Serializable {
 		userGroup.setGroup(null);
 
 		return userGroup;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getIcon() {
+		return icon;
+	}
+
+	public void setIcon(String icon) {
+		this.icon = icon;
 	}
 
 }
