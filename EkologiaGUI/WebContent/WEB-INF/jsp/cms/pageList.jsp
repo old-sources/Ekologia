@@ -4,10 +4,8 @@
 <%@ page import="java.util.List"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib prefix="et" tagdir="/WEB-INF/tags/template"%>
-<c:set var="req" value="${pageContext.request}" />
-<c:set var="baseURL"
-	value="${req.scheme}://${req.serverName}:${req.serverPort}${req.contextPath}" />
 <et:front>
 	<div classe="uk-grid">
 		<div
@@ -82,33 +80,27 @@
 	</div>
 </et:front>
 <script>
-$(".createButton")
-.on(
-		"click",
-		function(e) {
-			var userFormUrl = "${req.scheme}://${req.serverName}:${req.serverPort}${req.contextPath}"
-					+ "/admin/pageForm/create"
-			//console.log(userFormUrl);
-			window.location.href = userFormUrl;
-		});
-$(".editButton")
-.on(
-		"click",
-		function(e) {
-			var userFormUrl = "${req.scheme}://${req.serverName}:${req.serverPort}${req.contextPath}"
-					+ "/admin/pageForm/update/"
-					+ ($(this).data("id"))
-			//console.log(userFormUrl);
-			window.location.href = userFormUrl;
-		});
-$(".deleteButton")
-.on(
-		"click",
-		function(e) {
-			var userFormUrl = "${req.scheme}://${req.serverName}:${req.serverPort}${req.contextPath}"
-					+ "/admin/pageForm/delete/"
-					+ ($(this).data("id"))
-			//console.log(userFormUrl);
-			window.location.href = userFormUrl;
-		});
+	$(".createButton").on("click", function(e) {
+		var userFormUrl = "${fn:replace(routing.routePageForm,'*','create')}"
+		//console.log(userFormUrl);
+		window.location.href = userFormUrl;
+	});
+	$(".editButton")
+			.on(
+					"click",
+					function(e) {
+						var userFormUrl = "${fn:replace(routing.routePageForm,'*','update/')}"
+								+ ($(this).data("id"))
+						//console.log(userFormUrl);
+						window.location.href = userFormUrl;
+					});
+	$(".deleteButton")
+			.on(
+					"click",
+					function(e) {
+						var userFormUrl = "${fn:replace(routing.routePageForm,'*','delete/')}"
+								+ ($(this).data("id"))
+						//console.log(userFormUrl);
+						window.location.href = userFormUrl;
+					});
 </script>

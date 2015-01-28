@@ -3,8 +3,7 @@
 <%@ taglib prefix="et" tagdir="/WEB-INF/tags/template"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <et:front>
 
 	<jsp:attribute name="head">
@@ -31,7 +30,19 @@
 
 	</jsp:attribute>
 	<jsp:body>
+	<c:choose>
+	<c:when test="${empty user}">
+		<c:set var="urlForm"
+					value="${fn:replace(routing.routePageForm,'*','create')}"></c:set>
+	</c:when>
+	<c:otherwise>
+		<c:set var="urlForm"
+					value="${fn:replace(routing.routePageForm,'*','update')}/${user.id}"></c:set>
+	</c:otherwise>
+</c:choose>
 	<div classe="uk-grid">
+	
+		
 		<form
 				class="uk-form uk-form-horizontal uk-panel uk-panel-box uk-panel-header uk-width-4-5 uk-container-center"
 				method="post">

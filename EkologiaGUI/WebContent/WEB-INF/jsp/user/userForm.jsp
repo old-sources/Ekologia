@@ -4,20 +4,19 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<c:choose>
+	<c:when test="${empty user}">
+		<c:set var="urlForm"
+			value="${fn:replace(routing.routeUserForm,'*','create')}"></c:set>
+	</c:when>
+	<c:otherwise>
+		<c:set var="urlForm"
+			value="${fn:replace(routing.routeUserForm,'*','update')}/${user.id}"></c:set>
+	</c:otherwise>
+</c:choose>
+
 <et:front>
 	<div classe="uk-grid">
-	
-		<c:choose>
-			<c:when test="${empty user}">
-				<c:set var="urlForm"
-					value="${fn:replace(routing.routeUserForm,'*','create')}"></c:set>
-			</c:when>
-			<c:otherwise>
-				<c:set var="urlForm"
-					value="${fn:replace(routing.routeUserForm,'*','update')}/${user.id}"></c:set>
-			</c:otherwise>
-		</c:choose>
-
 		<form id="userForm"
 			class="uk-form uk-form-horizontal uk-panel uk-panel-box uk-panel-header uk-width-1-2 uk-container-center"
 			method="post" action="${urlForm}">

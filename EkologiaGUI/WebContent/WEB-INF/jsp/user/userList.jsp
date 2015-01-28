@@ -6,10 +6,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib prefix="et" tagdir="/WEB-INF/tags/template"%>
-<%-- <c:set var="req" value="${pageContext.request}" />
-<c:set var="baseURL"
-	value="${req.scheme}://${req.serverName}:${req.serverPort}${req.contextPath}" />
- --%><et:front>
+<et:front>
 	<div classe="uk-grid">
 		<div
 			class="uk-panel uk-panel-box uk-panel-header uk-width-1-2 uk-container-center uk-panel-box-secondary">
@@ -106,7 +103,7 @@
 						"click",
 						function(e) {
 							var userFormUrl = "${fn:replace(routing.routeUserForm,'*','delete/')}"
-								+ ($(this).data("id"))
+									+ ($(this).data("id"))
 							//console.log(userFormUrl);
 							window.location.href = userFormUrl;
 						});

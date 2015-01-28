@@ -3,9 +3,9 @@ package coop.ekologia.presentation.request;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 
+import coop.ekologia.presentation.controller.cms.PageFormServlet;
 import coop.ekologia.presentation.controller.user.UserFormServlet;
 
 @Named("routing")
@@ -20,5 +20,9 @@ public class RoutingCentral {
 	
 	public String getRouteUserForm(){
 		return servletUtil.getUrl(UserFormServlet.routing);
+	}
+	
+	public String getRoutePageForm(){
+		return servletUtil.getUrl(PageFormServlet.routing);
 	}
 }

@@ -18,10 +18,11 @@ import coop.ekologia.service.cms.PageServiceInterface;
 /**
  * Servlet implementation class User
  */
-@WebServlet("/admin/pageForm/*")
+@WebServlet(PageFormServlet.routing)
 public class PageFormServlet extends EkologiaServlet {
 	private static final long serialVersionUID = 1L;
-
+	public static final String routing= "/admin/pageForm/*";
+	
 	// @Inject @Named("session")
 	@EJB
 	PageServiceInterface pageService;
