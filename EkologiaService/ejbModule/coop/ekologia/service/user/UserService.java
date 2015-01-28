@@ -143,7 +143,7 @@ public class UserService implements UserServiceInterface {
 		//user = entityManager.merge(user);
 		
 		List<UserGroup> listUserGroup = getListUserGroup(dto.getId());
-		if (!listUserGroup.isEmpty()) {
+		if (listUserGroup!=null && !listUserGroup.isEmpty()) {
 			for (UserGroup userGroup : listUserGroup) {
 				entityManager.remove(userGroup);
 			}

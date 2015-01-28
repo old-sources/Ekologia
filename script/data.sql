@@ -4,7 +4,7 @@
 
 -- Dumped from database version 9.3.4
 -- Dumped by pg_dump version 9.3.4
--- Started on 2015-01-17 20:04:18 CET
+-- Started on 2015-01-28 17:55:37 CET
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -31,7 +31,7 @@ INSERT INTO account (id, email, password, phone_number, addressstreet, addresszi
 -- Name: account_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('account_id_seq', 20, true);
+SELECT pg_catalog.setval('account_id_seq', 21, true);
 
 
 --
@@ -187,6 +187,9 @@ https://lh4.googleusercontent.com/-dUQf94H_zmw/VLMhMFbf8-I/AAAAAAAAC9M/OipBy0et2
 	
 	</div>
 </div>', NULL);
+INSERT INTO page (id, url, javascript, html, css) VALUES (8, 'qui-sommes-nous', NULL, 'qui-sommes-nous', NULL);
+INSERT INTO page (id, url, javascript, html, css) VALUES (9, 'communaute', NULL, 'communaute', NULL);
+INSERT INTO page (id, url, javascript, html, css) VALUES (10, 'forum-ouvert', NULL, 'forum-ouvert', NULL);
 
 
 --
@@ -195,7 +198,7 @@ https://lh4.googleusercontent.com/-dUQf94H_zmw/VLMhMFbf8-I/AAAAAAAAC9M/OipBy0et2
 -- Name: page_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('page_id_seq', 6, true);
+SELECT pg_catalog.setval('page_id_seq', 10, true);
 
 
 --
@@ -204,7 +207,7 @@ SELECT pg_catalog.setval('page_id_seq', 6, true);
 -- Data for Name: security; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO security (id, url, diseable) VALUES (1, 'admin/userList', true);
+INSERT INTO security (id, url, diseable) VALUES (2, 'admin/*', NULL);
 
 
 --
@@ -213,7 +216,7 @@ INSERT INTO security (id, url, diseable) VALUES (1, 'admin/userList', true);
 -- Name: security_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('security_id_seq', 1, true);
+SELECT pg_catalog.setval('security_id_seq', 2, true);
 
 
 --
@@ -275,7 +278,7 @@ SELECT pg_catalog.setval('wikicomment_id_seq', 1, false);
 SELECT pg_catalog.setval('wikiversion_id_seq', 1, false);
 
 
--- Completed on 2015-01-17 20:04:18 CET
+-- Completed on 2015-01-28 17:55:38 CET
 
 --
 -- PostgreSQL database dump complete
