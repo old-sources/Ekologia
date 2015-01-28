@@ -8,6 +8,7 @@
 <fmt:setBundle basename="i18n.main" />
 
 <et:front>
+	${testInject.text}
 	<div class="row">
 		<c:out value="${ page.html }" escapeXml="false" />
 	</div>

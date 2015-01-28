@@ -1,4 +1,4 @@
-package coop.ekologia.presentation.security;
+package coop.ekologia.presentation.filter;
 
 import java.io.IOException;
 import java.util.regex.Matcher;
@@ -71,7 +71,7 @@ public class SecurityFilter implements Filter {
 				httpServletResponse.sendRedirect(LoginServlet.routing(httpServletRequest));
 			} else {
 				// We use forward instead of chain.doFilter because of change of URL.
-				request.setAttribute("language", "fr");
+				//request.setAttribute("language", "fr");
 				request.getRequestDispatcher(requestURI).forward(request, response);
 			}
 		} else {

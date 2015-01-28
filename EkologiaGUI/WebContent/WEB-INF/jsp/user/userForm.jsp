@@ -6,14 +6,15 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <et:front>
 	<div classe="uk-grid">
+	
 		<c:choose>
 			<c:when test="${empty user}">
 				<c:set var="urlForm"
-					value="${pageContext.request.contextPath}/admin/userForm/create"></c:set>
+					value="${fn:replace(routing.routeUserForm,'*','create')}"></c:set>
 			</c:when>
 			<c:otherwise>
 				<c:set var="urlForm"
-					value="${pageContext.request.contextPath}/admin/userForm/update/${user.id}"></c:set>
+					value="${fn:replace(routing.routeUserForm,'*','update')}/${user.id}"></c:set>
 			</c:otherwise>
 		</c:choose>
 

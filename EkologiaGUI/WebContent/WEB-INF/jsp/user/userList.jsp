@@ -4,11 +4,12 @@
 <%@ page import="java.util.List"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib prefix="et" tagdir="/WEB-INF/tags/template"%>
-<c:set var="req" value="${pageContext.request}" />
+<%-- <c:set var="req" value="${pageContext.request}" />
 <c:set var="baseURL"
 	value="${req.scheme}://${req.serverName}:${req.serverPort}${req.contextPath}" />
-<et:front>
+ --%><et:front>
 	<div classe="uk-grid">
 		<div
 			class="uk-panel uk-panel-box uk-panel-header uk-width-1-2 uk-container-center uk-panel-box-secondary">
@@ -87,8 +88,7 @@
 				.on(
 						"click",
 						function(e) {
-							var userFormUrl = "${req.scheme}://${req.serverName}:${req.serverPort}${req.contextPath}"
-									+ "/admin/userForm/create"
+							var userFormUrl = "${fn:replace(routing.routeUserForm,'*','create')}"
 							//console.log(userFormUrl);
 							window.location.href = userFormUrl;
 						});
@@ -96,8 +96,7 @@
 				.on(
 						"click",
 						function(e) {
-							var userFormUrl = "${req.scheme}://${req.serverName}:${req.serverPort}${req.contextPath}"
-									+ "/admin/userForm/update/"
+							var userFormUrl = "${fn:replace(routing.routeUserForm,'*','update/')}"
 									+ ($(this).data("id"))
 							//console.log(userFormUrl);
 							window.location.href = userFormUrl;
@@ -106,9 +105,8 @@
 				.on(
 						"click",
 						function(e) {
-							var userFormUrl = "${req.scheme}://${req.serverName}:${req.serverPort}${req.contextPath}"
-									+ "/admin/userForm/delete/"
-									+ ($(this).data("id"))
+							var userFormUrl = "${fn:replace(routing.routeUserForm,'*','delete/')}"
+								+ ($(this).data("id"))
 							//console.log(userFormUrl);
 							window.location.href = userFormUrl;
 						});

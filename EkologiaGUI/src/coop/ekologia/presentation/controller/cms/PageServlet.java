@@ -42,7 +42,6 @@ public class PageServlet extends EkologiaServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		requestScope.printUri();
 		Matcher m = Pattern.compile("\\w*\\/page\\/(\\S*)").matcher(request.getRequestURI());
 		if (m.find()) {
 			String page = m.group(1);

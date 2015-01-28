@@ -9,6 +9,8 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
+import org.jboss.resteasy.spi.HttpRequest;
+
 @RequestScoped
 public class GlobalRequestScope {
 	List<String> ALLOWED_LANGUAGES = Arrays.asList("fr", "en");
@@ -22,10 +24,7 @@ public class GlobalRequestScope {
 
 	public GlobalRequestScope() {
 	}
-
-	public void printUri() {
-		System.out.println(request.getRequestURI());
-	}
+	
 
 	/**
 	 * Returns the language from the request url.

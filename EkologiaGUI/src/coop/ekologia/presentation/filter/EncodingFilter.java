@@ -1,4 +1,4 @@
-package coop.ekologia.presentation.security;
+package coop.ekologia.presentation.filter;
 
 import java.io.IOException;
 

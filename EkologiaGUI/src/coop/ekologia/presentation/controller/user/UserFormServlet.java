@@ -5,6 +5,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.ejb.EJB;
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,18 +14,32 @@ import javax.servlet.http.HttpServletResponse;
 
 import coop.ekologia.DTO.user.UserDTO;
 import coop.ekologia.presentation.EkologiaServlet;
+import coop.ekologia.presentation.request.GlobalRequestScope;
+import coop.ekologia.presentation.request.ServletUtil;
 import coop.ekologia.service.user.UserServiceInterface;
 
 /**
  * Servlet implementation class User
  */
-@WebServlet("/admin/userForm/*")
+@WebServlet(UserFormServlet.routing)
 public class UserFormServlet extends EkologiaServlet {
 	private static final long serialVersionUID = 1L;
-
+	public static final String routing= "/admin/userForm/*";
+	
 	// @Inject @Named("session")
 	@EJB
 	UserServiceInterface userService;
+	
+//	@Inject
+//	GlobalRequestScope globalRequestScope;
+//	
+//	@Inject
+//	ServletUtil servletUtil;
+//	
+//	
+//	public static final String getRouting() {
+//		return getUrl(globalRequestScope.getHttpRequest(), "/admin/userForm/*");
+//	}
 
 	/**
 	 * @see HttpServlet#HttpServlet()

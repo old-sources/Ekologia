@@ -20,7 +20,9 @@ margin:auto;
 header {
     /* Utile ? */
     /* margin-bottom: 5px; */
-	margin-top: 10px;
+	/* TODO #BugFix SLO */
+	/*cela provoque une bande transparente en haut non souhaitable
+	/*margin-top: 10px;*/
 }
 .header-degrade {
 	background-color: white;
