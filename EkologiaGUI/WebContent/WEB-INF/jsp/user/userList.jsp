@@ -81,19 +81,16 @@
 </et:front>
 <script>
 	$(function() {
-		$(".createButton")
-				.on(
-						"click",
-						function(e) {
-							var userFormUrl = "${fn:replace(routing.routeUserForm,'*','create')}"
-							//console.log(userFormUrl);
-							window.location.href = userFormUrl;
-						});
+		$(".createButton").on("click", function(e) {
+			var userFormUrl = "${fn:replace(routing.userForm,'*','create')}"
+			//console.log(userFormUrl);
+			window.location.href = userFormUrl;
+		});
 		$(".editButton")
 				.on(
 						"click",
 						function(e) {
-							var userFormUrl = "${fn:replace(routing.routeUserForm,'*','update/')}"
+							var userFormUrl = "${fn:replace(routing.userForm,'*','update/')}"
 									+ ($(this).data("id"))
 							//console.log(userFormUrl);
 							window.location.href = userFormUrl;
@@ -102,7 +99,7 @@
 				.on(
 						"click",
 						function(e) {
-							var userFormUrl = "${fn:replace(routing.routeUserForm,'*','delete/')}"
+							var userFormUrl = "${fn:replace(routing.userForm,'*','delete/')}"
 									+ ($(this).data("id"))
 							//console.log(userFormUrl);
 							window.location.href = userFormUrl;

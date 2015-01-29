@@ -3,6 +3,7 @@ package coop.ekologia.presentation.controller.cms;
 import java.io.IOException;
 
 import javax.ejb.EJB;
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import coop.ekologia.DTO.cms.PageDTO;
 import coop.ekologia.presentation.EkologiaServlet;
+import coop.ekologia.presentation.request.RoutingCentral;
 import coop.ekologia.service.cms.PageServiceInterface;
 
 /**
@@ -22,6 +24,9 @@ public class PageCreateServlet extends EkologiaServlet {
 
 	@EJB
 	PageServiceInterface pageService;
+	
+	@Inject
+	RoutingCentral routingCentral;
 
 	/**
 	 * @see HttpServlet#HttpServlet()

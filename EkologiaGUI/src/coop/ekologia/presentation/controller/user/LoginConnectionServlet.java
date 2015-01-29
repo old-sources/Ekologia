@@ -15,12 +15,13 @@ import coop.ekologia.presentation.session.LoginSession;
 /**
  * Servlet implementation class LoginConnectionServlet
  */
-@WebServlet("/login/connection")
+@WebServlet(LoginConnectionServlet.routing)
 public class LoginConnectionServlet extends EkologiaServlet {
 	private static final long serialVersionUID = 1L;
+	public static final String routing = "/login/connection";
 
 	public static final String routing(HttpServletRequest request) {
-		return getUrl(request, "/login/connection");
+		return getUrl(request, routing);
 	}
        
 	@Inject

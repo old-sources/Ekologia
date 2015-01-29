@@ -5,6 +5,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.ejb.EJB;
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import coop.ekologia.DTO.user.UserDTO;
 import coop.ekologia.presentation.EkologiaServlet;
+import coop.ekologia.presentation.request.RoutingCentral;
 import coop.ekologia.service.user.UserServiceInterface;
 
 /**
@@ -24,6 +26,9 @@ public class UserDeleteServlet extends EkologiaServlet {
 
 	@EJB
 	UserServiceInterface userService;
+
+	@Inject
+	RoutingCentral routingCentral;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -39,20 +44,18 @@ public class UserDeleteServlet extends EkologiaServlet {
 	 */
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		Matcher m = Pattern.compile("\\w*\\/userForm\\/delete\\/(\\S*)").matcher(
-				request.getRequestURI());
+		Matcher m = Pattern.compile("\\w*\\/userForm\\/delete\\/(\\S*)")
+				.matcher(request.getRequestURI());
 		if (m.find()) {
 			String idString = m.group(1);
 			UserDTO dto = new UserDTO();
 			Integer id = Integer.valueOf(idString);
 			dto.setId(id);
 			userService.deleteUser(dto);
-			//request.setAttribute("user", dto);
+			// request.setAttribute("user", dto);
 		}
 
-
-		response.sendRedirect(String.format("%s/admin/userList",
-				request.getContextPath()));
+		response.sendRedirect(routingCentral.getUserList());
 	}
 
 	/**

@@ -5,6 +5,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.ejb.EJB;
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import coop.ekologia.DTO.cms.PageDTO;
 import coop.ekologia.presentation.EkologiaServlet;
+import coop.ekologia.presentation.request.RoutingCentral;
 import coop.ekologia.service.cms.PageServiceInterface;
 
 /**
@@ -24,6 +26,8 @@ public class PageUpdateServlet extends EkologiaServlet {
 
 	@EJB
 	PageServiceInterface pageService;
+	@Inject
+	RoutingCentral routingCentral;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -41,7 +45,7 @@ public class PageUpdateServlet extends EkologiaServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		Matcher m = Pattern.compile("\\w*\\/pageForm\\/update\\/(\\S*)")
 				.matcher(request.getRequestURI());
-		if (m.find()) { 
+		if (m.find()) {
 			String idString = m.group(1);
 
 			Integer id = Integer.valueOf(idString);
@@ -49,7 +53,6 @@ public class PageUpdateServlet extends EkologiaServlet {
 			dto.setId(id);
 			dto = pageService.getPageById(dto);
 			request.setAttribute("page", dto);
-
 
 		}
 
@@ -76,9 +79,7 @@ public class PageUpdateServlet extends EkologiaServlet {
 			dto.setId(id);
 			dto = pageService.updatePage(dto);
 		}
-
-		response.sendRedirect(String.format("%s/admin/pageList",
-				request.getContextPath()));
+		response.sendRedirect(routingCentral.getPageList());
 	}
 
 }

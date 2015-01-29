@@ -6,5 +6,5 @@ footer {
 	/* activ position:fixed to still footer attach to bottom */
 	/*position: fixed;*/
 	bottom: 0;
-	z-index: 999;
+	z-index: 900;
 }

@@ -17,12 +17,13 @@ import coop.ekologia.service.user.UserServiceInterface;
 /**
  * Servlet implementation class User
  */
-@WebServlet("/admin/userList")
+@WebServlet(UserListServlet.routing)
 public class UserListServlet extends EkologiaServlet {
 	private static final long serialVersionUID = 1L;
+	public static final  String routing = "/admin/userList";
 	
 	public static final String routing(HttpServletRequest request) {
-		return getUrl(request, "/admin/userList");
+		return getUrl(request, routing);
 	}
 
 	@EJB

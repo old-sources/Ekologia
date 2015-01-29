@@ -58,13 +58,13 @@
 						<c:when test="${empty connectedUser}">
 							<ul class="no-bullet" style="font-size: 12px; margin: 5px">
 								<li><a href="<%=RegistrationServlet.routing(request)%>"> Créer un compte </a></li>
-								<li><a href="<%=LoginConnectionServlet.routing(request)%>"> Se connecter </a></li>
+								<li><a href="${routing.connection}"> Se connecter </a></li>
 							</ul>
 						</c:when>
 						<c:otherwise>
 							<div style="padding: 0 5px"><c:out value="${connectedUser.email}" /></div>
 							<ul class="no-bullet" style="font-size: 12px; margin: 5px">
-								<li><a class="uk-button uk-width-1-1" href="<%=LoginDeconnectionServlet.routing(request)%>">déconnexion</a></li>
+								<li><a class="uk-button uk-width-1-1" href="${routing.deconnection}">déconnexion</a></li>
 							</ul>
 						</c:otherwise>
 					</c:choose>
@@ -91,8 +91,8 @@
 							<li class="has-dropdown not-click">
 								<a href="#">Administration</a>
 								<ul class="dropdown">
-									<li><a href="<%=UserListServlet.routing(request)%>">Comptes</a></li>
-									<li><a href="<%=PageListServlet.routing(request)%>">CMS</a></li>
+									<li><a href="${routing.userList}">Comptes</a></li>
+									<li><a href="${routing.pageList}">CMS</a></li>
 									<li><a href="<%=GroupListServlet.routing(request)%>">Liste des groupes</a></li>
 								</ul>
 							</li>

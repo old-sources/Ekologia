@@ -5,6 +5,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.ejb.EJB;
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import coop.ekologia.DTO.user.UserDTO;
 import coop.ekologia.presentation.EkologiaServlet;
+import coop.ekologia.presentation.request.RoutingCentral;
 import coop.ekologia.service.user.UserServiceInterface;
 
 /**
@@ -24,6 +26,9 @@ public class UserUpdateServlet extends EkologiaServlet {
 
 	@EJB
 	UserServiceInterface userService;
+
+	@Inject
+	RoutingCentral routingCentral;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -70,15 +75,14 @@ public class UserUpdateServlet extends EkologiaServlet {
 			String eMail = request.getParameter("email");
 			dto.setEmail(eMail);
 			String role = request.getParameter("role");
-			dto.addRole(role);			
+			dto.addRole(role);
 			Integer id = Integer.valueOf(idString);
 			dto.setId(id);
 			dto = userService.updateUser(dto);
 			request.setAttribute("user", dto);
 		}
 
-		response.sendRedirect(String.format("%s/admin/userList",
-				request.getContextPath()));
+		response.sendRedirect(routingCentral.getUserList());
 
 	}
 

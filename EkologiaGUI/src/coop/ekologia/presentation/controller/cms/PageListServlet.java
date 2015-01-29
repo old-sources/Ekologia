@@ -16,12 +16,13 @@ import coop.ekologia.service.cms.PageServiceInterface;
 /**
  * Servlet implementation class Pages
  */
-@WebServlet("/admin/pageList")
+@WebServlet(PageListServlet.routing)
 public class PageListServlet extends EkologiaServlet {
 	private static final long serialVersionUID = 1L;
+	public static final String routing="/admin/pageList";
     
     public static final String routing(HttpServletRequest request) {
-        return getUrl(request, "/admin/pageList");
+        return getUrl(request, routing);
     }
 	
 

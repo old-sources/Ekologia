@@ -81,7 +81,7 @@
 </et:front>
 <script>
 	$(".createButton").on("click", function(e) {
-		var userFormUrl = "${fn:replace(routing.routePageForm,'*','create')}"
+		var userFormUrl = "${fn:replace(routing.pageForm,'*','create')}"
 		//console.log(userFormUrl);
 		window.location.href = userFormUrl;
 	});
@@ -89,7 +89,7 @@
 			.on(
 					"click",
 					function(e) {
-						var userFormUrl = "${fn:replace(routing.routePageForm,'*','update/')}"
+						var userFormUrl = "${fn:replace(routing.pageForm,'*','update/')}"
 								+ ($(this).data("id"))
 						//console.log(userFormUrl);
 						window.location.href = userFormUrl;
@@ -98,7 +98,7 @@
 			.on(
 					"click",
 					function(e) {
-						var userFormUrl = "${fn:replace(routing.routePageForm,'*','delete/')}"
+						var userFormUrl = "${fn:replace(routing.pageForm,'*','delete/')}"
 								+ ($(this).data("id"))
 						//console.log(userFormUrl);
 						window.location.href = userFormUrl;

@@ -3,6 +3,7 @@ package coop.ekologia.presentation.controller.user;
 import java.io.IOException;
 
 import javax.ejb.EJB;
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import coop.ekologia.DTO.user.UserDTO;
 import coop.ekologia.DTO.user.UserIndividualDTO;
 import coop.ekologia.presentation.EkologiaServlet;
+import coop.ekologia.presentation.request.RoutingCentral;
 import coop.ekologia.service.user.UserServiceInterface;
 import coop.ekologia.service.utils.StringUtilitiesInterface;
 
@@ -27,6 +29,9 @@ public class UserCreateServlet extends EkologiaServlet {
 
     @EJB
     private StringUtilitiesInterface stringUtilities;
+    
+    @Inject
+    RoutingCentral routingCentral;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -68,8 +73,7 @@ public class UserCreateServlet extends EkologiaServlet {
 		
 		dto = userService.insertUser(dto);
 
-		response.sendRedirect(String.format("%s/admin/userList",
-				request.getContextPath()));
+		response.sendRedirect(routingCentral.getUserList());
 	}
 
 }
