@@ -64,8 +64,10 @@ public class GroupUpdateServlet extends EkologiaServlet {
 			request.setAttribute("users", users);
 			List<UserDTO> usersInGroup = (List<UserDTO>) groupDTO.getUsers();
 			request.setAttribute("usersInGroup", usersInGroup);
-			List<UserDTO> usersAdminInGroup = (List<UserDTO>) groupDTO.getUsersAdmin();
-			request.setAttribute("usersAdminInGroup", usersAdminInGroup);
+			
+			//TODO #WARNING à utiliser lorsque l'on pourra mettre plusieurs admin dans un groupe
+			//List<UserDTO> usersAdminInGroup = (List<UserDTO>) groupDTO.getUsersAdmin();
+			//request.setAttribute("usersAdminInGroup", usersAdminInGroup);
 			
 
 		}
@@ -87,22 +89,35 @@ public class GroupUpdateServlet extends EkologiaServlet {
 			String name = request.getParameter("name");
 			String description = request.getParameter("description");
 			String icon = request.getParameter("icon");
-			Integer userId = Integer.valueOf(request.getParameter("user"));
-			UserDTO userDTO = new UserDTO();
-			userDTO.setId(userId);
-			userDTO = userService.getUserById(userDTO);
+			Integer userAdminId = Integer.valueOf(request.getParameter("user"));
+			List<Integer> listUserInGroupId = new ArrayList<Integer>();
+			String[] listeUserInGroup = request.getParameterValues("userInGroup");
+			
+			for (String userIdString : listeUserInGroup) {
+				listUserInGroupId.add(Integer.valueOf(userIdString));
+			}
+			
+			List<UserDTO> listUserInGroupDTO = new ArrayList<UserDTO>();
+			for (Integer userInGroupId : listUserInGroupId) {
+				UserDTO dto = new UserDTO();
+				dto.setId(userInGroupId);
+				listUserInGroupDTO.add(userService.getUserById(dto));
+			}
+			
+			UserDTO userAdminDTO = new UserDTO();
+			userAdminDTO.setId(userAdminId);
+			userAdminDTO = userService.getUserById(userAdminDTO);
 			
 			groupDTO.setName(name);
 			groupDTO.setCanonical(canonicalService.strToUrl(name));
 			groupDTO.setDescription(description);
 			groupDTO.setIcon(icon);
-			groupDTO.getUsers().add(userDTO);
+			groupDTO.setUsers(listUserInGroupDTO);
 			
-			/* TODO #warning actuellement on ne peut mettre qu'un seul admin du groupe */
-			
+			/* TODO #warning actuellement on ne peut mettre qu'un seul administrateur dans un groupe */
 			//groupDTO.getUsersAdmin().add(userDTO);
 			List<UserDTO> newListAdmin = new ArrayList<UserDTO>();
-			newListAdmin.add(userDTO);
+			newListAdmin.add(userAdminDTO);
 			
 			groupDTO.setUsersAdmin(newListAdmin);
 			
@@ -113,7 +128,7 @@ public class GroupUpdateServlet extends EkologiaServlet {
 			
 		}
 
-		response.sendRedirect(String.format("%s/group/groupList",
+		response.sendRedirect(String.format("%s/admin/group/groupList",
 				request.getContextPath()));
 	}
 

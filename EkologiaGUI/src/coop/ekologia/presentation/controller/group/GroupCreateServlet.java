@@ -16,6 +16,7 @@ import coop.ekologia.presentation.EkologiaServlet;
 import coop.ekologia.service.group.GroupServiceInterface;
 import coop.ekologia.service.user.UserServiceInterface;
 import coop.ekologia.service.utils.CanonicalizerServiceInterface;
+import coop.ekologia.service.utils.FileUploadServiceInterface;
 
 /**
  * Servlet implementation class GroupCreateServlet
@@ -32,7 +33,10 @@ public class GroupCreateServlet extends EkologiaServlet {
 	
 	@EJB
 	private CanonicalizerServiceInterface canonicalService;
-    /**
+    
+	@EJB
+	private FileUploadServiceInterface fileUploadService;
+	/**
      * @see HttpServlet#HttpServlet()
      */
     public GroupCreateServlet() {
@@ -57,6 +61,8 @@ public class GroupCreateServlet extends EkologiaServlet {
 		String name = request.getParameter("name");
 		String description = request.getParameter("description");
 		String icon = request.getParameter("icon");
+		
+		
 		Integer userId = Integer.valueOf(request.getParameter("user"));
 		UserDTO userDTO = new UserDTO();
 		userDTO.setId(userId);

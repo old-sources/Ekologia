@@ -26,7 +26,7 @@
 	</jsp:attribute>
 	<jsp:body>
 	<div classe="uk-grid">
-		<form
+		<form id="editForm"
 				class="uk-form uk-form-horizontal uk-panel uk-panel-box uk-panel-header uk-width-1-2 uk-container-center"
 				method="post">
 			<h3 class="uk-panel-title">
@@ -91,7 +91,7 @@
 				<c:choose>
 					<c:when test="${not empty group}">
 						<div>
-							<label class="uk-form-label" for="name">Utilisateurs dans le groupe</label>
+							<label class="uk-form-label" for="name">Gestion des utilisateurs inscrits dans ce groupe</label>
 						</div>
 						<div class="uk-form-controls">
 							<select id='availableUsers' size='10'>
@@ -105,7 +105,7 @@
 							<button class="removeButton uk-button">
 									<span class="uk-icon-trash"></span>
 							</button>
-							<select id='selectedAdminUsers' size='10'>
+							<select name="userInGroup" id='selectedUsers' multiple size='10'>
 								<c:forEach items="${usersInGroup}" var="userInGroup">
 	                              	<option value="${userInGroup.id}">${userInGroup.email}</option>
 	                            </c:forEach>
@@ -134,7 +134,8 @@
 								</button>
 							</c:when>
 							<c:otherwise>
-								<button class="uk-button uk-button-primary" type="submit">
+								<button id="editFormButton" class="uk-button uk-button-primary"
+										type="submit">
 									<span class="uk-icon-pencil"></span>
 								</button>
 							</c:otherwise>
@@ -153,33 +154,44 @@
 		$(".addButton").on(
 				"click",
 				function(e) {
+					e.preventDefault();
 					var ai = document.getElementById("availableUsers");
-					var si = document.getElementById("selectedAdminUsers");
+					var si = document.getElementById("selectedUsers");
 					for (i = 0; i < ai.options.length; i++) {
 						if (ai.options[i].selected) {
 							var opt = ai.options[i];
-							si.options[si.options.length] = new Option(
-									opt.innerHTML, opt.value);
-							ai.options[i] = null;
-							i = i - 1;
-						}
-					}
-				});
-		$(".removeButton").on(
-				"click",
-				function(e) {
-					var si = document.getElementById("availableUsers");
-					var ai = document.getElementById("selectedAdminUsers");
-					for (i = 0; i < ai.options.length; i++) {
-						if (ai.options[i].selected) {
-							var opt = ai.options[i];
-							si.options[si.options.length] = new Option(
-									opt.innerHTML, opt.value);
-							ai.options[i] = null;
-							i = i - 1;
-						}
-					}
-				});
+							var bool = true;
 
+							for (y = 0; y < si.options.length; y++) {
+								if (si.options[y].value == opt.value) {
+									bool = false;
+								}
+							}
+
+							if (bool) {
+								si.options[si.options.length] = new Option(
+										opt.innerHTML, opt.value);
+							}
+						}
+					}
+				});
+		$(".removeButton").on("click", function(e) {
+			e.preventDefault();
+			var si = document.getElementById("availableUsers");
+			var ai = document.getElementById("selectedUsers");
+			for (i = 0; i < ai.options.length; i++) {
+				if (ai.options[i].selected) {
+					var opt = ai.options[i];
+					ai.options[i] = null;
+					i = i - 1;
+				}
+			}
+		});
+
+		$("#editFormButton").on("click", function(e) {
+			$('#selectedUsers').find('option').each(function() {
+					$(this).attr("selected","selected");
+				});
+		});
 	})
 </script>
