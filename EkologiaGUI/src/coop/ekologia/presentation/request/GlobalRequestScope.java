@@ -9,8 +9,6 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
-import org.jboss.resteasy.spi.HttpRequest;
-
 @RequestScoped
 public class GlobalRequestScope {
 	List<String> ALLOWED_LANGUAGES = Arrays.asList("fr", "en");
