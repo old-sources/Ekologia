@@ -26,10 +26,15 @@
 				fjs.parentNode.insertBefore(js, fjs);
 			}(document, 'script', 'facebook-jssdk'));
 		</script>
-		<h3>Page Facebook</h3>
+		
 		<div class="fb-like-box"
 			data-href="https://www.facebook.com/pages/Ekologia/274611082672069?fref=ts"
-			data-colorscheme="light" data-show-faces="false" data-header="false"
+			data-colorscheme="light" data-width="500" data-show-faces="false" data-header="false"
+			data-stream="true" data-show-border="false"></div>
+			
+		<div class="fb-like-box"
+			data-href="https://www.facebook.com/constituante.ekologia"
+			data-colorscheme="light" data-width="500" data-show-faces="false" data-header="false"
 			data-stream="true" data-show-border="false"></div>
 	</div>
 </et:front>
