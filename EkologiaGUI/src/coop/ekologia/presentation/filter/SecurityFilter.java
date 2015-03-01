@@ -27,7 +27,7 @@ import coop.ekologia.service.security.SecurityServiceInterface;
 /**
  * Servlet Filter implementation class SecurityFilter
  */
-@WebFilter(dispatcherTypes = { DispatcherType.REQUEST }, urlPatterns = { "/*" })
+@WebFilter(filterName = "security", dispatcherTypes = { DispatcherType.REQUEST })
 public class SecurityFilter implements Filter {
 	@EJB
 	SecurityServiceInterface securityService;

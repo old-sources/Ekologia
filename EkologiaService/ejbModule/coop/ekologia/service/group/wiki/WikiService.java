@@ -1,6 +1,7 @@
 package coop.ekologia.service.group.wiki;
 
 import java.util.Date;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -47,10 +48,11 @@ public class WikiService implements WikiServiceInterface {
 		Query query = em.createNamedQuery(Wiki.FIND_BY_CANONICAL);
         query.setParameter("canonical", canonical);
         query.setParameter("language", language);
-        if (query.getResultList().isEmpty()) {
+        List resultList = query.getResultList();
+        if (resultList.isEmpty()) {
         	return null;
         } else {
-        	Wiki result = (Wiki) query.getSingleResult();
+        	Wiki result = (Wiki) resultList.get(0);
             return wikiMapper.mapFromEntity(result);
         }
 	}
@@ -211,4 +213,16 @@ public class WikiService implements WikiServiceInterface {
 		}
 		em.remove(wikicomment);
 	}
+
+    @Override
+    public List<WikiDTO> findRootsByGroup(String language, Integer groupId) {
+        if (language == null || groupId == null) {
+            logger.log(Level.WARNING, "The language or the group id is null.");
+            return null;
+        }
+        Query query = em.createNamedQuery(Wiki.FIND_ROOTS_BY_GROUP);
+        query.setParameter("group", groupId);
+        query.setParameter("language", language);
+        return (List<WikiDTO>) wikiMapper.mapFromEntity(query.getResultList());
+    }
 }

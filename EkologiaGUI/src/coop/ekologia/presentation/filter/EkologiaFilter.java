@@ -12,11 +12,17 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import coop.ekologia.presentation.controller.user.LoginConnectionServlet;
+import coop.ekologia.presentation.controller.user.LoginServlet;
+import coop.ekologia.presentation.request.ServletUtil;
 import coop.ekologia.presentation.session.LoginSession;
 
 public abstract class EkologiaFilter implements Filter {
     @Inject
     protected LoginSession loginSession;
+    
+    @Inject
+    protected ServletUtil servletUtil;
     
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -51,7 +57,7 @@ public abstract class EkologiaFilter implements Filter {
     protected void forbidden(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
         if (loginSession.getUser() == null) {
             loginSession.setPreviousUrl(request.getRequestURI());
-            response.sendRedirect("login");
+            response.sendRedirect(servletUtil.getUrl(LoginConnectionServlet.routing));
         } else {
             // TODO: pretty print
             response.sendError(403);
@@ -92,18 +98,5 @@ public abstract class EkologiaFilter implements Filter {
      */
     protected void success(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
         chain.doFilter(request, response);
-    }
-    
-    /**
-     * Returns the current language from request.
-     * 
-     * @param request The current request
-     * @return        The language of the request
-     */
-    protected String getCurrentLanguage(HttpServletRequest request) {
-        // TODO: group this method with the one in EkologiaServlet
-        String serverName = request.getServerName();
-        String language = serverName.substring(0, serverName.indexOf('.'));
-        return language;
     }
 }

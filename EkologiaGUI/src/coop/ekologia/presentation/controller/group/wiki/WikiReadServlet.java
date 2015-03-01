@@ -20,7 +20,10 @@ import coop.ekologia.service.utils.StringUtilitiesInterface;
 @WebServlet("/group/wiki/read/*")
 public class WikiReadServlet extends EkologiaServlet {
 	private static final long serialVersionUID = 5346421818656887507L;
+	
+	public static final String routing = "/group/wiki/read/{groupCanonical}/{wikiCanonical}";
 
+	@Deprecated
 	public static final String routing(HttpServletRequest request, String groupCanonical, String wikiCanonical) {
 		return getUrl(request, "/group/wiki/read/" + groupCanonical + "/" + wikiCanonical);
 	}

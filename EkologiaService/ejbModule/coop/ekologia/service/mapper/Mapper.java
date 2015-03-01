@@ -12,6 +12,9 @@ public abstract class Mapper<DTO, Entity> {
 	public abstract Entity mapToEntity(DTO entity);
 	
 	public Collection<DTO> mapFromEntity(Collection<Entity> entities) {
+	    if (entities == null) {
+	        return new ArrayList<DTO>();
+	    }
 		Collection<DTO> result = new ArrayList<DTO>();
 		for (Entity entity: entities) {
 			result.add(mapFromEntity(entity));
@@ -20,15 +23,13 @@ public abstract class Mapper<DTO, Entity> {
 	}
 	
 	public Collection<Entity> mapToEntity(Collection<DTO> entities) {
+	    if (entities == null) {
+	        return new ArrayList<Entity>();
+	    }
 		Collection<Entity> result = new ArrayList<Entity>();
 		for (DTO entity: entities) {
 			result.add(mapToEntity(entity));
 		}
 		return result;
-	}
-
-	public User mapToEntity(UserDTO userDTO, User user) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 }

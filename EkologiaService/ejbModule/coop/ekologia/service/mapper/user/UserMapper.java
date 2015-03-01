@@ -20,7 +20,7 @@ public class UserMapper extends Mapper<UserDTO, User> {
 	@Override
 	public UserDTO mapFromEntity(User user){
 		//TODO #warning FROM Joffrey 
-		//Si ajout groupDTO dans User penser à ajouter un boulean security pour ne pas planter le GroupMapper
+		//Si ajout groupDTO dans User penser ï¿½ ajouter un boulean security pour ne pas planter le GroupMapper
 	    if (user == null) {
             return null;
         }
@@ -52,6 +52,7 @@ public class UserMapper extends Mapper<UserDTO, User> {
 		retour.setCountry(user.getCountry());
 		retour.setAvatar(user.getAvatar());
 		retour.setDescription(user.getDescription());
+		retour.setSalt(user.getSalt());
 		if (user.getRoles() == null) {
 		    retour.setRoles(new ArrayList<String>());
 		} else {
@@ -81,8 +82,7 @@ public class UserMapper extends Mapper<UserDTO, User> {
 		return user;
 	}
 	
-	@Override
-	public User mapToEntity(UserDTO userDTO,User user){
+	public User mapToEntity(UserDTO userDTO, User user){
 		if (userDTO == null) {
             return null;
         }
@@ -114,6 +114,7 @@ public class UserMapper extends Mapper<UserDTO, User> {
 		user.setCountry(userDTO.getCountry());
 		user.setAvatar(userDTO.getAvatar());
 		user.setDescription(userDTO.getDescription());
+		user.setSalt(userDTO.getSalt());
 		if (userDTO.getRoles() == null) {
 			user.setRoles("");
 		} else {

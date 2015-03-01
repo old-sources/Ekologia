@@ -14,7 +14,7 @@ import javax.servlet.annotation.WebFilter;
 /**
  * Filter to set the input encoding as UTF-8.
  */
-@WebFilter(dispatcherTypes = { DispatcherType.REQUEST }, urlPatterns = { "/*" })
+@WebFilter(filterName = "encoding", dispatcherTypes = { DispatcherType.REQUEST })
 public class EncodingFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {

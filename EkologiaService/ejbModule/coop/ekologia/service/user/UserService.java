@@ -32,8 +32,6 @@ import coop.ekologia.service.utils.StringUtilitiesInterface;
 // @Named("instance")
 @Stateless
 public class UserService implements UserServiceInterface {
-	private static final String salt = "$1$Ekologia";
-
 	private static final Logger logger = Logger.getLogger(UserService.class
 			.getName());
 
@@ -74,7 +72,7 @@ public class UserService implements UserServiceInterface {
 		} else {
 			User user = (User) query.getResultList().get(0);
 			String cryptedPassword = stringUtilities.crypt(
-					userDTO.getPassword(), salt);
+					userDTO.getPassword(), user.getSalt());
 			if (stringUtilities.equals(user.getPassword(), cryptedPassword)) {
 				return userMapper.mapFromEntity(user);
 			} else {
@@ -86,13 +84,13 @@ public class UserService implements UserServiceInterface {
 	@Override
 	public Boolean isIntoGroup(UserDTO userDTO, GroupDTO groupDTO) {
 		if (userDTO == null || groupDTO == null) {
-			logger.log(Level.INFO, "The userDTO or groupDTO is null.");
+			logger.log(Level.WARNING, "The userDTO or groupDTO is null.");
 			return false;
 		}
 		Query query = entityManager.createNamedQuery(UserGroup.FIND);
 		query.setParameter("userId", userDTO.getId());
 		query.setParameter("groupId", groupDTO.getId());
-		return query.getSingleResult() != null;
+		return !query.getResultList().isEmpty();
 	}
 
 	public UserDTO getUserById(UserDTO dto) {
@@ -104,7 +102,6 @@ public class UserService implements UserServiceInterface {
 	public UserDTO updateUser(UserDTO dto) {
 		User user = entityManager.find(User.class, dto.getId());
 		user = userMapper.mapToEntity(dto,user);
-		user.setPassword(stringUtilities.crypt(user.getPassword(), salt));
 		user = entityManager.merge(user);
 		return userMapper.mapFromEntity(user);
 	}
@@ -112,7 +109,6 @@ public class UserService implements UserServiceInterface {
 	@Override
 	public UserDTO insertUser(UserDTO dto) {
 		User user = userMapper.mapToEntity(dto);
-		user.setPassword(stringUtilities.crypt(user.getPassword(), salt));
 		entityManager.persist(user);
 		return userMapper.mapFromEntity(user);
 	}
