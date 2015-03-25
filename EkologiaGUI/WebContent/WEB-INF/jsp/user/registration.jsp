@@ -7,10 +7,6 @@
 <fmt:setLocale value="${ currentLanguage }" />
 <fmt:setBundle basename="i18n.user" />
 <%-- We re-use the variables "message" and "value" to avoid memory consumption --%>
-
-<%
-	request.setAttribute("homepage", PageServlet.routingHome(request));
-%>
 <et:front>
 	<h1>
 		<fmt:message key="registration.title" />
@@ -461,7 +457,7 @@
 
 		<div class="row">
 			<div class="right inline">
-				<a href="${ homepage }" class="button tiny"> <fmt:message
+				<a href="${ routing.homepage }" class="button tiny"> <fmt:message
 						key="registration.return.label" />
 				</a>
 				<button type="submit" class="button tiny">
