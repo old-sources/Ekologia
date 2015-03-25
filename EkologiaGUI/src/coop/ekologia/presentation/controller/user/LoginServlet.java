@@ -14,6 +14,7 @@ import coop.ekologia.DTO.user.UserDTO;
 import coop.ekologia.presentation.EkologiaServlet;
 import coop.ekologia.presentation.controller.cms.HomeServlet;
 import coop.ekologia.presentation.controller.cms.PageServlet;
+import coop.ekologia.presentation.request.RoutingCentral;
 import coop.ekologia.presentation.session.LoginSession;
 import coop.ekologia.service.user.UserServiceInterface;
 
@@ -25,6 +26,9 @@ public class LoginServlet extends EkologiaServlet {
 	public static final String WEB_INF_LOGIN_JSP = "/user/login.jsp";
 
 	private static final long serialVersionUID = 1L;
+	
+    @Inject
+    RoutingCentral routingCentral;
 
 	public static final String routing(HttpServletRequest request) {
 		return getUrl(request, "/login");
@@ -67,7 +71,7 @@ public class LoginServlet extends EkologiaServlet {
                 response.sendRedirect(loginSession.getPreviousUrl());
                 loginSession.setPreviousUrl(null);
             } else {
-                response.sendRedirect(HomeServlet.routing(request));
+                response.sendRedirect(routingCentral.getHomepage());
             }
 		} else {
 			forwardToJsp(WEB_INF_LOGIN_JSP, request, response);

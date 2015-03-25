@@ -16,6 +16,7 @@ import coop.ekologia.presentation.EkologiaServlet;
 import coop.ekologia.presentation.constants.UserConstants;
 import coop.ekologia.presentation.controller.FormErrors;
 import coop.ekologia.presentation.controller.cms.PageServlet;
+import coop.ekologia.presentation.request.RoutingCentral;
 import coop.ekologia.service.user.UserServiceInterface;
 import coop.ekologia.service.utils.ConstraintsServiceInterface;
 import coop.ekologia.service.utils.DateUtilitiesInterface;
@@ -24,6 +25,9 @@ import coop.ekologia.service.utils.StringUtilitiesInterface;
 @WebServlet("/registration")
 public class RegistrationServlet extends EkologiaServlet {
     private static final long serialVersionUID = -3319945240158127895L;
+    
+    @Inject
+    private RoutingCentral routing;
     
     public static final String routing(HttpServletRequest request) {
         return getUrl(request, "/registration");
@@ -139,7 +143,7 @@ public class RegistrationServlet extends EkologiaServlet {
             
             userService.insertUser(userDTO);
             
-            response.sendRedirect(PageServlet.routingHome(request));
+            response.sendRedirect(routing.getHomepage());
         } else {
             request.setAttribute(UserConstants.ATTRIBUTE_ERRORS, formErrors.getErrors());
             if (userDTO != null) {

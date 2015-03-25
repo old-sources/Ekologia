@@ -53,7 +53,7 @@ public class WikiService implements WikiServiceInterface {
         	return null;
         } else {
         	Wiki result = (Wiki) resultList.get(0);
-            return wikiMapper.mapFromEntity(result);
+            return wikiMapper.mapFromEntity(result, 1, 10);
         }
 	}
 	

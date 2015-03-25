@@ -3,6 +3,7 @@ package coop.ekologia.DTO.group.wiki;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import coop.ekologia.DTO.group.GroupDTO;
 
@@ -131,5 +132,24 @@ public class WikiDTO implements Serializable {
 
 	public void setParent(WikiDTO parent) {
 		this.parent = parent;
+	}
+	
+	public List<WikiDTO> getParents(boolean topToDown) {
+	    List<WikiDTO> result = new ArrayList<WikiDTO>();
+	    for (WikiDTO parent = getParent() ; parent != null ; parent = parent.getParent()) {
+	        result.add(parent);
+	    }
+	    if (topToDown) {
+	        List<WikiDTO> orderedResult = new ArrayList<WikiDTO>();
+	        for (int i = result.size() - 1 ; i >= 0 ; i--) {
+	            orderedResult.add(result.get(i));
+	        }
+	        result = orderedResult;
+	    }
+	    return result;
+	}
+	
+	public List<WikiDTO> getParents() {
+	    return getParents(false);
 	}
 }
