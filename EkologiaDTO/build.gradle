@@ -1,5 +1,6 @@
 version = '1.0.0-SNAPSHOT'
 apply plugin: 'java'
+apply plugin: 'eclipse-wtp'
 sourceCompatibility = 1.8
 
 repositories {

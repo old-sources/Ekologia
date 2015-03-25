@@ -99,7 +99,7 @@
 					</ul>
 					<ul class="left">
 						<!--<li class="active"><a href="${routing.homepage}">Home</a></li>-->
-						<li><a href="${routing.homepage}>">Home</a></li>
+						<li><a href="${routing.homepage}">Home</a></li>
 					</ul>
 				</section>
 			</nav>
