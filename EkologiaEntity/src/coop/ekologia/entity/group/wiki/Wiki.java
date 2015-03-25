@@ -22,7 +22,8 @@ import coop.ekologia.entity.group.Group;
 @NamedQueries({
         @NamedQuery(name = Wiki.FIND_ALL, query = "SELECT w FROM Wiki w"),
         @NamedQuery(name = Wiki.FIND, query = "SELECT w FROM Wiki w WHERE w.id=:id"),
-        @NamedQuery(name = Wiki.FIND_BY_CANONICAL, query = "SELECT w FROM Wiki w WHERE w.canonical=:canonical AND w.language = :language")
+        @NamedQuery(name = Wiki.FIND_BY_CANONICAL, query = "SELECT w FROM Wiki w WHERE w.canonical=:canonical AND w.language = :language"),
+        @NamedQuery(name = Wiki.FIND_ROOTS_BY_GROUP, query = "SELECT w FROM Wiki w WHERE w.group.id=:group AND w.language = :language AND w.parent is null")
 })
 public class Wiki implements Serializable {
 	private static final long serialVersionUID = -7112732908534991909L;
@@ -30,6 +31,7 @@ public class Wiki implements Serializable {
 	public static final String FIND_ALL = "findAll";
     public static final String FIND = "find";
     public static final String FIND_BY_CANONICAL = "findByCanonical";
+    public static final String FIND_ROOTS_BY_GROUP = "findRootsByGroup";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -70,7 +72,7 @@ public class Wiki implements Serializable {
     private Collection<Wiki> children;
     
     @ManyToOne
-    @JoinColumn(name = "parent_id", nullable = false)
+    @JoinColumn(name = "parent_id", nullable = true)
     private Wiki parent;
 
     public Integer getId() {

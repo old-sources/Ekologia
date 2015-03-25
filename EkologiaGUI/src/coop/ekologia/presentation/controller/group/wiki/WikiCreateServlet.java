@@ -22,11 +22,15 @@ import coop.ekologia.service.utils.ConstraintsServiceInterface;
 @WebServlet("/group/wiki/create/*")
 public class WikiCreateServlet extends EkologiaServlet {
     private static final long serialVersionUID = 6023406354033374292L;
+    
+    public static final String routing = "/group/wiki/create/{groupCanonical}";
 
+    @Deprecated
     public static final String routing(HttpServletRequest request, String groupCanonical) {
         return routing(request, groupCanonical, null);
     }
 
+    @Deprecated
     public static final String routing(HttpServletRequest request, String groupCanonical, String parentCanonical) {
         if (parentCanonical == null) {
             return getUrl(request, "/group/wiki/create/" + groupCanonical);
@@ -110,9 +114,6 @@ public class WikiCreateServlet extends EkologiaServlet {
 
     private void forwardToJsp(HttpServletRequest request, HttpServletResponse response) throws ServletException,
             IOException {
-        String groupCanonical = (String) request.getAttribute(GroupWikiConstants.ATTRIBUTE_GROUP_CANONICAL);
-        String parent = (String) request.getAttribute(GroupWikiConstants.PARAMETER_PARENT);
-        request.setAttribute(GroupWikiConstants.ATTRIBUTE_FORM_ROUTE, routing(request, groupCanonical, parent));
         forwardToJsp("/group/wiki/create.jsp", request, response);
     }
 }

@@ -6,6 +6,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.ejb.EJB;
+import javax.inject.Inject;
 import javax.servlet.DispatcherType;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -17,11 +18,12 @@ import coop.ekologia.DTO.group.GroupDTO;
 import coop.ekologia.DTO.group.wiki.WikiDTO;
 import coop.ekologia.DTO.user.UserDTO;
 import coop.ekologia.presentation.constants.GroupWikiConstants;
+import coop.ekologia.presentation.request.GlobalRequestScope;
 import coop.ekologia.service.group.GroupServiceInterface;
 import coop.ekologia.service.group.wiki.WikiServiceInterface;
 import coop.ekologia.service.utils.ConstraintsServiceInterface;
 
-@WebFilter(dispatcherTypes = { DispatcherType.REQUEST }, urlPatterns = { "/group/wiki/*" })
+@WebFilter(filterName = "groupWiki", dispatcherTypes = { DispatcherType.REQUEST })
 public class GroupWikiFilter extends EkologiaFilter {
     private static final Logger logger = Logger.getLogger(GroupWikiFilter.class.getName());
 
@@ -33,12 +35,21 @@ public class GroupWikiFilter extends EkologiaFilter {
 
     @EJB
     private ConstraintsServiceInterface constraintsService;
+    
+    @Inject
+    GlobalRequestScope globalRequestScope;
 
     @Override
     public void doHttpFilter(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
             throws IOException, ServletException {
-        Matcher m = Pattern.compile(String.format("\\w*\\%s\\/group\\/wiki\\/(read|create|update|delete)\\/([^\\/]*)(\\/(\\S*))?",
-                                                  request.getContextPath())).matcher(request.getRequestURI());
+        if (globalRequestScope.isNotModule("/group/wiki")) {
+            // Not the module, so we do not have to check anything.
+            chain.doFilter(request, response);
+            return;
+        }
+        
+        String uri = globalRequestScope.extractModuleURI();
+        Matcher m = Pattern.compile("\\/group\\/wiki\\/(read|create|update|delete)\\/([^\\/]*)(\\/(\\S*))?").matcher(uri);
         if (m.find()) {
             String action = m.group(1);
             String groupCanonical = m.group(2);
@@ -57,7 +68,7 @@ public class GroupWikiFilter extends EkologiaFilter {
 
             WikiDTO wikiDTO = null;
             if (wikiCanonical != null) {
-                wikiDTO = wikiService.findByCanonical(getCurrentLanguage(request), wikiCanonical);
+                wikiDTO = wikiService.findByCanonical(globalRequestScope.getLanguage(), wikiCanonical);
                 request.setAttribute(GroupWikiConstants.ATTRIBUTE_WIKI, wikiDTO);
             }
 
@@ -80,8 +91,7 @@ public class GroupWikiFilter extends EkologiaFilter {
                 String parentWikiCanonical = request.getParameter(GroupWikiConstants.PARAMETER_PARENT);
                 request.setAttribute(GroupWikiConstants.ATTRIBUTE_PARENT, parentWikiCanonical);
                 if (!constraintsService.isEmpty(parentWikiCanonical)) {
-                    WikiDTO parentWikiDTO = wikiService.findByCanonical(getCurrentLanguage(request),
-                                                                        parentWikiCanonical);
+                    WikiDTO parentWikiDTO = wikiService.findByCanonical(globalRequestScope.getLanguage(), parentWikiCanonical);
                     if (parentWikiDTO == null) {
                         notFound(request, response, chain);
                         return;

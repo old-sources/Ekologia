@@ -22,6 +22,9 @@ import coop.ekologia.service.utils.ConstraintsServiceInterface;
 public class WikiUpdateServlet extends EkologiaServlet {
     private static final long serialVersionUID = 6023406354033374292L;
 
+    public static final String routing = "/group/wiki/update/{groupCanonical}/{wikiCanonical}";
+    
+    @Deprecated
     public static final String routing(HttpServletRequest request, String groupCanonical, String wikiCanonical) {
         return getUrl(request, "/group/wiki/update/" + groupCanonical + "/" + wikiCanonical);
     }

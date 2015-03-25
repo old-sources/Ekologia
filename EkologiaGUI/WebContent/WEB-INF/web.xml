@@ -4,4 +4,22 @@
   	<!-- Welcome file to fr version because sole implemented language and it is the cooperative language -->
     <welcome-file>/fr/page/home</welcome-file>
   </welcome-file-list>
+  
+  <!-- We define filter mapping here because we need to keep a proper order. -->
+  <!-- The EncodingFilter must be in first position and SecurityFilter must be in last position. -->
+  <!-- Configurations of filters is done with annotations in proper classes, so we just define the strict minimum here. -->
+  <filter-mapping>
+  	<filter-name>encoding</filter-name>
+  	<url-pattern>/*</url-pattern>
+  </filter-mapping>
+  
+  <filter-mapping>
+  	<filter-name>groupWiki</filter-name>
+  	<url-pattern>/*</url-pattern>
+  </filter-mapping>
+  
+  <filter-mapping>
+  	<filter-name>security</filter-name>
+  	<url-pattern>/*</url-pattern>
+  </filter-mapping>
 </web-app>

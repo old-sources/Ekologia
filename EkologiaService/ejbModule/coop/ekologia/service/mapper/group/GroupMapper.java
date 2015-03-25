@@ -21,6 +21,9 @@ public class GroupMapper extends Mapper<GroupDTO, Group> {
 
 	@Override
 	public GroupDTO mapFromEntity(Group group) {
+	    if (group == null) {
+	        return null;
+	    }
 		GroupDTO groupDTO = new GroupDTO();
 		groupDTO.setId(group.getId());
 		groupDTO.setCanonical(group.getCanonical());
@@ -30,12 +33,16 @@ public class GroupMapper extends Mapper<GroupDTO, Group> {
 		for (UserGroup userGroup : group.getUserGroups()) {
 			groupDTO.getUsers().add(
 					userMapper.mapFromEntity(userGroup.getUser()));
-			String[] roles = userGroup.getRoles().split(",");
+			String[] roles;
+			if (userGroup.getRoles() == null) {
+			    roles = new String[]{};
+			} else {
+			    roles = userGroup.getRoles().split(",");
+			}
 			if (Arrays.asList(roles).contains("admin")){
 				groupDTO.getUsersAdmin().add(userMapper.mapFromEntity(userGroup.getUser()));
 			}
 		}
-		
 		
 		return groupDTO;
 	}

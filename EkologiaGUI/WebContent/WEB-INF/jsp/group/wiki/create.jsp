@@ -8,7 +8,16 @@
 <et:front>
 	<h1>Créer un wiki</h1>
 	
-	<form method="post" action="${ formRoute }" id="form-wiki-create">
+    <c:choose>
+        <c:when test="${ parent == null }">
+            <c:set var="action" value="${ routing.getGroupWikiCreate(groupCanonical) }" />
+        </c:when>
+        <c:otherwise>
+            <c:set var="action" value="${ routing.getGroupWikiCreate(groupCanonical, parent) }" />
+        </c:otherwise>
+    </c:choose>
+    
+    <form method="post" action="${ action }" id="form-wiki-create">
 		<div>
 			<label for="form-wiki-create-title"><fmt:message key="title.label"/></label>
 			<div>
