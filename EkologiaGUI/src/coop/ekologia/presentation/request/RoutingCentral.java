@@ -9,6 +9,7 @@ import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
 
 import coop.ekologia.presentation.constants.GroupWikiConstants;
+import coop.ekologia.presentation.controller.cms.HomeServlet;
 import coop.ekologia.presentation.controller.cms.PageFormServlet;
 import coop.ekologia.presentation.controller.cms.PageListServlet;
 import coop.ekologia.presentation.controller.group.wiki.WikiCreateServlet;
@@ -72,6 +73,10 @@ public class RoutingCentral {
     public String getGroupWikiUpdate(String groupCanonical, String wikiCanonical) {
         return servletUtil.getUrl(WikiUpdateServlet.routing,
                                   map("groupCanonical", groupCanonical, "wikiCanonical", wikiCanonical));
+    }
+    
+    public String getHomepage() {
+        return servletUtil.getUrl(HomeServlet.routing);
     }
 
     /**
