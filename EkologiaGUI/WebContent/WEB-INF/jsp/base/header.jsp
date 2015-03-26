@@ -24,7 +24,6 @@
 		<div class="row">
 			<!-- Equivalent à .col-lg-2 de Bootstrap -->
 			<div class="logo large-2 columns">
-				<!--blablabla-->
 				<a href="<%=HomeServlet.routing(request)%>"></a>
 			</div>
 			<div class="large-8 columns">

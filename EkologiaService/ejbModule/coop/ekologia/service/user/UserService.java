@@ -61,14 +61,14 @@ public class UserService implements UserServiceInterface {
 	}
 
 	@Override
-	public UserDTO getSecuredUser(UserDTO userDTO) {
+	public UserDTO getSecuredUser(UserDTO userDTO) throws BadPasswordException, UnknownUserException {
 		if(userDTO==null){
 			return null;
 		}
 		Query query = entityManager.createNamedQuery(User.FIND_BY_EMAIL);
 		query.setParameter("email", userDTO.getEmail());
 		if (query.getResultList().isEmpty()) {
-			return null;
+			throw new UnknownUserException();
 		} else {
 			User user = (User) query.getResultList().get(0);
 			String cryptedPassword = stringUtilities.crypt(
@@ -76,7 +76,7 @@ public class UserService implements UserServiceInterface {
 			if (stringUtilities.equals(user.getPassword(), cryptedPassword)) {
 				return userMapper.mapFromEntity(user);
 			} else {
-				return null;
+				throw new BadPasswordException();
 			}
 		}
 	}
@@ -167,5 +167,21 @@ public class UserService implements UserServiceInterface {
 		}
 		return listUserGroup;
 		
+	}
+	
+	public class UnknownUserException extends Exception {
+		private static final long serialVersionUID = -759446390360499082L;
+
+		public UnknownUserException() {
+			super();
+		}
+	}
+	
+	public class BadPasswordException extends Exception {
+		private static final long serialVersionUID = -759446390360499082L;
+
+		public BadPasswordException() {
+			super();
+		}
 	}
 }

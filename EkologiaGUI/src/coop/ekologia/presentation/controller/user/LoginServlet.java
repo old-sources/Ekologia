@@ -12,9 +12,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import coop.ekologia.DTO.user.UserDTO;
 import coop.ekologia.presentation.EkologiaServlet;
+import coop.ekologia.presentation.controller.FormErrors;
 import coop.ekologia.presentation.controller.cms.HomeServlet;
 import coop.ekologia.presentation.controller.cms.PageServlet;
 import coop.ekologia.presentation.session.LoginSession;
+import coop.ekologia.service.user.UserService.BadPasswordException;
+import coop.ekologia.service.user.UserService.UnknownUserException;
 import coop.ekologia.service.user.UserServiceInterface;
 
 /**
@@ -35,6 +38,9 @@ public class LoginServlet extends EkologiaServlet {
 
 	@Inject
 	private LoginSession loginSession;
+	
+	@Inject
+	private FormErrors formErrors;
 
 	@Override
 	protected void doGet(HttpServletRequest request,
@@ -58,10 +64,9 @@ public class LoginServlet extends EkologiaServlet {
 		UserDTO loginUser = new UserDTO();
 		loginUser.setEmail(loginParameter);
 		loginUser.setPassword(passwParameter);
-		loginUser = userService.getSecuredUser(loginUser);
-		if (loginUser != null) {
-			// Problem when we are in filter with the addition of language management.
-			// So we moved redirection here.
+		boolean error=false;
+		try {
+			loginUser = userService.getSecuredUser(loginUser);
 			loginSession.setUser(loginUser);
 			if (loginSession.getPreviousUrl() != null) {
                 response.sendRedirect(loginSession.getPreviousUrl());
@@ -69,7 +74,14 @@ public class LoginServlet extends EkologiaServlet {
             } else {
                 response.sendRedirect(HomeServlet.routing(request));
             }
-		} else {
+		} catch (BadPasswordException e) {
+			formErrors.addError("badPassword", null);
+			error=true;
+		} catch (UnknownUserException e) {
+			formErrors.addError("unknownUser", null);
+			error=true;
+		}
+		if (error) {
 			forwardToJsp(WEB_INF_LOGIN_JSP, request, response);
 		}
 

@@ -32,7 +32,7 @@ public class I18nService {
             InputStream stream = getInputStream(module, language);
             if (stream != null) {
                 properties.load(stream);
-                String value = properties.getProperty(key);
+                String value = properties.getProperty(propertyKey);
                 if (value == null || "".equals(value)) {
                     stream = getInputStream(module, null);
                     if (stream != null) {
