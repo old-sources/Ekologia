@@ -21,9 +21,9 @@ SET search_path = public, pg_catalog;
 -- Data for Name: account; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO account (id, email, password, phone_number, addressstreet, addresszipcode, addresscity, country, avatar, description, roles, salt, discriminator, firstname, lastname, birthday, orgname, activity, type) VALUES (22, 'contact@ekologia.coop', '$1$Ekologia$SAppTdRvPJba6PsxOj0gy.', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'admin', NULL, 'i', NULL, NULL, NULL, NULL, NULL, NULL);
-INSERT INTO account (id, email, password, phone_number, addressstreet, addresszipcode, addresscity, country, avatar, description, roles, salt, discriminator, firstname, lastname, birthday, orgname, activity, type) VALUES (8, 'simon.louvet.zen@gmail.com', '$1$Ekologia$SgatxCVcA5okqmClDpmqq.', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'admin', NULL, 'u', NULL, NULL, NULL, NULL, NULL, NULL);
-INSERT INTO account (id, email, password, phone_number, addressstreet, addresszipcode, addresscity, country, avatar, description, roles, salt, discriminator, firstname, lastname, birthday, orgname, activity, type) VALUES (19, 'admin', '$1$Ekologia$l68O22wPMhX5M92MK71430', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'admin', NULL, 'i', NULL, NULL, NULL, NULL, NULL, NULL);
+-- user de test admin : mot de passe : Sociocr@tie2
+INSERT INTO account (id, email, password, phone_number, addressstreet, addresszipcode, addresscity, country, avatar, description, roles, salt, discriminator, firstname, lastname, birthday, orgname, activity, type) VALUES (26, 'contact@ekologia.coop', '$6$FiRAMp48IE$p4YcKd27pHrPw3Y0Aax1yfEvGh2nzgFYLtlDGu/6yKlBHp1z.gYDAWKK3WXo19olb28aP41pWlNH4y4q2SXZB/', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'admin', '$6$FiRAMp48IE', 'i', '', '', '2015-03-01 00:00:00', NULL, NULL, NULL);
+
 
 
 --
