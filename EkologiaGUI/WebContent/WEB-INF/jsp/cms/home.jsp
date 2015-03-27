@@ -22,19 +22,14 @@
 					return;
 				js = d.createElement(s);
 				js.id = id;
-				js.src = "//connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v2.0";
+				js.src = "//connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v2.3";
 				fjs.parentNode.insertBefore(js, fjs);
 			}(document, 'script', 'facebook-jssdk'));
 		</script>
-		
-		<div class="fb-like-box"
-			data-href="https://www.facebook.com/pages/Ekologia/274611082672069?fref=ts"
-			data-colorscheme="light" data-width="500" data-show-faces="false" data-header="false"
-			data-stream="true" data-show-border="false"></div>
-			
-		<div class="fb-like-box"
+
+
+		<div class="fb-page"
 			data-href="https://www.facebook.com/constituante.ekologia"
-			data-colorscheme="light" data-width="500" data-show-faces="false" data-header="false"
-			data-stream="true" data-show-border="false"></div>
-	</div>
+			data-height="1140" data-width="800" data-hide-cover="true" data-show-facepile="false"
+			data-show-posts="true"></div>
 </et:front>

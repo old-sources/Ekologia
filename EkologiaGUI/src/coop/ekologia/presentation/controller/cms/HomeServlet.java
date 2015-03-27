@@ -15,11 +15,7 @@ import coop.ekologia.service.cms.PageServiceInterface;
 @WebServlet("/home")
 public class HomeServlet extends EkologiaServlet {
 	private static final long serialVersionUID = -4096633312380583816L;
-	
-	
-	public static final String routing(HttpServletRequest request) {
-		return getUrl(request, "/home");
-	}
+	public static final String routing = "/home";
 	
 	@EJB
 	private PageServiceInterface pageService;

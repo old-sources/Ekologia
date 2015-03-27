@@ -21,6 +21,7 @@ import coop.ekologia.DTO.user.UserDTO;
 import coop.ekologia.presentation.controller.cms.PageServlet;
 import coop.ekologia.presentation.controller.user.LoginServlet;
 import coop.ekologia.presentation.request.GlobalRequestScope;
+import coop.ekologia.presentation.request.RoutingCentral;
 import coop.ekologia.presentation.session.LoginSession;
 import coop.ekologia.service.security.SecurityServiceInterface;
 
@@ -36,6 +37,9 @@ public class SecurityFilter implements Filter {
 	
 	@Inject
 	GlobalRequestScope globalRequestScope;
+	
+	@Inject
+	private RoutingCentral routing;
 
 	/**
 	 * @see Filter#destroy()
@@ -82,7 +86,7 @@ public class SecurityFilter implements Filter {
 			if (home1.equalsIgnoreCase(uri) || home2.equalsIgnoreCase(uri)) {
 				// Home, but no language => redirect to home FR
 				request.setAttribute("language", "fr");
-				httpServletResponse.sendRedirect(PageServlet.routingHome(httpServletRequest));
+				httpServletResponse.sendRedirect(routing.getHomepage());
 			} else {
 				// Resource or 404 - anyway, we continue
 				chain.doFilter(httpServletRequest, httpServletResponse);

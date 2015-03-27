@@ -24,7 +24,7 @@
 		<div class="row">
 			<!-- Equivalent à .col-lg-2 de Bootstrap -->
 			<div class="logo large-2 columns">
-				<a href="<%=HomeServlet.routing(request)%>"></a>
+				<a href="${routing.homepage}"></a>
 			</div>
 			<div class="large-8 columns">
 				<!-- Ici, .row réinitialise une grille de 12 colonnes, donc la largeur des colonnes sera moins importante que pour le .row parent (cf. ligne 14) -->
@@ -78,7 +78,7 @@
 				<ul class="title-area">
 					<li class="name">
 						<h1>
-							<a href="<%=HomeServlet.routing(request)%>">Ekologia</a>
+							<a href="${routing.homepage}">Ekologia</a>
 						</h1>
 					</li>
 				</ul>
@@ -98,8 +98,7 @@
 						</c:if>
 					</ul>
 					<ul class="left">
-						<!--<li class="active"><a href="<%=HomeServlet.routing(request)%>">Home</a></li>-->
-						<li><a href="<%=HomeServlet.routing(request)%>">Home</a></li>
+						<li><a href="${routing.homepage}">Home</a></li>
 					</ul>
 				</section>
 			</nav>
