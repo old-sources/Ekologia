@@ -4,7 +4,6 @@ header .logo a {
 	background-size: 111px 115px;
 	background-position: center;
 	background-repeat: no-repeat;
-	/*width: 100%;*/
 	height: 120px;
 }
 
@@ -126,6 +125,6 @@ header {
 	display: none !important;
 }
 
-.fb-page, .fb-page * {
-    width:100% !important;
+select {
+  -webkit-appearance: menulist-button !important;
 }

@@ -24,9 +24,9 @@
 			src="${pageContext.request.contextPath}/marked/marked.min.js"></script>
           <!-- HTML editor CSS and JavaScript -->
         <link rel="stylesheet"
-			href="${pageContext.request.contextPath}/uikit-2.15.0/css/components/htmleditor.css">
+			href="${pageContext.request.contextPath}/uikit-2.18.0/css/components/htmleditor.css">
         <script
-			src="${pageContext.request.contextPath}/uikit-2.15.0/js/components/htmleditor.js"></script>
+			src="${pageContext.request.contextPath}/uikit-2.18.0/js/components/htmleditor.js"></script>
 
 	</jsp:attribute>
 	<jsp:body>

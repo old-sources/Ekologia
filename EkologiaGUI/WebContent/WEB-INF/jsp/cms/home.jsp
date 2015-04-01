@@ -6,9 +6,7 @@
 <%@ taglib prefix="et" tagdir="/WEB-INF/tags/template"%>
 <fmt:setLocale value="${ currentLanguage }" />
 <fmt:setBundle basename="i18n.main" />
-
 <et:front>
-	${testInject.text}
 	<div class="row">
 		<div class="small-12 large-6 columns">
 			<c:out value="${ page.html }" escapeXml="false" />

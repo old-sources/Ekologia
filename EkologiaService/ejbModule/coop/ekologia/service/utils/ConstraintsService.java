@@ -42,7 +42,7 @@ public class ConstraintsService implements ConstraintsServiceInterface {
 
 	@Override
 	public boolean isDate(String value) {
-		return DateValidator.getInstance().isValid(value, "yyyy-MM-dd");
+		return DateValidator.getInstance().isValid(value, "dd/MM/yyyy");
 	}
 
 	@Override

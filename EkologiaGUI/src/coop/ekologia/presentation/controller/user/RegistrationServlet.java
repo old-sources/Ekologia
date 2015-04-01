@@ -105,6 +105,7 @@ public class RegistrationServlet extends EkologiaServlet {
                 userDTO = useroDTO;
             }
             
+            userDTO.setUsertype(userType);
             userDTO.setEmail(email);
             userDTO.setAddressStreet(addressStreet);
             userDTO.setAddressZipcode(addressZipcode);
@@ -155,6 +156,7 @@ public class RegistrationServlet extends EkologiaServlet {
             if (userDTO != null) {
                 request.setAttribute(UserConstants.ATTRIBUTE_USER, userDTO);
             }
+            request.setAttribute("user", userDTO);
             forwardToJsp(request, response);
         }
     }

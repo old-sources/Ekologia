@@ -115,7 +115,6 @@ public class UserMapper extends Mapper<UserDTO, User> {
 		user.setAvatar(userDTO.getAvatar());
 		user.setDescription(userDTO.getDescription());
 		user.setSalt((String) alterNonNullValue(userDTO.getSalt(), user.getSalt()));
-		//user.setSalt(userDTO.getSalt());
 		user.setRoles((String) alterNonNullValue(listUtilities.mkString(userDTO.getRoles(), ","), user.getRoles()));
 		return user;
 		

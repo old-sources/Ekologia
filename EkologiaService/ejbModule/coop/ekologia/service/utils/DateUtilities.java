@@ -56,17 +56,22 @@ public class DateUtilities implements DateUtilitiesInterface {
 	
 	@Override
 	public Date stringToDate(String str, boolean fromInput) {
-	    SimpleDateFormat format;
-	    if (fromInput) {
+	    Date retour= null;
+		if(str==null){
+	    	return null;
+	    }
+		SimpleDateFormat format;
+	    if (!fromInput) {
 	        format = new SimpleDateFormat("yyyy-MM-dd");
 	    } else {
 	        format = new SimpleDateFormat("dd/MM/yyyy");
 	    }
 	    try {
-            return format.parse(str);
+            retour = format.parse(str);
         } catch (ParseException e) {
-            return null;
+            retour=null;
         }
+	    return retour;
 	}
 	
 	@Override

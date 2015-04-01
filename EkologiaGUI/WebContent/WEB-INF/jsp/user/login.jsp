@@ -15,7 +15,7 @@
 	<div class="row">
 		<div class="small-centered large-6 columns small-12">
 			<div class="row panel">
-				<form method="post" action="${ routingFormLogin }">
+				<form method="post" action="${ routingFormLogin }" class="uk-form">
 					<div class="row">
 						<div class="small-12 columns">
 							<h1>
@@ -33,7 +33,6 @@
 									<small class="error"><fmt:message
 											key="login.mail.unknownuser" /></small>
 								</c:if>
-
 							</div>
 						</div>
 						<div class="row">
