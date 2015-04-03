@@ -5,9 +5,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib prefix="et" tagdir="/WEB-INF/tags/template"%>
-<c:set var="req" value="${pageContext.request}" />
-<c:set var="baseURL"
-	value="${req.scheme}://${req.serverName}:${req.serverPort}${req.contextPath}" />
 <et:front>
 	<div classe="uk-grid">
 		<div
@@ -56,8 +53,7 @@
 			.on(
 					"click",
 					function(e) {
-						var userFormUrl = "${req.scheme}://${req.serverName}:${req.serverPort}${req.contextPath}"
-								+ "/group/groupForm/create"
+						var userFormUrl = "${ routing.getAdminGroupCreate() }"
 						//console.log(userFormUrl);
 						window.location.href = userFormUrl;
 					});
@@ -65,8 +61,7 @@
 			.on(
 					"click",
 					function(e) {
-						var userFormUrl = "${req.scheme}://${req.serverName}:${req.serverPort}${req.contextPath}"
-								+ "/group/groupForm/update/"
+						var userFormUrl = "${ routing.getAdminGroupUpdate(null) }" // empty id because generate with JS.
 								+ ($(this).data("id"))
 						//console.log(userFormUrl);
 						window.location.href = userFormUrl;
@@ -75,8 +70,7 @@
 			.on(
 					"click",
 					function(e) {
-						var userFormUrl = "${req.scheme}://${req.serverName}:${req.serverPort}${req.contextPath}"
-								+ "/group/groupForm/delete/"
+						var userFormUrl = "${ routing.getAdminGroupDelete(null) }"
 								+ ($(this).data("id"))
 						//console.log(userFormUrl);
 						window.location.href = userFormUrl;

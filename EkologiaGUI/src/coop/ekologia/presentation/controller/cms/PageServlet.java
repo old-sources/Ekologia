@@ -27,9 +27,7 @@ public class PageServlet extends EkologiaServlet {
 	private GlobalRequestScope requestScope;
 	
 	
-	public static final String routing(HttpServletRequest request, String canonical) {
-		return getUrl(request, "/page/" + canonical);
-	}
+	public static final String routing = "/page/{canonical}";
 
 	@EJB
 	private PageServiceInterface pageService;

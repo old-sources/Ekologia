@@ -51,9 +51,7 @@
 					<label class="uk-form-label" for="name">Description</label>
 				</div>
 				<div class="uk-form-controls">
-					<textarea id="description" name="description">
-					${group.description}
-					</textarea>
+					<textarea id="description" name="description">${group.description}</textarea>
 				</div>
 				<div>
 					<label class="uk-form-label" for="name">Icône du groupe</label>
