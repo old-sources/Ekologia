@@ -12,6 +12,7 @@ import coop.ekologia.entity.group.Group;
 import coop.ekologia.entity.group.UserGroup;
 import coop.ekologia.entity.role.RoleUserGroup;
 import coop.ekologia.entity.role.RoleUserGroupLang;
+import coop.ekologia.entity.role.UserGroupRoleUserGroup;
 
 @Local
 public interface GroupServiceInterface {
@@ -93,7 +94,7 @@ public interface GroupServiceInterface {
 	 * @param userDTO
 	 * @return
 	 */
-	public abstract void updateUserGroup(GroupDTO groupDTO, UserDTO userDTO);
+	public abstract void updateUserGroup(UserGroupDTO userGroupDTO);
 	
 	/**
 	 * Get the list of roles available in a Group
@@ -102,5 +103,13 @@ public interface GroupServiceInterface {
 	 * @return
 	 */
 	public abstract List<RoleUserGroupDTO> getAllRoleUserGroup(String codeLangue);
+
+	/**
+	 * Get a list of UserGroupRoleUserGroup by groupId
+	 * 
+	 * @param groupId
+	 * @return
+	 */
+	public abstract List<UserGroupRoleUserGroup> getListUserGroupRoleUserGroup(Integer groupId);
 
 }

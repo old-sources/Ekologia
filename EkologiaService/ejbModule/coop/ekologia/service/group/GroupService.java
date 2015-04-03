@@ -86,12 +86,29 @@ public class GroupService implements GroupServiceInterface {
 	}
 	
 	@Override
-	public void updateUserGroup(GroupDTO groupDTO, UserDTO userDTO) {
-		/*Group group = groupMapper.mapToEntity(groupDTO);
-		User user = userMapper.mapToEntity(groupDTO.getFirstAdmin());
+	public void updateUserGroup(UserGroupDTO userGroupDTO) {
+		Group group = groupMapper.mapToEntity(userGroupDTO.getGroup());
+		User user = userMapper.mapToEntity(userGroupDTO.getUser());
+		List<RoleUserGroup> listRoleUserGroup = new ArrayList<RoleUserGroup>();
+		
+		for (RoleUserGroupDTO roleUserGroupDTO : userGroupDTO.getRoleUserGroups()) {
+			RoleUserGroup roleUserGroup = roleUserGroupMapper.mapToEntityRole(roleUserGroupDTO);
+			listRoleUserGroup.add(roleUserGroup);
+		}
+		
 		em.merge(user);
-		UserGroup userGroup = groupMapper.createUserGroup(group, user);		
-		em.merge(userGroup);	*/	
+		em.merge(group);
+		em.merge(listRoleUserGroup);
+		UserGroup userGroup = groupMapper.createUserGroup(group, user);
+
+		em.merge(userGroup);
+		
+		List<UserGroupRoleUserGroup> listUserGroupRoleUserGroup = roleUserGroupMapper.mapToUserGroupRoleUserGroup(userGroup,listRoleUserGroup);
+		
+		for (UserGroupRoleUserGroup userGroupRoleUserGroup : listUserGroupRoleUserGroup) {
+			em.merge(userGroupRoleUserGroup);
+		}
+
 
 	}
 
@@ -135,7 +152,14 @@ public class GroupService implements GroupServiceInterface {
 		group = em.merge(group);
 		List<UserGroup> listUserGroup = getListUserGroup(groupDTO.getId());
 		if (!listUserGroup.isEmpty()) {
-			for (UserGroup userGroup : listUserGroup) {
+			for (UserGroup userGroup : listUserGroup) {	
+				List<UserGroupRoleUserGroup> listUserGroupRoleUserGroup = getListUserGroupRoleUserGroup(groupDTO.getId());
+				if (!listUserGroupRoleUserGroup.isEmpty()){
+					for (UserGroupRoleUserGroup userGroupRoleUserGroup : listUserGroupRoleUserGroup) {
+						em.remove(userGroupRoleUserGroup);
+					}
+				}
+				
 				em.remove(userGroup);
 			}
 		}
@@ -161,6 +185,20 @@ public class GroupService implements GroupServiceInterface {
 		}
 		return listUserGroup;
 		
+	}
+	
+	@Override
+	public List<UserGroupRoleUserGroup> getListUserGroupRoleUserGroup(Integer groupId){
+		List<UserGroupRoleUserGroup> listUserGroupRoleUserGroup = new ArrayList<UserGroupRoleUserGroup>();
+		Query query = em
+				.createNamedQuery(UserGroupRoleUserGroup.FIND_BY_GROUPID);
+		query.setParameter("groupId", groupId);
+		if (query.getResultList().isEmpty()) {
+			return null;
+		} else {
+			listUserGroupRoleUserGroup = query.getResultList();	
+		}
+		return listUserGroupRoleUserGroup;
 	}
 
 	@Override

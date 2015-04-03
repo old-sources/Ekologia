@@ -15,10 +15,15 @@ import coop.ekologia.entity.user.User;
  */
 @Entity
 @Table(name="user_group_role_user_group")
+@NamedQueries({
+	@NamedQuery(name=UserGroupRoleUserGroup.FIND_BY_GROUPID, query="SELECT ugr FROM UserGroupRoleUserGroup ugr WHERE ugr.UserGroupRoleUserGroupPK.userGroupGroupId=:groupId"),
+})
 public class UserGroupRoleUserGroup implements Serializable {
 
 	
 	private static final long serialVersionUID = 1L;
+
+	public static final String FIND_BY_GROUPID = "UserGroupRoleUserGroup.findByGroupId";
 
 	@EmbeddedId
 	protected UserGroupRoleUserGroupPK UserGroupRoleUserGroupPK;
