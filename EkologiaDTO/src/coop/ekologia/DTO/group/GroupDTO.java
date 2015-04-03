@@ -20,13 +20,18 @@ public class GroupDTO implements Serializable {
 	
 	private String icon;
 	
-	private Collection<UserDTO> users;
-	
-	private List<UserDTO> usersAdmin;
+	private Collection<UserGroupDTO> userGroups;
+
+	public Collection<UserGroupDTO> getUserGroups() {
+		return userGroups;
+	}
+
+	public void setUserGroups(Collection<UserGroupDTO> userGroups) {
+		this.userGroups = userGroups;
+	}
 
 	public GroupDTO(){
-		users = new ArrayList<UserDTO>();
-		usersAdmin = new ArrayList<UserDTO>();
+		userGroups = new ArrayList<UserGroupDTO>();
 	}
 	
 	public Integer getId() {
@@ -67,30 +72,6 @@ public class GroupDTO implements Serializable {
 
 	public void setIcon(String icon) {
 		this.icon = icon;
-	}
-
-	public Collection<UserDTO> getUsers() {
-		return users;
-	}
-
-	public void setUsers(Collection<UserDTO> users) {
-		this.users = users;
-	}
-
-	public List<UserDTO> getUsersAdmin() {
-		return usersAdmin;
-	}
-
-	public void setUsersAdmin(List<UserDTO> usersAdmin) {
-		this.usersAdmin = usersAdmin;
-	}
-	
-	public UserDTO getFirstAdmin(){
-		if (!this.usersAdmin.isEmpty()){
-			return this.usersAdmin.get(0);
-		}else{
-			return null;
-		}
 	}
 
 }
