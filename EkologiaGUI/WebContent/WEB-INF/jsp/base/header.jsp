@@ -3,28 +3,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page
-	import="coop.ekologia.presentation.controller.group.GroupListServlet"%>
-<%@ page
-	import="coop.ekologia.presentation.controller.cms.PageListServlet"%>
-<%@ page
-	import="coop.ekologia.presentation.controller.user.UserListServlet"%>
-<%@ page
-	import="coop.ekologia.presentation.controller.user.LoginConnectionServlet"%>
-<%@ page
-	import="coop.ekologia.presentation.controller.user.LoginDeconnectionServlet"%>
-<%@ page
-	import="coop.ekologia.presentation.controller.user.RegistrationServlet"%>
-<%@ page import="coop.ekologia.presentation.controller.cms.PageServlet"%>
-<%@ page
-	import="coop.ekologia.presentation.controller.user.UserCreateServlet"%>
-<%@ page
-	import="coop.ekologia.presentation.controller.user.UserListServlet"%>
-<%@ page
-	import="coop.ekologia.presentation.controller.cms.PageListServlet"%>
-<%@ page import="coop.ekologia.presentation.controller.cms.HomeServlet"%>
-<%@ page
-	import="coop.ekologia.presentation.controller.group.GroupListServlet"%>
 <fmt:setLocale value="${ currentLanguage }" />
 <fmt:setBundle basename="i18n.main" />
 
@@ -42,13 +20,13 @@
 				<!-- Les sauts de ligne mettent en évidence les différentes lignes. -->
 				<ul class="row no-bullet">
 					<li class="large-6 columns"><a class="header-link"
-						href="<%=PageServlet.routing(request, "qui-sommes-nous")%>"><h2>
+						href="${routing.getPage("qui-sommes-nous")}"><h2>
 							Qui sommes-nous? </h2></a></li>
 					<li class="large-6 columns"><a class="header-link"
-						href="<%=PageServlet.routing(request, "communaute")%>"><h2> La
+						href="${routing.getPage("communaute")}"><h2> La
 							communauté </h2></a></li>
 					<li class="large-6 columns"><a class="header-link"
-						href="<%=PageServlet.routing(request, "forum-ouvert")%>">
+						href="${routing.getPage("forum-ouvert")}">
 							<h2>Forum ouvert </h2></a></li>
 				</ul>
 			</div>
@@ -64,7 +42,7 @@
 					<c:choose>
 						<c:when test="${empty connectedUser}">
 							<ul class="no-bullet" style="font-size: 12px; margin: 5px">
-								<li><a href="<%=RegistrationServlet.routing(request)%>">
+								<li><a href="${routing.registration}">
 										Créer un compte </a></li>
 								<li><a href="${routing.connection}"> Se connecter </a></li>
 							</ul>
@@ -114,8 +92,7 @@
 								<ul class="dropdown">
 									<li><a href="${routing.userList}">Comptes</a></li>
 									<li><a href="${routing.pageList}">CMS</a></li>
-									<li><a href="<%=GroupListServlet.routing(request)%>">Liste
-											des groupes</a></li>
+									<li><a href="${routing.adminGroupList}">Liste des groupes</a></li>
 								</ul></li>
 						</c:if>
 					</ul>

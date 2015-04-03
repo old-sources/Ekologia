@@ -12,14 +12,12 @@ import coop.ekologia.presentation.constants.GroupWikiConstants;
 import coop.ekologia.presentation.controller.cms.HomeServlet;
 import coop.ekologia.presentation.controller.cms.PageFormServlet;
 import coop.ekologia.presentation.controller.cms.PageListServlet;
-import coop.ekologia.presentation.controller.group.GroupPresentationServlet;
+import coop.ekologia.presentation.controller.cms.PageServlet;
+import coop.ekologia.presentation.controller.group.*;
 import coop.ekologia.presentation.controller.group.wiki.WikiCreateServlet;
 import coop.ekologia.presentation.controller.group.wiki.WikiReadServlet;
 import coop.ekologia.presentation.controller.group.wiki.WikiUpdateServlet;
-import coop.ekologia.presentation.controller.user.LoginConnectionServlet;
-import coop.ekologia.presentation.controller.user.LoginDeconnectionServlet;
-import coop.ekologia.presentation.controller.user.UserFormServlet;
-import coop.ekologia.presentation.controller.user.UserListServlet;
+import coop.ekologia.presentation.controller.user.*;
 
 @Named("routing")
 @RequestScoped
@@ -82,6 +80,38 @@ public class RoutingCentral {
     
     public String getHomepage() {
         return servletUtil.getUrl(HomeServlet.routing);
+    }
+
+    public String getPage(String canonical) {
+        return servletUtil.getUrl(PageServlet.routing, map("canonical", canonical));
+    }
+
+    public String getAdminGroupList() {
+        return servletUtil.getUrl(GroupListServlet.routing);
+    }
+
+    public String getAdminGroupCreate() {
+        return servletUtil.getUrl(GroupCreateServlet.routing);
+    }
+
+    public String getAdminGroupUpdate(Integer id) {
+        if (id == null) {
+            return servletUtil.getUrl(GroupUpdateServlet.routing, map("id", ""));
+        } else {
+            return servletUtil.getUrl(GroupUpdateServlet.routing, map("id", id.toString()));
+        }
+    }
+
+    public String getAdminGroupDelete(Integer id) {
+        if (id == null) {
+            return servletUtil.getUrl(GroupDeleteServlet.routing, map("id", ""));
+        } else {
+            return servletUtil.getUrl(GroupDeleteServlet.routing, map("id", id.toString()));
+        }
+    }
+
+    public String getRegistration() {
+        return servletUtil.getUrl(RegistrationServlet.routing);
     }
 
     /**

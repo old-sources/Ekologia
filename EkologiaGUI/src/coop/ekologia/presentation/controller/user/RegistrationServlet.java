@@ -15,7 +15,6 @@ import coop.ekologia.DTO.user.UserOrganizationDTO;
 import coop.ekologia.presentation.EkologiaServlet;
 import coop.ekologia.presentation.constants.UserConstants;
 import coop.ekologia.presentation.controller.FormErrors;
-import coop.ekologia.presentation.controller.cms.PageServlet;
 import coop.ekologia.presentation.request.RoutingCentral;
 import coop.ekologia.presentation.session.LoginSession;
 import coop.ekologia.service.user.UserServiceInterface;
@@ -28,14 +27,12 @@ public class RegistrationServlet extends EkologiaServlet {
     private static final long serialVersionUID = -3319945240158127895L;
     
     @Inject
-    private RoutingCentral routing;
+    private RoutingCentral router;
     
 	@Inject
 	private LoginSession loginSession;
     
-    public static final String routing(HttpServletRequest request) {
-        return getUrl(request, "/registration");
-    }
+    public static final String routing = "/registration";
 
     @EJB
     private UserServiceInterface userService;
@@ -150,7 +147,7 @@ public class RegistrationServlet extends EkologiaServlet {
             
             loginSession.setUser(userDTO);
             
-            response.sendRedirect(routing.getHomepage());
+            response.sendRedirect(router.getHomepage());
         } else {
             request.setAttribute(UserConstants.ATTRIBUTE_ERRORS, formErrors.getErrors());
             if (userDTO != null) {
@@ -162,7 +159,7 @@ public class RegistrationServlet extends EkologiaServlet {
     }
     
     private void forwardToJsp(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setAttribute(UserConstants.ATTRIBUTE_FORMROUTE, routing(request));
+        request.setAttribute(UserConstants.ATTRIBUTE_FORMROUTE, router.getRegistration());
         forwardToJsp("/user/registration.jsp", request, response);
     }
 }

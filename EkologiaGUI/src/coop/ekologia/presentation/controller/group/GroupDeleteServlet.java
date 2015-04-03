@@ -5,6 +5,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.ejb.EJB;
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,17 +14,23 @@ import javax.servlet.http.HttpServletResponse;
 
 import coop.ekologia.DTO.group.GroupDTO;
 import coop.ekologia.presentation.EkologiaServlet;
+import coop.ekologia.presentation.request.RoutingCentral;
 import coop.ekologia.service.group.GroupServiceInterface;
 
 /**
  * Servlet implementation class GroupDeleteServlet
  */
-@WebServlet("/group/groupForm/delete/*")
+@WebServlet("/admin/group/groupForm/delete/*")
 public class GroupDeleteServlet extends EkologiaServlet {
 	private static final long serialVersionUID = 1L;
+
+	public static final String routing = "/admin/group/groupForm/delete/{id}";
     
 	@EJB
 	private GroupServiceInterface groupService;
+
+	@Inject
+	private RoutingCentral router;
 	
     /**
      * @see HttpServlet#HttpServlet()
@@ -49,8 +56,7 @@ public class GroupDeleteServlet extends EkologiaServlet {
 		}
 
 
-		response.sendRedirect(String.format("%s/group/groupList",
-				request.getContextPath()));
+		response.sendRedirect(router.getAdminGroupList());
 	}
 
 	/**

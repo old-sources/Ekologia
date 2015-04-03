@@ -55,7 +55,7 @@ public class GroupMapper extends Mapper<GroupDTO, Group> {
 		}
 		group.setCanonical(groupDTO.getCanonical());
 		group.setName(groupDTO.getName());
-		group.setDescription(groupDTO.getCanonical());
+		group.setDescription(groupDTO.getDescription());
 		group.setIcon(groupDTO.getIcon());
 		
 		return group;

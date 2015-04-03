@@ -7,6 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.ejb.EJB;
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import coop.ekologia.DTO.group.GroupDTO;
 import coop.ekologia.DTO.user.UserDTO;
 import coop.ekologia.presentation.EkologiaServlet;
+import coop.ekologia.presentation.request.RoutingCentral;
 import coop.ekologia.service.group.GroupServiceInterface;
 import coop.ekologia.service.user.UserServiceInterface;
 import coop.ekologia.service.utils.CanonicalizerServiceInterface;
@@ -23,9 +25,11 @@ import coop.ekologia.service.utils.CanonicalizerServiceInterface;
 /**
  * Servlet implementation class GroupUpdateServlet
  */
-@WebServlet("/group/groupForm/update/*")
+@WebServlet("/admin/group/groupForm/update/*")
 public class GroupUpdateServlet extends EkologiaServlet {
 	private static final long serialVersionUID = 1L;
+
+	public static final String routing = "/admin/group/groupForm/update/{id}";
 
 	@EJB
 	private GroupServiceInterface groupService;
@@ -35,6 +39,9 @@ public class GroupUpdateServlet extends EkologiaServlet {
 
 	@EJB
 	private CanonicalizerServiceInterface canonicalService;
+
+	@Inject
+	private RoutingCentral router;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -113,8 +120,7 @@ public class GroupUpdateServlet extends EkologiaServlet {
 			
 		}
 
-		response.sendRedirect(String.format("%s/group/groupList",
-				request.getContextPath()));
+		response.sendRedirect(router.getAdminGroupList());
 	}
 
 }
