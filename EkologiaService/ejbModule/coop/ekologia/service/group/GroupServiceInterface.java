@@ -5,9 +5,13 @@ import java.util.List;
 import javax.ejb.Local;
 
 import coop.ekologia.DTO.group.GroupDTO;
+import coop.ekologia.DTO.group.RoleUserGroupDTO;
+import coop.ekologia.DTO.group.UserGroupDTO;
 import coop.ekologia.DTO.user.UserDTO;
 import coop.ekologia.entity.group.Group;
 import coop.ekologia.entity.group.UserGroup;
+import coop.ekologia.entity.role.RoleUserGroup;
+import coop.ekologia.entity.role.RoleUserGroupLang;
 
 @Local
 public interface GroupServiceInterface {
@@ -69,9 +73,10 @@ public interface GroupServiceInterface {
 	/**
 	 * Insert a user in the group
 	 * 
-	 * @param groupDTO
+	 * @param userGroupDTO
+	 * @return 
 	 */
-	public abstract void insertUserGroup(GroupDTO groupDTO);
+	public abstract void insertUserGroup(UserGroupDTO userGroupDTO);
 
 	/**
 	 * Get a list of UserGroup by a groupId
@@ -85,7 +90,17 @@ public interface GroupServiceInterface {
 	 * Update a UserGroup
 	 * 
 	 * @param groupDTO
+	 * @param userDTO
 	 * @return
 	 */
-	public abstract void updateUserGroup(GroupDTO groupDTO);
+	public abstract void updateUserGroup(GroupDTO groupDTO, UserDTO userDTO);
+	
+	/**
+	 * Get the list of roles available in a Group
+	 * 
+	 * @param codeLangue
+	 * @return
+	 */
+	public abstract List<RoleUserGroupDTO> getAllRoleUserGroup(String codeLangue);
+
 }

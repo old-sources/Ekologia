@@ -10,11 +10,18 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import coop.ekologia.DTO.group.GroupDTO;
+import coop.ekologia.DTO.group.RoleUserGroupDTO;
+import coop.ekologia.DTO.group.UserGroupDTO;
 import coop.ekologia.DTO.user.UserDTO;
 import coop.ekologia.entity.group.Group;
 import coop.ekologia.entity.group.UserGroup;
+import coop.ekologia.entity.role.RoleUserGroup;
+import coop.ekologia.entity.role.RoleUserGroupLang;
+import coop.ekologia.entity.role.UserGroupRoleUserGroup;
+import coop.ekologia.entity.role.UserGroupRoleUserGroupPK;
 import coop.ekologia.entity.user.User;
 import coop.ekologia.service.mapper.group.GroupMapper;
+import coop.ekologia.service.mapper.group.RoleUserGroupMapper;
 import coop.ekologia.service.mapper.user.UserMapper;
 
 @Stateless
@@ -27,6 +34,9 @@ public class GroupService implements GroupServiceInterface {
 
 	@Inject
 	private UserMapper userMapper;
+	
+	@Inject
+	private RoleUserGroupMapper roleUserGroupMapper;
 
 	@Override
 	public GroupDTO findGroupByCanonical(String canonical) {
@@ -76,12 +86,12 @@ public class GroupService implements GroupServiceInterface {
 	}
 	
 	@Override
-	public void updateUserGroup(GroupDTO groupDTO) {
-		Group group = groupMapper.mapToEntity(groupDTO);
+	public void updateUserGroup(GroupDTO groupDTO, UserDTO userDTO) {
+		/*Group group = groupMapper.mapToEntity(groupDTO);
 		User user = userMapper.mapToEntity(groupDTO.getFirstAdmin());
 		em.merge(user);
 		UserGroup userGroup = groupMapper.createUserGroup(group, user);		
-		em.merge(userGroup);		
+		em.merge(userGroup);	*/	
 
 	}
 
@@ -92,16 +102,30 @@ public class GroupService implements GroupServiceInterface {
 		return groupMapper.mapFromEntity(group);
 	}
 
+	//Méthode qui persist le UserGroup
 	@Override
-	public void insertUserGroup(GroupDTO groupDTO) {
-		Group group = groupMapper.mapToEntity(groupDTO);
-		User user = userMapper.mapToEntity(groupDTO.getFirstAdmin());
-
+	public void insertUserGroup(UserGroupDTO userGroupDTO) {
+		Group group = groupMapper.mapToEntity(userGroupDTO.getGroup());
+		User user = userMapper.mapToEntity(userGroupDTO.getUser());
+		List<RoleUserGroup> listRoleUserGroup = new ArrayList<RoleUserGroup>();
+		
+		for (RoleUserGroupDTO roleUserGroupDTO : userGroupDTO.getRoleUserGroups()) {
+			RoleUserGroup roleUserGroup = roleUserGroupMapper.mapToEntityRole(roleUserGroupDTO);
+			listRoleUserGroup.add(roleUserGroup);
+		}
+		
 		em.merge(user);
-
+		em.merge(group);
+		em.merge(listRoleUserGroup);
 		UserGroup userGroup = groupMapper.createUserGroup(group, user);
 
 		em.persist(userGroup);
+		
+		List<UserGroupRoleUserGroup> listUserGroupRoleUserGroup = roleUserGroupMapper.mapToUserGroupRoleUserGroup(userGroup,listRoleUserGroup);
+		
+		for (UserGroupRoleUserGroup userGroupRoleUserGroup : listUserGroupRoleUserGroup) {
+			em.persist(userGroupRoleUserGroup);
+		}
 
 	}
 
@@ -137,6 +161,26 @@ public class GroupService implements GroupServiceInterface {
 		}
 		return listUserGroup;
 		
+	}
+
+	@Override
+	public List<RoleUserGroupDTO> getAllRoleUserGroup(String codeLangue) {
+		List<RoleUserGroupLang> listRoleUserGroupLang = new ArrayList<RoleUserGroupLang>();
+		List<RoleUserGroupDTO> listRoleUserGroupDTO = new ArrayList<RoleUserGroupDTO>();
+		Query query = em.createNamedQuery(RoleUserGroupLang.FIND_BY_LANGUE);
+		query.setParameter("langue", codeLangue);
+		
+		if (query.getResultList().isEmpty()) {
+			return null;
+		} else {
+			listRoleUserGroupLang = query.getResultList();	
+		}
+		
+		for (RoleUserGroupLang roleUserGroupLang : listRoleUserGroupLang) {
+			listRoleUserGroupDTO.add(roleUserGroupMapper.mapFromEntity(roleUserGroupLang));
+		}
+		
+		return listRoleUserGroupDTO;
 	}
 
 }
