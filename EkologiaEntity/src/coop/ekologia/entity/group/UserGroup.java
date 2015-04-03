@@ -2,6 +2,7 @@ package coop.ekologia.entity.group;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
@@ -12,11 +13,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import coop.ekologia.entity.role.UserGroupRoleUserGroup;
 import coop.ekologia.entity.user.User;
 
 
@@ -58,6 +61,9 @@ public class UserGroup implements Serializable {
 	@JoinColumn(name="user_id", referencedColumnName="id", insertable = false, updatable = false)
 	private User user;
 
+	@OneToMany(mappedBy="userGroup")
+	private List<UserGroupRoleUserGroup> userGroupRoleUserGroups;
+	
 	public UserGroup() {
 	}
 

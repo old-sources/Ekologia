@@ -18,6 +18,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import coop.ekologia.entity.group.UserGroup;
+import coop.ekologia.entity.role.UserGroupRoleUserGroup;
+import coop.ekologia.entity.role.UserRoleUser;
+import coop.ekologia.entity.role.UserStatut;
 
 /**
  * The persistent class for the "user" database table.
@@ -77,6 +80,12 @@ public class User implements Serializable {
     @OneToMany(mappedBy="group")
     private List<UserGroup> userGroups;
 
+	@OneToMany(mappedBy="user")
+	private List<UserRoleUser> userRoleUsers;
+	
+	@OneToMany(mappedBy="user")
+	private List<UserStatut> userStatuts;
+    
     public User() {
     }
 
