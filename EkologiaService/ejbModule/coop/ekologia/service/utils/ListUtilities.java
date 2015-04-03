@@ -11,6 +11,9 @@ import javax.ejb.Stateless;
 public class ListUtilities implements ListUtilitiesInterface {
 	@Override
 	public String mkString(Collection<?> collection, String separator) {
+		if(collection==null){
+			return null;
+		}
 		StringBuilder result = new StringBuilder();
 		int index = 0;
 		int indexMax = collection.size();

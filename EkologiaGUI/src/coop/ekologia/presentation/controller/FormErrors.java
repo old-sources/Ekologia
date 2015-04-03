@@ -9,15 +9,22 @@ import java.util.Map;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
+import javax.inject.Named;
 
+import coop.ekologia.presentation.request.GlobalRequestScope;
+
+@Named("formErrors")
 @RequestScoped
 public class FormErrors {
 	private Map<String, List<String>> errors = new HashMap<String, List<String>>();
 
 	// TODO : refaire l'injection. Elle ne fonctionne pas sur mon poste pour une
 	// raison inconnue. Gaetan : ca fonctionne chez toi?
-	// @Inject
-	// private I18nService i18nService;
+	@Inject
+	private I18nService i18nService;
+
+	@Inject
+	GlobalRequestScope globalRequestScope;
 
 	// TODO: how to get this value from request?
 	private String language = null;
@@ -37,6 +44,7 @@ public class FormErrors {
 	 *            The error code, it will be translated with {@link I18nService}
 	 */
 	public void addError(String key, String error) {
+		language = globalRequestScope.getLanguage();
 		if (language == null) {
 			throw new FormErrorsLanguageException();
 		}
@@ -44,8 +52,11 @@ public class FormErrors {
 		if (!errors.containsKey(error)) {
 			errors.put(key, new ArrayList<String>());
 		}
-		// String i18nError = i18nService.translate(language, error);
-		String i18nError = "erreur i8n";
+		String i18nError = "";
+		if (error!=null && !error.isEmpty()) {
+			i18nError = i18nService.translate(language, error);
+		}
+		// String i18nError = "erreur i8n";
 		errors.get(key).add(i18nError);
 	}
 

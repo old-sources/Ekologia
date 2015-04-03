@@ -4,7 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <fmt:setLocale value="${currentLanguage}" />
-<fmt:setBundle basename="i18n.main" />
+<%-- <fmt:setBundle basename="i18n.main" />--%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,20 +19,19 @@
 	href="${pageContext.request.contextPath}/css/foundation.css"
 	media="all" />
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/style.css" media="all" />
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/uikit.css" media="all" />
+	href="${pageContext.request.contextPath}/css/uikit.min.css" media="all" />
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/uikit.almost-flat.css"
 	media="all" />
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/css/style.css" media="all" />
 
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/JQuery/jquery-2.1.3.min.js"></script>
 <script type="text/javascript"
-	src="${pageContext.request.contextPath}/uikit-2.15.0/js/uikit.min.js"></script>
+	src="${pageContext.request.contextPath}/script/uikit.min.js"></script>
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/script/foundation.min.js"></script>
-
 <jsp:invoke fragment="head" />
 <title>Ekologia</title>
 </head>

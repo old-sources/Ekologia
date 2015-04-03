@@ -10,6 +10,8 @@ import javax.ejb.Local;
 import coop.ekologia.DTO.group.GroupDTO;
 import coop.ekologia.DTO.user.UserDTO;
 import coop.ekologia.entity.group.UserGroup;
+import coop.ekologia.service.user.UserService.BadPasswordException;
+import coop.ekologia.service.user.UserService.UnknownUserException;
 
 /**
  * @author imie
@@ -20,7 +22,7 @@ public interface UserServiceInterface {
 
 	public List<UserDTO> getAllUser();
 
-	UserDTO getSecuredUser(UserDTO userPB);
+	UserDTO getSecuredUser(UserDTO userPB) throws BadPasswordException, UnknownUserException;
 
 	public Boolean isIntoGroup(UserDTO userDTO, GroupDTO groupDTO);
 	public UserDTO getUserById(UserDTO dto);

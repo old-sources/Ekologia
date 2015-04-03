@@ -114,14 +114,17 @@ public class UserMapper extends Mapper<UserDTO, User> {
 		user.setCountry(userDTO.getCountry());
 		user.setAvatar(userDTO.getAvatar());
 		user.setDescription(userDTO.getDescription());
-		user.setSalt(userDTO.getSalt());
-		if (userDTO.getRoles() == null) {
-			user.setRoles("");
-		} else {
-			user.setRoles(listUtilities.mkString(userDTO.getRoles(), ","));
-		}
+		user.setSalt((String) alterNonNullValue(userDTO.getSalt(), user.getSalt()));
+		user.setRoles((String) alterNonNullValue(listUtilities.mkString(userDTO.getRoles(), ","), user.getRoles()));
 		return user;
 		
+	}
+	
+	private Object alterNonNullValue(Object newValue, Object oldValue){
+		if (newValue!=null){
+			oldValue=newValue;
+		}
+		return oldValue;
 	}
 
 }
