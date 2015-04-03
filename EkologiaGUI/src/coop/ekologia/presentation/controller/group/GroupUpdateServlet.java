@@ -69,8 +69,8 @@ public class GroupUpdateServlet extends EkologiaServlet {
 			request.setAttribute("group", groupDTO);
 			List<UserDTO> users = userService.getAllUser();
 			request.setAttribute("users", users);
-			List<UserDTO> usersInGroup = (List<UserDTO>) groupDTO.getUsers();
-			request.setAttribute("usersInGroup", usersInGroup);
+			/*List<UserDTO> usersInGroup = (List<UserDTO>) groupDTO.getUsers();
+			request.setAttribute("usersInGroup", usersInGroup);*/
 			
 			//TODO #WARNING à utiliser lorsque l'on pourra mettre plusieurs admin dans un groupe
 			//List<UserDTO> usersAdminInGroup = (List<UserDTO>) groupDTO.getUsersAdmin();
@@ -118,19 +118,19 @@ public class GroupUpdateServlet extends EkologiaServlet {
 			groupDTO.setName(name);
 			groupDTO.setCanonical(canonicalService.strToUrl(name));
 			groupDTO.setDescription(description);
-			groupDTO.setIcon(icon);
-			groupDTO.setUsers(listUserInGroupDTO);
+			groupDTO.setIcon(icon);/*
+			groupDTO.setUsers(listUserInGroupDTO);*/
 			
 			/* TODO #warning actuellement on ne peut mettre qu'un seul administrateur dans un groupe */
 			//groupDTO.getUsersAdmin().add(userDTO);
 			List<UserDTO> newListAdmin = new ArrayList<UserDTO>();
 			newListAdmin.add(userAdminDTO);
-			
+			/*
 			groupDTO.setUsersAdmin(newListAdmin);
 			
 			Integer id = Integer.valueOf(idString);
 			groupDTO.setId(id);
-			groupService.updateUserGroup(groupDTO);
+			groupService.updateUserGroup(groupDTO);*/
 			groupDTO = groupService.updateGroup(groupDTO);
 			
 		}

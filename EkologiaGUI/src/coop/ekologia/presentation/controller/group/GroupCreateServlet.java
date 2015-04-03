@@ -80,6 +80,7 @@ public class GroupCreateServlet extends EkologiaServlet {
 		groupDTO.setCanonical(canonicalService.strToUrl(name));
 		groupDTO.setDescription(description);
 		groupDTO.setIcon(icon);
+		/*
 		groupDTO.getUsers().add(userDTO);
 		groupDTO.getUsersAdmin().add(userDTO);
 		
@@ -88,7 +89,7 @@ public class GroupCreateServlet extends EkologiaServlet {
 		groupDTO.getUsers().add(userDTO);
 		groupDTO.getUsersAdmin().add(userDTO);
 		
-		groupService.insertUserGroup(groupDTO);
+		groupService.insertUserGroup(groupDTO);*/
 		
 		request.setAttribute("group", groupDTO);
 

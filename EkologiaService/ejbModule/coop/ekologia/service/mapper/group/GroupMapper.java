@@ -30,19 +30,6 @@ public class GroupMapper extends Mapper<GroupDTO, Group> {
 		groupDTO.setName(group.getName());
 		groupDTO.setDescription(group.getDescription());
 		groupDTO.setIcon(group.getIcon());
-		for (UserGroup userGroup : group.getUserGroups()) {
-			groupDTO.getUsers().add(
-					userMapper.mapFromEntity(userGroup.getUser()));
-			String[] roles;
-			if (userGroup.getRoles() == null) {
-			    roles = new String[]{};
-			} else {
-			    roles = userGroup.getRoles().split(",");
-			}
-			if (Arrays.asList(roles).contains("admin")){
-				groupDTO.getUsersAdmin().add(userMapper.mapFromEntity(userGroup.getUser()));
-			}
-		}
 		
 		return groupDTO;
 	}
