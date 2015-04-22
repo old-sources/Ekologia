@@ -13,6 +13,7 @@
 		</div>
 
 		<div class="small-12 large-6 columns">
+			<div id="fb-root"></div>
 			<script>
 				(function(d, s, id) {
 					var js, fjs = d.getElementsByTagName(s)[0];
@@ -24,12 +25,16 @@
 					fjs.parentNode.insertBefore(js, fjs);
 				}(document, 'script', 'facebook-jssdk'));
 			</script>
-
-
 			<div class="fb-page"
 				data-href="https://www.facebook.com/constituante.ekologia"
-				data-width="800" data-hide-cover="true"
-				data-show-facepile="false" data-show-posts="true"></div>
+				data-hide-cover="false" data-show-facepile="false"
+				data-show-posts="true">
+				<div class="fb-xfbml-parse-ignore">
+					<blockquote cite="https://www.facebook.com/constituante.ekologia">
+						<a href="https://www.facebook.com/constituante.ekologia">Ekologia</a>
+					</blockquote>
+				</div>
+			</div>
 		</div>
 	</div>
 
