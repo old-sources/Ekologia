@@ -49,7 +49,7 @@ public class GroupWikiFilter extends EkologiaFilter {
         }
         
         String uri = globalRequestScope.extractModuleURI();
-        Matcher m = Pattern.compile("\\/group\\/wiki\\/(read|create|update|delete)\\/([^\\/]*)(\\/(\\S*))?").matcher(uri);
+        Matcher m = Pattern.compile("\\/group\\/wiki\\/(list|read|create|update|delete)\\/([^\\/]*)(\\/(\\S*))?").matcher(uri);
         if (m.find()) {
             String action = m.group(1);
             String groupCanonical = m.group(2);
@@ -60,7 +60,7 @@ public class GroupWikiFilter extends EkologiaFilter {
             UserDTO userDTO = loginSession.getUser();
 
             GroupDTO groupDTO = groupService.findGroupByCanonical(groupCanonical);
-            request.setAttribute(GroupWikiConstants.ATTRIBUTE_GROUPDTO, groupDTO);
+            request.setAttribute(GroupWikiConstants.ATTRIBUTE_GROUP_DTO, groupDTO);
             if (groupDTO == null) {
                 notFound(request, response, chain);
                 return;
@@ -74,6 +74,11 @@ public class GroupWikiFilter extends EkologiaFilter {
 
             if ("read".equals(action)) {
                 if (wikiDTO == null) {
+                    notFound(request, response, chain);
+                    return;
+                }
+            } else if ("list".equals(action)) {
+                if (groupDTO == null) {
                     notFound(request, response, chain);
                     return;
                 }

@@ -1,88 +1,88 @@
 header .logo a {
-	display: block;
-	background-image: url('../image/logo.png');
-	background-size: 111px 115px;
-	background-position: center;
-	background-repeat: no-repeat;
-	height: 120px;
+    display: block;
+    background-image: url('../image/logo.png');
+    background-size: 111px 115px;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 120px;
 }
 
 .vignette {
-	display: block;
-	background-color: red;
-	width: 50px;
-	height: 50px;
-	margin: auto;
+    display: block;
+    background-color: red;
+    width: 50px;
+    height: 50px;
+    margin: auto;
 }
 
 header {
-	/* Utile ? */
-	/* margin-bottom: 5px; */
-	/* TODO #BugFix SLO */
-	/*cela provoque une bande transparente en haut non souhaitable
-	/*margin-top: 10px;*/
-	
+    /* Utile ? */
+    /* margin-bottom: 5px; */
+    /* TODO #BugFix SLO */
+    /*cela provoque une bande transparente en haut non souhaitable
+    /*margin-top: 10px;*/
+
 }
 
 .header-degrade {
-	background-color: white;
-	/*background-image:linear-gradient(#FFFFFF 90%, #242D00 120px);*/
+    background-color: white;
+    /*background-image:linear-gradient(#FFFFFF 90%, #242D00 120px);*/
 }
 
 .nav-bar-color {
-	background-color: #242D00;
+    background-color: #242D00;
 }
 
 .breadcrumbs {
-	background-color: rgba(0, 0, 0, 0) !important;
-	border-color: rgba(0, 0, 0, 0) !important;
+    background-color: rgba(0, 0, 0, 0) !important;
+    border-color: rgba(0, 0, 0, 0) !important;
 }
 
 .articl {
-	background-color: #F0FCC6;
-	border-radius: 10px;
-	border: 1px solid;
-	border-color: rgba(0, 0, 0, 0.2);
-	padding-left: 20px;
-	padding-right: 20px;
-	padding-top: 50 px;
+    background-color: #F0FCC6;
+    border-radius: 10px;
+    border: 1px solid;
+    border-color: rgba(0, 0, 0, 0.2);
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 50px;
 }
 
 .wiki {
-	background-color: #F0FCC6;
-	border-radius: 10px;
-	border: 1px solid;
-	border-color: rgba(0, 0, 0, 0.2);
-	padding-left: 20px;
-	padding-right: 20px;
-	padding-top: 20px;
-	min-height: 400px;
+    background-color: #F0FCC6;
+    border-radius: 10px;
+    border: 1px solid;
+    border-color: rgba(0, 0, 0, 0.2);
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 20px;
+    min-height: 400px;
 }
 
 .personn {
-	background-color: #B2D5DF;
-	border-radius: 10px;
-	border: 1px solid;
-	border-color: rgba(0, 0, 0, 0.2);
-	padding-left: 20px;
-	padding-right: 20px;
+    background-color: #B2D5DF;
+    border-radius: 10px;
+    border: 1px solid;
+    border-color: rgba(0, 0, 0, 0.2);
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 .group {
-	background-color: #B2D5DF;
-	border-radius: 10px;
-	border: 1px solid;
-	border-color: rgba(0, 0, 0, 0.2);
-	padding-left: 20px;
-	padding-right: 20px;
+    background-color: #B2D5DF;
+    border-radius: 10px;
+    border: 1px solid;
+    border-color: rgba(0, 0, 0, 0.2);
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 .account {
-	background-color: #B2D5DF;
+    background-color: #B2D5DF;
 }
 
 .header-link {
-	color: #6B8600;
+    color: #6B8600;
 }
 
 /*.top-bar,.top-bar-section *{
@@ -96,35 +96,106 @@ background: background-color: #6B8600!important;
 }
 */
 #body {
-	padding-top: 5px;
+    padding-top: 5px;
 }
 
 .hidden {
-	display: none;
+    display: none;
 }
 
-body>footer {
-	margin-top: 25px;
+body > footer {
+    margin-top: 25px;
 }
 
 header {
-	width: 100%;
-	height: 60px;
-	position: fixed;
-	top: 0;
-	z-index: 900;
-	background-color: white;
+    width: 100%;
+    height: 60px;
+    position: fixed;
+    top: 0;
+    z-index: 900;
+    background-color: white;
 }
 
 .corps {
-	padding-top: 200px;
-	margin: 0 auto;
+    padding-top: 200px;
+    margin: 0 auto;
 }
 
 .exit-off-canvas {
-	display: none !important;
+    display: none !important;
 }
 
 select {
-  -webkit-appearance: menulist-button !important;
+    -webkit-appearance: menulist-button !important;
+}
+
+.table-wiki {
+    background: #F1FCC9;
+    border-collapse: collapse;
+
+    border: none;
+}
+
+.table-wiki caption {
+    background: transparent;
+    color: #222222;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.table-wiki thead {
+    background: #242D00;
+    border: none;
+}
+
+.table-wiki thead tr th,
+.table-wiki thead tr td {
+    font-size: 0.875rem;
+    font-weight: bold;
+    border: none;
+    color: #FFFFFF;
+}
+
+.table-wiki tfoot {
+    background: #F5F5F5;
+    border: none;
+}
+
+.table-wiki tfoot tr th,
+.table-wiki tfoot tr td {
+    padding: 0.5rem 0.625rem 0.625rem;
+    font-size: 0.875rem;
+    font-weight: bold;
+    color: #222222;
+}
+
+.table-wiki tr th,
+.table-wiki tr td {
+    padding: 0.5625rem 0.625rem;
+    font-size: 0.875rem;
+    color: #222222;
+    border: none;
+    text-align: left;
+}
+
+.table-wiki tr.even, table tr.alt, table tr:nth-of-type(even) {
+    background: #F9F9F9;
+}
+
+.table-wiki thead tr th,
+.table-wiki tfoot tr th,
+.table-wiki tfoot tr td,
+.table-wiki tbody tr th,
+.table-wiki tbody tr td,
+.table-wiki tr td {
+    display: table-cell;
+    line-height: 1.125rem;
+}
+
+.very-tiny{
+    padding-left:1rem;
+    padding-right:1rem;
+    padding-top:0.625rem;
+    padding-bottom:0.625rem;
+    font-size: 0.6875rem
 }

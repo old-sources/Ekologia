@@ -47,7 +47,7 @@ public class GroupPresentationServlet extends EkologiaServlet {
             if (groupDTO != null) {
                 List<WikiDTO> wikiDTOList = wikiService.findRootsByGroup(globalRequestScope.getLanguage(), groupDTO.getId());
                 
-                request.setAttribute(GroupConstants.ATTRIBUTE_GROUP, groupDTO);
+                request.setAttribute(GroupConstants.ATTRIBUTE_GROUP_DTO, groupDTO);
                 request.setAttribute(GroupConstants.ATTRIBUTE_WIKILIST, wikiDTOList);
                 forwardToJsp("group/groupPresentation.jsp", request, response);
             } else {
