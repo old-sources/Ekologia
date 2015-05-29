@@ -47,4 +47,18 @@ public class ListUtilities implements ListUtilitiesInterface {
 		}
 		return result;
 	}
+
+	@Override
+	public <A> boolean isEmpty(List<A> list) {
+		return list == null || list.isEmpty();
+	}
+
+	@Override
+	public <A> A firstOrNull(List<A> list) {
+		if (!isEmpty(list)) {
+			return list.get(0);
+		} else {
+			return null;
+		}
+	}
 }

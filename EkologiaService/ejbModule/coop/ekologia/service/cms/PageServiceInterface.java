@@ -21,4 +21,6 @@ public interface PageServiceInterface {
 
 	public void deletePage(PageDTO dto);
 
+	boolean exists( String url );
+
 }
