@@ -3,21 +3,19 @@
  */
 package coop.ekologia.service.security;
 
-import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import coop.ekologia.DTO.user.UserDTO;
+import coop.ekologia.entity.security.Security;
+import coop.ekologia.service.mapper.user.UserMapper;
+import coop.ekologia.service.user.UserServiceInterface;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-
-import coop.ekologia.DTO.user.UserDTO;
-import coop.ekologia.entity.security.Security;
-import coop.ekologia.entity.user.User;
-import coop.ekologia.service.mapper.user.UserMapper;
-import coop.ekologia.service.user.UserServiceInterface;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @author imie

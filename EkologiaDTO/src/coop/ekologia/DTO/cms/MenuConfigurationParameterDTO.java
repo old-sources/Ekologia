@@ -1,8 +1,5 @@
 package coop.ekologia.DTO.cms;
 
-import jdk.nashorn.api.scripting.JSObject;
-import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.List;
 
