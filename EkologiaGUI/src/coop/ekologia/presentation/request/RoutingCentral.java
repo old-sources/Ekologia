@@ -9,12 +9,10 @@ import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
 
 import coop.ekologia.presentation.constants.GroupWikiConstants;
-import coop.ekologia.presentation.controller.cms.HomeServlet;
-import coop.ekologia.presentation.controller.cms.PageFormServlet;
-import coop.ekologia.presentation.controller.cms.PageListServlet;
-import coop.ekologia.presentation.controller.cms.PageServlet;
+import coop.ekologia.presentation.controller.cms.*;
 import coop.ekologia.presentation.controller.group.*;
 import coop.ekologia.presentation.controller.group.wiki.WikiCreateServlet;
+import coop.ekologia.presentation.controller.group.wiki.WikiListServlet;
 import coop.ekologia.presentation.controller.group.wiki.WikiReadServlet;
 import coop.ekologia.presentation.controller.group.wiki.WikiUpdateServlet;
 import coop.ekologia.presentation.controller.user.*;
@@ -112,6 +110,18 @@ public class RoutingCentral {
 
     public String getRegistration() {
         return servletUtil.getUrl(RegistrationServlet.routing);
+    }
+
+    public String getWikiList(String groupCanonical) {
+        return servletUtil.getUrl(WikiListServlet.routing, map("groupCanonical", groupCanonical));
+    }
+
+    public String getMenuManagement(String role) {
+        return servletUtil.getUrl(MenuServlet.routing, map("role", role));
+    }
+
+    public String getMenuListManagement() {
+        return servletUtil.getUrl(MenuListServlet.routing);
     }
 
     /**

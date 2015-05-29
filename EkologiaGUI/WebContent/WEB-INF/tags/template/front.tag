@@ -25,6 +25,8 @@
 	media="all" />
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/style.css" media="all" />
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/jstree/style.min.css" media="all" />
 
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/JQuery/jquery-2.1.3.min.js"></script>
@@ -32,6 +34,8 @@
 	src="${pageContext.request.contextPath}/script/uikit.min.js"></script>
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/script/foundation.min.js"></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/jstree/jstree.min.js"></script>
 <jsp:invoke fragment="head" />
 <title>Ekologia</title>
 </head>

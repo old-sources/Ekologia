@@ -8,9 +8,10 @@ public interface GroupWikiConstants {
     
     String ATTRIBUTE_WIKI = "wiki";
     String ATTRIBUTE_PARENT = "parent";
-    String ATTRIBUTE_GROUPDTO = "groupDTO";
+    String ATTRIBUTE_GROUP_DTO = GroupConstants.ATTRIBUTE_GROUP_DTO; // We share the same attribute.
     String ATTRIBUTE_WIKI_CANONICAL = "wikiCanonical";
     String ATTRIBUTE_GROUP_CANONICAL = "groupCanonical";
     String ATTRIBUTE_ERRORS = "errors";
     String ATTRIBUTE_FORM_ROUTE = "formRoute";
+    String ATTRIBUTE_WIKI_LIST = "wikiList";
 }

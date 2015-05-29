@@ -152,4 +152,15 @@ public class WikiDTO implements Serializable {
 	public List<WikiDTO> getParents() {
 	    return getParents(false);
 	}
+
+	public WikiversionDTO getLastVersion() {
+		Collection<WikiversionDTO> wikis = getVersions();
+		WikiversionDTO last = null;
+		for (WikiversionDTO wiki: wikis) {
+			if (last == null || last.getDate().compareTo(wiki.getDate()) < 0) {
+				last = wiki;
+			}
+		}
+		return last;
+	}
 }

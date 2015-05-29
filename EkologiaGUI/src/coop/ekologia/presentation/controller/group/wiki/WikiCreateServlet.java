@@ -73,9 +73,9 @@ public class WikiCreateServlet extends EkologiaServlet {
         if (constraintsService.isEmpty(content)) {
             formErrors.addError(GroupWikiConstants.PARAMETER_CONTENT, "group_wiki.content.empty");
         }
-        if (constraintsService.isNotEmpty(image) && constraintsService.isNotUrl(image)) {
+        /*if (constraintsService.isNotEmpty(image) && constraintsService.isNotUrl(image)) {
             formErrors.addError(GroupWikiConstants.PARAMETER_IMAGE, "group_wiki.image.noturl");
-        }
+        }*/
 
         if (formErrors.isEmpty()) {
             WikiDTO wikiDTO = new WikiDTO();
@@ -100,7 +100,7 @@ public class WikiCreateServlet extends EkologiaServlet {
                 wikiDTO.setParent(parentWikiDTO);
             }
 
-            wikiDTO.setGroup((GroupDTO) request.getAttribute(GroupWikiConstants.ATTRIBUTE_GROUPDTO));
+            wikiDTO.setGroup((GroupDTO) request.getAttribute(GroupWikiConstants.ATTRIBUTE_GROUP_DTO));
 
             wikiDTO = wikiService.create(wikiDTO);
 

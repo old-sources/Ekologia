@@ -88,4 +88,8 @@ public class PageService implements PageServiceInterface {
 
 	}
 
+	@Override
+	public boolean exists(String url) {
+		return getPageFromUrl(url) != null;
+	}
 }

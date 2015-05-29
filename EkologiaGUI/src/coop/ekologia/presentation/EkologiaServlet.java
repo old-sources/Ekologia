@@ -1,6 +1,8 @@
 package coop.ekologia.presentation;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;
@@ -11,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import coop.ekologia.presentation.request.GlobalRequestScope;
 import coop.ekologia.presentation.session.LoginSession;
+import coop.ekologia.presentation.session.MenuApplication;
 
 public abstract class EkologiaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -20,6 +23,9 @@ public abstract class EkologiaServlet extends HttpServlet {
 	
 	@Inject
 	protected GlobalRequestScope globalRequestScope;
+
+	@Inject
+	protected MenuApplication menuApplication;
 
 	/**
 	 * Returns the absolute path to the jsp.
@@ -52,9 +58,22 @@ public abstract class EkologiaServlet extends HttpServlet {
 	protected void forwardToJsp(String name, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setAttribute("connectedUser", loginSession.getUser());
 		request.setAttribute("currentLanguage", globalRequestScope.getLanguage());
+		request.setAttribute("globalMenus", menuApplication.findByLanguage(globalRequestScope.getLanguage()));
+		request.setAttribute("applicationRoles", getRoles());
 		
 		RequestDispatcher result = request.getRequestDispatcher(getJsp(name));
 		result.forward(request, response);
+	}
+
+	/**
+	 * This method returns the whole list of roles usable in current application.
+	 */
+	private Map<String, String> getRoles() {
+		// TODO: take roles from database as soon as the development is done.
+		Map<String, String> result = new HashMap<String, String>();
+		result.put("all", "Tous");
+		result.put("admin", "Admin");
+		return result;
 	}
     
 	@Deprecated

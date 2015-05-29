@@ -1,4 +1,4 @@
-﻿CREATE TABLE statut (
+﻿﻿CREATE TABLE statut (
     id serial NOT NULL,
     code character varying(10),
     CONSTRAINT statut_pkey PRIMARY KEY (id)

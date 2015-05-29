@@ -2,10 +2,6 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 9.3.4
--- Dumped by pg_dump version 9.3.4
--- Started on 2015-01-29 01:11:19 CET
-
 SET statement_timeout = 0;
 SET lock_timeout = 0;
 SET client_encoding = 'UTF8';
@@ -16,46 +12,57 @@ SET client_min_messages = warning;
 SET search_path = public, pg_catalog;
 
 --
--- TOC entry 2021 (class 0 OID 91321)
--- Dependencies: 175
--- Data for Name: account; Type: TABLE DATA; Schema: public; Owner: postgres
+-- Data for Name: account; Type: TABLE DATA; Schema: public; Owner: ekologia
 --
 
--- user de test admin : mot de passe : Sociocr@tie2
 INSERT INTO account (id, email, password, phone_number, addressstreet, addresszipcode, addresscity, country, avatar, description, roles, salt, discriminator, firstname, lastname, birthday, orgname, activity, type) VALUES (26, 'contact@ekologia.coop', '$6$FiRAMp48IE$p4YcKd27pHrPw3Y0Aax1yfEvGh2nzgFYLtlDGu/6yKlBHp1z.gYDAWKK3WXo19olb28aP41pWlNH4y4q2SXZB/', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'admin', '$6$FiRAMp48IE', 'i', '', '', '2015-03-01 00:00:00', NULL, NULL, NULL);
-
-
-
---
--- TOC entry 2035 (class 0 OID 0)
--- Dependencies: 174
--- Name: account_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('account_id_seq', 22, true);
+INSERT INTO account (id, email, password, phone_number, addressstreet, addresszipcode, addresscity, country, avatar, description, roles, salt, discriminator, firstname, lastname, birthday, orgname, activity, type) VALUES (23, 'aze@aze.aze', 'aze123', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, 'i', NULL, NULL, NULL, NULL, NULL, NULL);
 
 
 --
--- TOC entry 2023 (class 0 OID 91333)
--- Dependencies: 177
--- Data for Name: group; Type: TABLE DATA; Schema: public; Owner: postgres
+-- Name: account_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ekologia
 --
 
-
-
---
--- TOC entry 2036 (class 0 OID 0)
--- Dependencies: 176
--- Name: group_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('group_id_seq', 1, false);
+SELECT pg_catalog.setval('account_id_seq', 23, true);
 
 
 --
--- TOC entry 2017 (class 0 OID 91299)
--- Dependencies: 171
--- Data for Name: page; Type: TABLE DATA; Schema: public; Owner: postgres
+-- Data for Name: group; Type: TABLE DATA; Schema: public; Owner: ekologia
+--
+
+INSERT INTO "group" (id, name, canonical, description, icon) VALUES (2, 'Test 2', 'test-2', 'Test 2					
+					', NULL);
+INSERT INTO "group" (id, name, canonical, description, icon) VALUES (4, 'qdfd', 'qdfd', 'dsqsdfqsdf', NULL);
+INSERT INTO "group" (id, name, canonical, description, icon) VALUES (1, 'Groupe 1', 'groupe-1', 'groupe-1', 'http://localhost:8080/Ekologia/image/group-default.png');
+INSERT INTO "group" (id, name, canonical, description, icon) VALUES (5, 'Groupe x', 'groupe-x', 'quelque chose', NULL);
+
+
+--
+-- Name: group_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ekologia
+--
+
+SELECT pg_catalog.setval('group_id_seq', 5, true);
+
+
+--
+-- Data for Name: menu; Type: TABLE DATA; Schema: public; Owner: ekologia
+--
+
+INSERT INTO menu (id, lang, role, json) VALUES (3, 'en', 'admin', '[]');
+INSERT INTO menu (id, lang, role, json) VALUES (4, 'en', 'all', '[]');
+INSERT INTO menu (id, lang, role, json) VALUES (1, 'fr', 'all', '[{"name":"home","route":"home","children":[]},{"name":"Qui sommes-nous ?","route":"page","parameters":{"canonical":"qui-sommes-nous"},"children":[]}]');
+INSERT INTO menu (id, lang, role, json) VALUES (2, 'fr', 'admin', '[{"name":"Comptes","route":"userList","parameters":{},"children":[]},{"name":"Menus","route":"menuListManagement","parameters":{},"children":[]},{"name":"Pages","route":"pageList","parameters":{},"children":[]},{"name":"Liste des groupes","route":"adminGroupList","parameters":{},"children":[]}]');
+
+
+--
+-- Name: menu_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ekologia
+--
+
+SELECT pg_catalog.setval('menu_id_seq', 4, true);
+
+
+--
+-- Data for Name: page; Type: TABLE DATA; Schema: public; Owner: ekologia
 --
 
 INSERT INTO page (id, url, javascript, html, css) VALUES (1, 'home', NULL, '<div class="uk-grid" data-uk-grid-margin="">
@@ -196,92 +203,81 @@ INSERT INTO page (id, url, javascript, html, css) VALUES (9, 'communaute', NULL,
 
 
 --
--- TOC entry 2037 (class 0 OID 0)
--- Dependencies: 170
--- Name: page_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Name: page_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ekologia
 --
 
 SELECT pg_catalog.setval('page_id_seq', 10, true);
 
 
 --
--- TOC entry 2019 (class 0 OID 91310)
--- Dependencies: 173
--- Data for Name: security; Type: TABLE DATA; Schema: public; Owner: postgres
+-- Data for Name: security; Type: TABLE DATA; Schema: public; Owner: ekologia
 --
 
 INSERT INTO security (id, url, diseable) VALUES (2, 'admin/*', NULL);
 
 
 --
--- TOC entry 2038 (class 0 OID 0)
--- Dependencies: 172
--- Name: security_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Name: security_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ekologia
 --
 
 SELECT pg_catalog.setval('security_id_seq', 2, true);
 
 
 --
--- TOC entry 2024 (class 0 OID 91344)
--- Dependencies: 178
--- Data for Name: user_group; Type: TABLE DATA; Schema: public; Owner: postgres
+-- Data for Name: user_group; Type: TABLE DATA; Schema: public; Owner: ekologia
+--
+
+INSERT INTO user_group (user_id, group_id, requested, accepted, roles) VALUES (26, 1, '2015-04-03', '2015-04-03', 'admin');
+INSERT INTO user_group (user_id, group_id, requested, accepted, roles) VALUES (26, 2, '2015-04-03', '2015-04-03', 'admin');
+INSERT INTO user_group (user_id, group_id, requested, accepted, roles) VALUES (26, 4, '2015-04-03', '2015-04-03', 'admin');
+INSERT INTO user_group (user_id, group_id, requested, accepted, roles) VALUES (26, 5, '2015-04-03', '2015-04-03', 'admin');
+INSERT INTO user_group (user_id, group_id, requested, accepted, roles) VALUES (23, 5, '2015-04-03', '2015-04-03', 'admin');
+
+
+--
+-- Data for Name: wiki; Type: TABLE DATA; Schema: public; Owner: ekologia
+--
+
+INSERT INTO wiki (id, title, language, canonical, editable, visible, group_id, parent_id) VALUES (2, 'aze', 'fr', 'aze', true, true, 1, NULL);
+INSERT INTO wiki (id, title, language, canonical, editable, visible, group_id, parent_id) VALUES (3, 'Ceci est mon titre', 'fr', 'ceci-est-mon-titre', true, true, 1, NULL);
+INSERT INTO wiki (id, title, language, canonical, editable, visible, group_id, parent_id) VALUES (4, 'test', 'fr', 'test', true, true, 1, NULL);
+
+
+--
+-- Name: wiki_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ekologia
+--
+
+SELECT pg_catalog.setval('wiki_id_seq', 4, true);
+
+
+--
+-- Data for Name: wikicomment; Type: TABLE DATA; Schema: public; Owner: ekologia
 --
 
 
 
 --
--- TOC entry 2026 (class 0 OID 91356)
--- Dependencies: 180
--- Data for Name: wiki; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-
-
---
--- TOC entry 2039 (class 0 OID 0)
--- Dependencies: 179
--- Name: wiki_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('wiki_id_seq', 1, false);
-
-
---
--- TOC entry 2030 (class 0 OID 91396)
--- Dependencies: 184
--- Data for Name: wikicomment; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-
-
---
--- TOC entry 2040 (class 0 OID 0)
--- Dependencies: 183
--- Name: wikicomment_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Name: wikicomment_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ekologia
 --
 
 SELECT pg_catalog.setval('wikicomment_id_seq', 1, false);
 
 
 --
--- TOC entry 2028 (class 0 OID 91379)
--- Dependencies: 182
--- Data for Name: wikiversion; Type: TABLE DATA; Schema: public; Owner: postgres
+-- Data for Name: wikiversion; Type: TABLE DATA; Schema: public; Owner: ekologia
 --
 
+INSERT INTO wikiversion (id, date, content, active, wiki_id, user_id, image) VALUES (1, '2015-04-03', 'eaz', true, 2, 26, '/Ekologia/image/wiki-default.png');
+INSERT INTO wikiversion (id, date, content, active, wiki_id, user_id, image) VALUES (2, '2015-04-03', 'Ceci est mon contenu.', true, 3, 26, '/Ekologia/image/wiki-default.png');
+INSERT INTO wikiversion (id, date, content, active, wiki_id, user_id, image) VALUES (3, '2015-04-03', '<script>alert(''plop'')</script>', true, 4, 26, '/Ekologia/image/wiki-default.png');
 
 
 --
--- TOC entry 2041 (class 0 OID 0)
--- Dependencies: 181
--- Name: wikiversion_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Name: wikiversion_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ekologia
 --
 
-SELECT pg_catalog.setval('wikiversion_id_seq', 1, false);
+SELECT pg_catalog.setval('wikiversion_id_seq', 3, true);
 
-
--- Completed on 2015-01-29 01:11:20 CET
 
 --
 -- PostgreSQL database dump complete

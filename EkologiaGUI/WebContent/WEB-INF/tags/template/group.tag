@@ -18,12 +18,15 @@
 				<aside class="left-off-canvas-menu">
 					<!-- whatever you want goes here -->
 					<ul class="off-canvas-list">
-						<li><label>Wiki</label></li>
-						<li><a href="#">Wiki Admin</a></li>
-						<li><a href="#">Wiki Group</a></li>
-						<li><label>ABCDEF</label></li>
+						<li><label>${groupDTO.name}</label></li>
+						<li><a href="${routing.getGroup(groupDTO.canonical)}">Présentation</a></li>
+						<li><a href="${routing.getWikiList(groupDTO.canonical)}">Wiki</a></li>
+						<%--<li><label>Wiki</label></li>--%>
+						<%--<li><a href="">Wiki</a></li>--%>
+						<%--<li><a href="#">Wiki Group</a></li>--%>
+						<%--<li><label>ABCDEF</label></li>
 						<li><a href="#">Partenaire</a></li>
-						<li><a href="#">Rejoindre</a></li>
+						<li><a href="#">Rejoindre</a></li>--%>
 					</ul>
 				</aside>
 				<!-- main content goes here -->

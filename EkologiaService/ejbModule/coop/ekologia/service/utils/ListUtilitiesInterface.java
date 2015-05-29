@@ -15,4 +15,7 @@ public interface ListUtilitiesInterface {
 
 	public abstract List<String> split(String str, String separator);
 
+	<A> boolean isEmpty(List<A> list);
+
+	<A> A firstOrNull(List<A> list);
 }
