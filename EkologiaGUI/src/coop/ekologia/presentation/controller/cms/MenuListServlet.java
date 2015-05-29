@@ -58,6 +58,7 @@ public class MenuListServlet extends EkologiaServlet {
         // TODO: take roles from database as soon as the development is done.
         Map<String, String> result = new HashMap<String, String>();
         result.put("all", "Tous");
+        result.put("admin", "Admin");
         return result;
     }
 }

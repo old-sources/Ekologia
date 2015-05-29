@@ -6,8 +6,8 @@ import coop.ekologia.DTO.cms.MenuConfigurationParameterDTO.MenuConfigurationPara
 import coop.ekologia.DTO.cms.MenuDTO;
 import coop.ekologia.presentation.EkologiaServlet;
 import coop.ekologia.presentation.constants.CmsConstants;
-import coop.ekologia.presentation.controller.FormErrors;
 import coop.ekologia.presentation.request.RoutingCentral;
+import coop.ekologia.presentation.session.MenuApplication;
 import coop.ekologia.service.cms.MenuServiceInterface;
 import coop.ekologia.service.cms.PageServiceInterface;
 import coop.ekologia.service.utils.StringUtilitiesInterface;
@@ -42,6 +42,9 @@ public class MenuServlet extends EkologiaServlet {
     @Inject
     private RoutingCentral router;
 
+    @Inject
+    private MenuApplication menuApplication;
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Matcher m = Pattern.compile("\\w*\\/menu\\/(\\S*)")
@@ -75,6 +78,7 @@ public class MenuServlet extends EkologiaServlet {
 
                 menu.setJson(strJson);
                 menuService.update(menu);
+                menuApplication.invalidate(getCurrentLanguage(request), role);
                 response.sendRedirect(router.getMenuListManagement());
             } else {
                 forwardToJsp("cms/menuNotFound", request, response);
@@ -106,7 +110,15 @@ public class MenuServlet extends EkologiaServlet {
                                                 return pageService.exists(value);
                                             }
                                         })
-                        )
+                        ),
+                new MenuConfigurationDTO()
+                        .setCode("userList"),
+                new MenuConfigurationDTO()
+                        .setCode("pageList"),
+                new MenuConfigurationDTO()
+                        .setCode("adminGroupList"),
+                new MenuConfigurationDTO()
+                    .setCode("menuListManagement")
         );
     }
 }
