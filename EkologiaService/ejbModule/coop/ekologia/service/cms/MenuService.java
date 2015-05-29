@@ -37,7 +37,7 @@ public class MenuService implements MenuServiceInterface {
     @Override
     public void update(MenuDTO menuDTO) {
         Menu menu = menuMapper.mapToEntity(menuDTO);
-        entityManager.persist(menu);
+        entityManager.merge(menu);
         entityManager.flush();
     }
 }

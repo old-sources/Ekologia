@@ -121,7 +121,7 @@ public class RoutingCentral {
     }
 
     public String getMenuListManagement() {
-        return "";
+        return servletUtil.getUrl(MenuListServlet.routing);
     }
 
     /**
