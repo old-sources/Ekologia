@@ -63,11 +63,11 @@ ALTER TABLE public.account OWNER TO ekologia;
 --
 
 CREATE SEQUENCE account_id_seq
-START WITH 1
-INCREMENT BY 1
-NO MINVALUE
-NO MAXVALUE
-CACHE 1;
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
 
 
 ALTER TABLE public.account_id_seq OWNER TO ekologia;
@@ -99,11 +99,11 @@ ALTER TABLE public."group" OWNER TO ekologia;
 --
 
 CREATE SEQUENCE group_id_seq
-START WITH 1
-INCREMENT BY 1
-NO MINVALUE
-NO MAXVALUE
-CACHE 1;
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
 
 
 ALTER TABLE public.group_id_seq OWNER TO ekologia;
@@ -134,11 +134,11 @@ ALTER TABLE public.menu OWNER TO ekologia;
 --
 
 CREATE SEQUENCE menu_id_seq
-START WITH 1
-INCREMENT BY 1
-NO MINVALUE
-NO MAXVALUE
-CACHE 1;
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
 
 
 ALTER TABLE public.menu_id_seq OWNER TO ekologia;
@@ -170,11 +170,11 @@ ALTER TABLE public.page OWNER TO ekologia;
 --
 
 CREATE SEQUENCE page_id_seq
-START WITH 1
-INCREMENT BY 1
-NO MINVALUE
-NO MAXVALUE
-CACHE 1;
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
 
 
 ALTER TABLE public.page_id_seq OWNER TO ekologia;
@@ -184,6 +184,142 @@ ALTER TABLE public.page_id_seq OWNER TO ekologia;
 --
 
 ALTER SEQUENCE page_id_seq OWNED BY page.id;
+
+
+--
+-- Name: role_user; Type: TABLE; Schema: public; Owner: ekologia; Tablespace: 
+--
+
+CREATE TABLE role_user (
+    id integer NOT NULL,
+    code character varying(10)
+);
+
+
+ALTER TABLE public.role_user OWNER TO ekologia;
+
+--
+-- Name: role_user_group; Type: TABLE; Schema: public; Owner: ekologia; Tablespace: 
+--
+
+CREATE TABLE role_user_group (
+    id integer NOT NULL,
+    code character varying(10)
+);
+
+
+ALTER TABLE public.role_user_group OWNER TO ekologia;
+
+--
+-- Name: role_user_group_id_seq; Type: SEQUENCE; Schema: public; Owner: ekologia
+--
+
+CREATE SEQUENCE role_user_group_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.role_user_group_id_seq OWNER TO ekologia;
+
+--
+-- Name: role_user_group_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ekologia
+--
+
+ALTER SEQUENCE role_user_group_id_seq OWNED BY role_user_group.id;
+
+
+--
+-- Name: role_user_group_lang; Type: TABLE; Schema: public; Owner: ekologia; Tablespace: 
+--
+
+CREATE TABLE role_user_group_lang (
+    id integer NOT NULL,
+    description character varying(255),
+    langue character varying(2),
+    role_user_group_id integer NOT NULL
+);
+
+
+ALTER TABLE public.role_user_group_lang OWNER TO ekologia;
+
+--
+-- Name: role_user_group_lang_id_seq; Type: SEQUENCE; Schema: public; Owner: ekologia
+--
+
+CREATE SEQUENCE role_user_group_lang_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.role_user_group_lang_id_seq OWNER TO ekologia;
+
+--
+-- Name: role_user_group_lang_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ekologia
+--
+
+ALTER SEQUENCE role_user_group_lang_id_seq OWNED BY role_user_group_lang.id;
+
+
+--
+-- Name: role_user_id_seq; Type: SEQUENCE; Schema: public; Owner: ekologia
+--
+
+CREATE SEQUENCE role_user_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.role_user_id_seq OWNER TO ekologia;
+
+--
+-- Name: role_user_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ekologia
+--
+
+ALTER SEQUENCE role_user_id_seq OWNED BY role_user.id;
+
+
+--
+-- Name: role_user_lang; Type: TABLE; Schema: public; Owner: ekologia; Tablespace: 
+--
+
+CREATE TABLE role_user_lang (
+    id integer NOT NULL,
+    description character varying(255),
+    langue character varying(2),
+    role_user_id integer NOT NULL
+);
+
+
+ALTER TABLE public.role_user_lang OWNER TO ekologia;
+
+--
+-- Name: role_user_lang_id_seq; Type: SEQUENCE; Schema: public; Owner: ekologia
+--
+
+CREATE SEQUENCE role_user_lang_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.role_user_lang_id_seq OWNER TO ekologia;
+
+--
+-- Name: role_user_lang_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ekologia
+--
+
+ALTER SEQUENCE role_user_lang_id_seq OWNED BY role_user_lang.id;
 
 
 --
@@ -204,11 +340,11 @@ ALTER TABLE public.security OWNER TO ekologia;
 --
 
 CREATE SEQUENCE security_id_seq
-START WITH 1
-INCREMENT BY 1
-NO MINVALUE
-NO MAXVALUE
-CACHE 1;
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
 
 
 ALTER TABLE public.security_id_seq OWNER TO ekologia;
@@ -218,6 +354,74 @@ ALTER TABLE public.security_id_seq OWNER TO ekologia;
 --
 
 ALTER SEQUENCE security_id_seq OWNED BY security.id;
+
+
+--
+-- Name: statut; Type: TABLE; Schema: public; Owner: ekologia; Tablespace: 
+--
+
+CREATE TABLE statut (
+    id integer NOT NULL,
+    code character varying(10)
+);
+
+
+ALTER TABLE public.statut OWNER TO ekologia;
+
+--
+-- Name: statut_id_seq; Type: SEQUENCE; Schema: public; Owner: ekologia
+--
+
+CREATE SEQUENCE statut_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.statut_id_seq OWNER TO ekologia;
+
+--
+-- Name: statut_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ekologia
+--
+
+ALTER SEQUENCE statut_id_seq OWNED BY statut.id;
+
+
+--
+-- Name: statut_lang; Type: TABLE; Schema: public; Owner: ekologia; Tablespace: 
+--
+
+CREATE TABLE statut_lang (
+    id integer NOT NULL,
+    description character varying(255),
+    langue character varying(2),
+    statut_id integer NOT NULL
+);
+
+
+ALTER TABLE public.statut_lang OWNER TO ekologia;
+
+--
+-- Name: statut_lang_id_seq; Type: SEQUENCE; Schema: public; Owner: ekologia
+--
+
+CREATE SEQUENCE statut_lang_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.statut_lang_id_seq OWNER TO ekologia;
+
+--
+-- Name: statut_lang_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ekologia
+--
+
+ALTER SEQUENCE statut_lang_id_seq OWNED BY statut_lang.id;
 
 
 --
@@ -234,6 +438,43 @@ CREATE TABLE user_group (
 
 
 ALTER TABLE public.user_group OWNER TO ekologia;
+
+--
+-- Name: user_group_role_user_group; Type: TABLE; Schema: public; Owner: ekologia; Tablespace: 
+--
+
+CREATE TABLE user_group_role_user_group (
+    user_group_user_id integer NOT NULL,
+    user_group_group_id integer NOT NULL,
+    role_user_group_id integer NOT NULL
+);
+
+
+ALTER TABLE public.user_group_role_user_group OWNER TO ekologia;
+
+--
+-- Name: user_role_user; Type: TABLE; Schema: public; Owner: ekologia; Tablespace: 
+--
+
+CREATE TABLE user_role_user (
+    user_id integer NOT NULL,
+    role_user_id integer NOT NULL
+);
+
+
+ALTER TABLE public.user_role_user OWNER TO ekologia;
+
+--
+-- Name: user_statut; Type: TABLE; Schema: public; Owner: ekologia; Tablespace: 
+--
+
+CREATE TABLE user_statut (
+    user_id integer NOT NULL,
+    statut_id integer NOT NULL
+);
+
+
+ALTER TABLE public.user_statut OWNER TO ekologia;
 
 --
 -- Name: wiki; Type: TABLE; Schema: public; Owner: ekologia; Tablespace: 
@@ -258,11 +499,11 @@ ALTER TABLE public.wiki OWNER TO ekologia;
 --
 
 CREATE SEQUENCE wiki_id_seq
-START WITH 1
-INCREMENT BY 1
-NO MINVALUE
-NO MAXVALUE
-CACHE 1;
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
 
 
 ALTER TABLE public.wiki_id_seq OWNER TO ekologia;
@@ -296,11 +537,11 @@ ALTER TABLE public.wikicomment OWNER TO ekologia;
 --
 
 CREATE SEQUENCE wikicomment_id_seq
-START WITH 1
-INCREMENT BY 1
-NO MINVALUE
-NO MAXVALUE
-CACHE 1;
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
 
 
 ALTER TABLE public.wikicomment_id_seq OWNER TO ekologia;
@@ -334,11 +575,11 @@ ALTER TABLE public.wikiversion OWNER TO ekologia;
 --
 
 CREATE SEQUENCE wikiversion_id_seq
-START WITH 1
-INCREMENT BY 1
-NO MINVALUE
-NO MAXVALUE
-CACHE 1;
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
 
 
 ALTER TABLE public.wikiversion_id_seq OWNER TO ekologia;
@@ -382,7 +623,49 @@ ALTER TABLE ONLY page ALTER COLUMN id SET DEFAULT nextval('page_id_seq'::regclas
 -- Name: id; Type: DEFAULT; Schema: public; Owner: ekologia
 --
 
+ALTER TABLE ONLY role_user ALTER COLUMN id SET DEFAULT nextval('role_user_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ekologia
+--
+
+ALTER TABLE ONLY role_user_group ALTER COLUMN id SET DEFAULT nextval('role_user_group_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ekologia
+--
+
+ALTER TABLE ONLY role_user_group_lang ALTER COLUMN id SET DEFAULT nextval('role_user_group_lang_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ekologia
+--
+
+ALTER TABLE ONLY role_user_lang ALTER COLUMN id SET DEFAULT nextval('role_user_lang_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ekologia
+--
+
 ALTER TABLE ONLY security ALTER COLUMN id SET DEFAULT nextval('security_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ekologia
+--
+
+ALTER TABLE ONLY statut ALTER COLUMN id SET DEFAULT nextval('statut_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ekologia
+--
+
+ALTER TABLE ONLY statut_lang ALTER COLUMN id SET DEFAULT nextval('statut_lang_id_seq'::regclass);
 
 
 --
@@ -411,7 +694,7 @@ ALTER TABLE ONLY wikiversion ALTER COLUMN id SET DEFAULT nextval('wikiversion_id
 --
 
 ALTER TABLE ONLY menu
-ADD CONSTRAINT menu_pkey PRIMARY KEY (id);
+    ADD CONSTRAINT menu_pkey PRIMARY KEY (id);
 
 
 --
@@ -419,7 +702,7 @@ ADD CONSTRAINT menu_pkey PRIMARY KEY (id);
 --
 
 ALTER TABLE ONLY page
-ADD CONSTRAINT pages_pkey PRIMARY KEY (id);
+    ADD CONSTRAINT pages_pkey PRIMARY KEY (id);
 
 
 --
@@ -427,7 +710,7 @@ ADD CONSTRAINT pages_pkey PRIMARY KEY (id);
 --
 
 ALTER TABLE ONLY "group"
-ADD CONSTRAINT pk_group PRIMARY KEY (id);
+    ADD CONSTRAINT pk_group PRIMARY KEY (id);
 
 
 --
@@ -435,7 +718,63 @@ ADD CONSTRAINT pk_group PRIMARY KEY (id);
 --
 
 ALTER TABLE ONLY user_group
-ADD CONSTRAINT pk_user_group PRIMARY KEY (user_id, group_id);
+    ADD CONSTRAINT pk_user_group PRIMARY KEY (user_id, group_id);
+
+
+--
+-- Name: pk_user_group_role_user_group; Type: CONSTRAINT; Schema: public; Owner: ekologia; Tablespace: 
+--
+
+ALTER TABLE ONLY user_group_role_user_group
+    ADD CONSTRAINT pk_user_group_role_user_group PRIMARY KEY (user_group_user_id, user_group_group_id, role_user_group_id);
+
+
+--
+-- Name: pk_user_role_user; Type: CONSTRAINT; Schema: public; Owner: ekologia; Tablespace: 
+--
+
+ALTER TABLE ONLY user_role_user
+    ADD CONSTRAINT pk_user_role_user PRIMARY KEY (user_id, role_user_id);
+
+
+--
+-- Name: pk_user_statut; Type: CONSTRAINT; Schema: public; Owner: ekologia; Tablespace: 
+--
+
+ALTER TABLE ONLY user_statut
+    ADD CONSTRAINT pk_user_statut PRIMARY KEY (user_id, statut_id);
+
+
+--
+-- Name: role_user_group_lang_pkey; Type: CONSTRAINT; Schema: public; Owner: ekologia; Tablespace: 
+--
+
+ALTER TABLE ONLY role_user_group_lang
+    ADD CONSTRAINT role_user_group_lang_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: role_user_group_pkey; Type: CONSTRAINT; Schema: public; Owner: ekologia; Tablespace: 
+--
+
+ALTER TABLE ONLY role_user_group
+    ADD CONSTRAINT role_user_group_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: role_user_lang_pkey; Type: CONSTRAINT; Schema: public; Owner: ekologia; Tablespace: 
+--
+
+ALTER TABLE ONLY role_user_lang
+    ADD CONSTRAINT role_user_lang_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: role_user_pkey; Type: CONSTRAINT; Schema: public; Owner: ekologia; Tablespace: 
+--
+
+ALTER TABLE ONLY role_user
+    ADD CONSTRAINT role_user_pkey PRIMARY KEY (id);
 
 
 --
@@ -443,7 +782,23 @@ ADD CONSTRAINT pk_user_group PRIMARY KEY (user_id, group_id);
 --
 
 ALTER TABLE ONLY security
-ADD CONSTRAINT security_pkey PRIMARY KEY (id);
+    ADD CONSTRAINT security_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: statut_lang_pkey; Type: CONSTRAINT; Schema: public; Owner: ekologia; Tablespace: 
+--
+
+ALTER TABLE ONLY statut_lang
+    ADD CONSTRAINT statut_lang_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: statut_pkey; Type: CONSTRAINT; Schema: public; Owner: ekologia; Tablespace: 
+--
+
+ALTER TABLE ONLY statut
+    ADD CONSTRAINT statut_pkey PRIMARY KEY (id);
 
 
 --
@@ -451,7 +806,7 @@ ADD CONSTRAINT security_pkey PRIMARY KEY (id);
 --
 
 ALTER TABLE ONLY "group"
-ADD CONSTRAINT u_group_canonical UNIQUE (canonical);
+    ADD CONSTRAINT u_group_canonical UNIQUE (canonical);
 
 
 --
@@ -459,7 +814,7 @@ ADD CONSTRAINT u_group_canonical UNIQUE (canonical);
 --
 
 ALTER TABLE ONLY menu
-ADD CONSTRAINT u_lang_role UNIQUE (lang, role);
+    ADD CONSTRAINT u_lang_role UNIQUE (lang, role);
 
 
 --
@@ -467,7 +822,7 @@ ADD CONSTRAINT u_lang_role UNIQUE (lang, role);
 --
 
 ALTER TABLE ONLY account
-ADD CONSTRAINT user_pkey PRIMARY KEY (id);
+    ADD CONSTRAINT user_pkey PRIMARY KEY (id);
 
 
 --
@@ -475,7 +830,7 @@ ADD CONSTRAINT user_pkey PRIMARY KEY (id);
 --
 
 ALTER TABLE ONLY wiki
-ADD CONSTRAINT wiki_canonical_key UNIQUE (canonical);
+    ADD CONSTRAINT wiki_canonical_key UNIQUE (canonical);
 
 
 --
@@ -483,7 +838,7 @@ ADD CONSTRAINT wiki_canonical_key UNIQUE (canonical);
 --
 
 ALTER TABLE ONLY wiki
-ADD CONSTRAINT wiki_pkey PRIMARY KEY (id);
+    ADD CONSTRAINT wiki_pkey PRIMARY KEY (id);
 
 
 --
@@ -491,7 +846,7 @@ ADD CONSTRAINT wiki_pkey PRIMARY KEY (id);
 --
 
 ALTER TABLE ONLY wikicomment
-ADD CONSTRAINT wikicomment_pkey PRIMARY KEY (id);
+    ADD CONSTRAINT wikicomment_pkey PRIMARY KEY (id);
 
 
 --
@@ -499,7 +854,31 @@ ADD CONSTRAINT wikicomment_pkey PRIMARY KEY (id);
 --
 
 ALTER TABLE ONLY wikiversion
-ADD CONSTRAINT wikiversion_pkey PRIMARY KEY (id);
+    ADD CONSTRAINT wikiversion_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: fk_role_user_group_id; Type: FK CONSTRAINT; Schema: public; Owner: ekologia
+--
+
+ALTER TABLE ONLY role_user_group_lang
+    ADD CONSTRAINT fk_role_user_group_id FOREIGN KEY (role_user_group_id) REFERENCES role_user_group(id);
+
+
+--
+-- Name: fk_role_user_id; Type: FK CONSTRAINT; Schema: public; Owner: ekologia
+--
+
+ALTER TABLE ONLY role_user_lang
+    ADD CONSTRAINT fk_role_user_id FOREIGN KEY (role_user_id) REFERENCES role_user(id);
+
+
+--
+-- Name: fk_statut_lang_statut_id; Type: FK CONSTRAINT; Schema: public; Owner: ekologia
+--
+
+ALTER TABLE ONLY statut_lang
+    ADD CONSTRAINT fk_statut_lang_statut_id FOREIGN KEY (statut_id) REFERENCES statut(id);
 
 
 --
@@ -507,7 +886,55 @@ ADD CONSTRAINT wikiversion_pkey PRIMARY KEY (id);
 --
 
 ALTER TABLE ONLY user_group
-ADD CONSTRAINT fk_user_group_group_id FOREIGN KEY (group_id) REFERENCES "group"(id);
+    ADD CONSTRAINT fk_user_group_group_id FOREIGN KEY (group_id) REFERENCES "group"(id);
+
+
+--
+-- Name: fk_user_group_role_user_group_role_user_group_id; Type: FK CONSTRAINT; Schema: public; Owner: ekologia
+--
+
+ALTER TABLE ONLY user_group_role_user_group
+    ADD CONSTRAINT fk_user_group_role_user_group_role_user_group_id FOREIGN KEY (role_user_group_id) REFERENCES role_user_group(id);
+
+
+--
+-- Name: fk_user_group_role_user_group_user_group_id; Type: FK CONSTRAINT; Schema: public; Owner: ekologia
+--
+
+ALTER TABLE ONLY user_group_role_user_group
+    ADD CONSTRAINT fk_user_group_role_user_group_user_group_id FOREIGN KEY (user_group_user_id, user_group_group_id) REFERENCES user_group(user_id, group_id);
+
+
+--
+-- Name: fk_user_role_user_role_user_id; Type: FK CONSTRAINT; Schema: public; Owner: ekologia
+--
+
+ALTER TABLE ONLY user_role_user
+    ADD CONSTRAINT fk_user_role_user_role_user_id FOREIGN KEY (role_user_id) REFERENCES role_user(id);
+
+
+--
+-- Name: fk_user_role_user_user_id; Type: FK CONSTRAINT; Schema: public; Owner: ekologia
+--
+
+ALTER TABLE ONLY user_role_user
+    ADD CONSTRAINT fk_user_role_user_user_id FOREIGN KEY (user_id) REFERENCES account(id);
+
+
+--
+-- Name: fk_user_statut_statut_id; Type: FK CONSTRAINT; Schema: public; Owner: ekologia
+--
+
+ALTER TABLE ONLY user_statut
+    ADD CONSTRAINT fk_user_statut_statut_id FOREIGN KEY (statut_id) REFERENCES statut(id);
+
+
+--
+-- Name: fk_user_statut_user_id; Type: FK CONSTRAINT; Schema: public; Owner: ekologia
+--
+
+ALTER TABLE ONLY user_statut
+    ADD CONSTRAINT fk_user_statut_user_id FOREIGN KEY (user_id) REFERENCES account(id);
 
 
 --
@@ -515,7 +942,7 @@ ADD CONSTRAINT fk_user_group_group_id FOREIGN KEY (group_id) REFERENCES "group"(
 --
 
 ALTER TABLE ONLY wiki
-ADD CONSTRAINT fk_wiki_group_id FOREIGN KEY (group_id) REFERENCES "group"(id);
+    ADD CONSTRAINT fk_wiki_group_id FOREIGN KEY (group_id) REFERENCES "group"(id);
 
 
 --
@@ -523,7 +950,7 @@ ADD CONSTRAINT fk_wiki_group_id FOREIGN KEY (group_id) REFERENCES "group"(id);
 --
 
 ALTER TABLE ONLY wiki
-ADD CONSTRAINT fk_wiki_parent_id FOREIGN KEY (parent_id) REFERENCES wiki(id);
+    ADD CONSTRAINT fk_wiki_parent_id FOREIGN KEY (parent_id) REFERENCES wiki(id);
 
 
 --
@@ -531,7 +958,7 @@ ADD CONSTRAINT fk_wiki_parent_id FOREIGN KEY (parent_id) REFERENCES wiki(id);
 --
 
 ALTER TABLE ONLY wikicomment
-ADD CONSTRAINT wikicomment_parent_id_fkey FOREIGN KEY (parent_id) REFERENCES wikicomment(id);
+    ADD CONSTRAINT wikicomment_parent_id_fkey FOREIGN KEY (parent_id) REFERENCES wikicomment(id);
 
 
 --
@@ -539,7 +966,7 @@ ADD CONSTRAINT wikicomment_parent_id_fkey FOREIGN KEY (parent_id) REFERENCES wik
 --
 
 ALTER TABLE ONLY wikicomment
-ADD CONSTRAINT wikicomment_wiki_id_fkey FOREIGN KEY (wiki_id) REFERENCES wiki(id);
+    ADD CONSTRAINT wikicomment_wiki_id_fkey FOREIGN KEY (wiki_id) REFERENCES wiki(id);
 
 
 --
@@ -547,7 +974,7 @@ ADD CONSTRAINT wikicomment_wiki_id_fkey FOREIGN KEY (wiki_id) REFERENCES wiki(id
 --
 
 ALTER TABLE ONLY wikiversion
-ADD CONSTRAINT wikiversion_wiki_id_fkey FOREIGN KEY (wiki_id) REFERENCES wiki(id);
+    ADD CONSTRAINT wikiversion_wiki_id_fkey FOREIGN KEY (wiki_id) REFERENCES wiki(id);
 
 
 --

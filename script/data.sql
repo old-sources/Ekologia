@@ -15,8 +15,8 @@ SET search_path = public, pg_catalog;
 -- Data for Name: account; Type: TABLE DATA; Schema: public; Owner: ekologia
 --
 
-INSERT INTO account (id, email, password, phone_number, addressstreet, addresszipcode, addresscity, country, avatar, description, roles, salt, discriminator, firstname, lastname, birthday, orgname, activity, type) VALUES (26, 'contact@ekologia.coop', '$6$FiRAMp48IE$p4YcKd27pHrPw3Y0Aax1yfEvGh2nzgFYLtlDGu/6yKlBHp1z.gYDAWKK3WXo19olb28aP41pWlNH4y4q2SXZB/', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'admin', '$6$FiRAMp48IE', 'i', '', '', '2015-03-01 00:00:00', NULL, NULL, NULL);
-INSERT INTO account (id, email, password, phone_number, addressstreet, addresszipcode, addresscity, country, avatar, description, roles, salt, discriminator, firstname, lastname, birthday, orgname, activity, type) VALUES (23, 'aze@aze.aze', 'aze123', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, 'i', NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO account VALUES (26, 'contact@ekologia.coop', '$6$FiRAMp48IE$p4YcKd27pHrPw3Y0Aax1yfEvGh2nzgFYLtlDGu/6yKlBHp1z.gYDAWKK3WXo19olb28aP41pWlNH4y4q2SXZB/', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'admin', '$6$FiRAMp48IE', 'i', '', '', '2015-03-01 00:00:00', NULL, NULL, NULL);
+INSERT INTO account VALUES (23, 'aze@aze.aze', 'aze123', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, 'i', NULL, NULL, NULL, NULL, NULL, NULL);
 
 
 --
@@ -30,11 +30,11 @@ SELECT pg_catalog.setval('account_id_seq', 23, true);
 -- Data for Name: group; Type: TABLE DATA; Schema: public; Owner: ekologia
 --
 
-INSERT INTO "group" (id, name, canonical, description, icon) VALUES (2, 'Test 2', 'test-2', 'Test 2					
+INSERT INTO "group" VALUES (2, 'Test 2', 'test-2', 'Test 2					
 					', NULL);
-INSERT INTO "group" (id, name, canonical, description, icon) VALUES (4, 'qdfd', 'qdfd', 'dsqsdfqsdf', NULL);
-INSERT INTO "group" (id, name, canonical, description, icon) VALUES (1, 'Groupe 1', 'groupe-1', 'groupe-1', 'http://localhost:8080/Ekologia/image/group-default.png');
-INSERT INTO "group" (id, name, canonical, description, icon) VALUES (5, 'Groupe x', 'groupe-x', 'quelque chose', NULL);
+INSERT INTO "group" VALUES (4, 'qdfd', 'qdfd', 'dsqsdfqsdf', NULL);
+INSERT INTO "group" VALUES (1, 'Groupe 1', 'groupe-1', 'groupe-1', 'http://localhost:8080/Ekologia/image/group-default.png');
+INSERT INTO "group" VALUES (5, 'Groupe x', 'groupe-x', 'quelque chose', NULL);
 
 
 --
@@ -48,10 +48,10 @@ SELECT pg_catalog.setval('group_id_seq', 5, true);
 -- Data for Name: menu; Type: TABLE DATA; Schema: public; Owner: ekologia
 --
 
-INSERT INTO menu (id, lang, role, json) VALUES (3, 'en', 'admin', '[]');
-INSERT INTO menu (id, lang, role, json) VALUES (4, 'en', 'all', '[]');
-INSERT INTO menu (id, lang, role, json) VALUES (1, 'fr', 'all', '[{"name":"home","route":"home","children":[]},{"name":"Qui sommes-nous ?","route":"page","parameters":{"canonical":"qui-sommes-nous"},"children":[]}]');
-INSERT INTO menu (id, lang, role, json) VALUES (2, 'fr', 'admin', '[{"name":"Comptes","route":"userList","parameters":{},"children":[]},{"name":"Menus","route":"menuListManagement","parameters":{},"children":[]},{"name":"Pages","route":"pageList","parameters":{},"children":[]},{"name":"Liste des groupes","route":"adminGroupList","parameters":{},"children":[]}]');
+INSERT INTO menu VALUES (3, 'en', 'admin', '[]');
+INSERT INTO menu VALUES (4, 'en', 'all', '[]');
+INSERT INTO menu VALUES (1, 'fr', 'all', '[{"name":"home","route":"home","children":[]},{"name":"Qui sommes-nous ?","route":"page","parameters":{"canonical":"qui-sommes-nous"},"children":[]}]');
+INSERT INTO menu VALUES (2, 'fr', 'admin', '[{"name":"Comptes","route":"userList","parameters":{},"children":[]},{"name":"Menus","route":"menuListManagement","parameters":{},"children":[]},{"name":"Pages","route":"pageList","parameters":{},"children":[]},{"name":"Liste des groupes","route":"adminGroupList","parameters":{},"children":[]}]');
 
 
 --
@@ -65,7 +65,7 @@ SELECT pg_catalog.setval('menu_id_seq', 4, true);
 -- Data for Name: page; Type: TABLE DATA; Schema: public; Owner: ekologia
 --
 
-INSERT INTO page (id, url, javascript, html, css) VALUES (1, 'home', NULL, '<div class="uk-grid" data-uk-grid-margin="">
+INSERT INTO page VALUES (1, 'home', NULL, '<div class="uk-grid" data-uk-grid-margin="">
 	<div class="uk-width-1-1 uk-text-center">
 		<img src="
 https://lh4.googleusercontent.com/-dUQf94H_zmw/VLMhMFbf8-I/AAAAAAAAC9M/OipBy0et2Jk/w1000-h400-no/logo%2Btexte%2Bbanniere.png" style="height:200px"/>
@@ -74,8 +74,8 @@ https://lh4.googleusercontent.com/-dUQf94H_zmw/VLMhMFbf8-I/AAAAAAAAC9M/OipBy0et2
 	
 	</div>
 </div>', NULL);
-INSERT INTO page (id, url, javascript, html, css) VALUES (8, 'qui-sommes-nous', NULL, 'qui-sommes-nous', NULL);
-INSERT INTO page (id, url, javascript, html, css) VALUES (7, 'testimport', NULL, '<div style="text-align:center">
+INSERT INTO page VALUES (8, 'qui-sommes-nous', NULL, 'qui-sommes-nous', NULL);
+INSERT INTO page VALUES (7, 'testimport', NULL, '<div style="text-align:center">
 <span style="font-size:50px;color:#1f8e11">
   <b>
   <div style="display:block;text-align:center;margin-right:auto;margin-left:auto">
@@ -196,8 +196,8 @@ images.</font></div>
 <tr>
 </table>
 ', NULL);
-INSERT INTO page (id, url, javascript, html, css) VALUES (10, 'forum-ouvert', NULL, '<iframe src="http://www.surveygizmo.com/s3/1922528/Invitation-la-participation-au-Forum-Ouvert-de-Ekologia" frameborder="0" style="width:1200px;height:2800px;overflow:visible"></iframe>', NULL);
-INSERT INTO page (id, url, javascript, html, css) VALUES (9, 'communaute', NULL, 'Les personnes morales adhÃ©rentes
+INSERT INTO page VALUES (10, 'forum-ouvert', NULL, '<iframe src="http://www.surveygizmo.com/s3/1922528/Invitation-la-participation-au-Forum-Ouvert-de-Ekologia" frameborder="0" style="width:1200px;height:2800px;overflow:visible"></iframe>', NULL);
+INSERT INTO page VALUES (9, 'communaute', NULL, 'Les personnes morales adhÃ©rentes
 
 <iframe src="https://docs.google.com/spreadsheets/d/1b1tdHCsA1kfLTt3AMhhqL-OECjZlUG1GdMVRUTD0bOw/pubhtml?gid=0&single=true&widget=true&headers=false" frameborder="0" style="width:100%;height:4000px;overflow:visible></iframe>', NULL);
 
@@ -210,10 +210,72 @@ SELECT pg_catalog.setval('page_id_seq', 10, true);
 
 
 --
+-- Data for Name: role_user; Type: TABLE DATA; Schema: public; Owner: ekologia
+--
+
+INSERT INTO role_user VALUES (1, 'admin');
+INSERT INTO role_user VALUES (2, 'all');
+
+
+--
+-- Data for Name: role_user_group; Type: TABLE DATA; Schema: public; Owner: ekologia
+--
+
+INSERT INTO role_user_group VALUES (1, 'ADM');
+INSERT INTO role_user_group VALUES (2, 'MBR');
+
+
+--
+-- Name: role_user_group_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ekologia
+--
+
+SELECT pg_catalog.setval('role_user_group_id_seq', 1, false);
+
+
+--
+-- Data for Name: role_user_group_lang; Type: TABLE DATA; Schema: public; Owner: ekologia
+--
+
+INSERT INTO role_user_group_lang VALUES (1, 'Administrateur', 'fr', 1);
+INSERT INTO role_user_group_lang VALUES (2, 'Administrator', 'en', 1);
+INSERT INTO role_user_group_lang VALUES (3, 'Membre', 'fr', 2);
+INSERT INTO role_user_group_lang VALUES (4, 'Member', 'en', 2);
+
+
+--
+-- Name: role_user_group_lang_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ekologia
+--
+
+SELECT pg_catalog.setval('role_user_group_lang_id_seq', 1, false);
+
+
+--
+-- Name: role_user_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ekologia
+--
+
+SELECT pg_catalog.setval('role_user_id_seq', 2, true);
+
+
+--
+-- Data for Name: role_user_lang; Type: TABLE DATA; Schema: public; Owner: ekologia
+--
+
+INSERT INTO role_user_lang VALUES (1, 'Tous', 'fr', 2);
+INSERT INTO role_user_lang VALUES (2, 'Administrateur', 'fr', 1);
+
+
+--
+-- Name: role_user_lang_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ekologia
+--
+
+SELECT pg_catalog.setval('role_user_lang_id_seq', 2, true);
+
+
+--
 -- Data for Name: security; Type: TABLE DATA; Schema: public; Owner: ekologia
 --
 
-INSERT INTO security (id, url, diseable) VALUES (2, 'admin/*', NULL);
+INSERT INTO security VALUES (2, 'admin/*', NULL);
 
 
 --
@@ -224,23 +286,67 @@ SELECT pg_catalog.setval('security_id_seq', 2, true);
 
 
 --
+-- Data for Name: statut; Type: TABLE DATA; Schema: public; Owner: ekologia
+--
+
+
+
+--
+-- Name: statut_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ekologia
+--
+
+SELECT pg_catalog.setval('statut_id_seq', 1, false);
+
+
+--
+-- Data for Name: statut_lang; Type: TABLE DATA; Schema: public; Owner: ekologia
+--
+
+
+
+--
+-- Name: statut_lang_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ekologia
+--
+
+SELECT pg_catalog.setval('statut_lang_id_seq', 1, false);
+
+
+--
 -- Data for Name: user_group; Type: TABLE DATA; Schema: public; Owner: ekologia
 --
 
-INSERT INTO user_group (user_id, group_id, requested, accepted, roles) VALUES (26, 1, '2015-04-03', '2015-04-03', 'admin');
-INSERT INTO user_group (user_id, group_id, requested, accepted, roles) VALUES (26, 2, '2015-04-03', '2015-04-03', 'admin');
-INSERT INTO user_group (user_id, group_id, requested, accepted, roles) VALUES (26, 4, '2015-04-03', '2015-04-03', 'admin');
-INSERT INTO user_group (user_id, group_id, requested, accepted, roles) VALUES (26, 5, '2015-04-03', '2015-04-03', 'admin');
-INSERT INTO user_group (user_id, group_id, requested, accepted, roles) VALUES (23, 5, '2015-04-03', '2015-04-03', 'admin');
+INSERT INTO user_group VALUES (26, 1, '2015-04-03', '2015-04-03', 'admin');
+INSERT INTO user_group VALUES (26, 2, '2015-04-03', '2015-04-03', 'admin');
+INSERT INTO user_group VALUES (26, 4, '2015-04-03', '2015-04-03', 'admin');
+INSERT INTO user_group VALUES (26, 5, '2015-04-03', '2015-04-03', 'admin');
+INSERT INTO user_group VALUES (23, 5, '2015-04-03', '2015-04-03', 'admin');
+
+
+--
+-- Data for Name: user_group_role_user_group; Type: TABLE DATA; Schema: public; Owner: ekologia
+--
+
+
+
+--
+-- Data for Name: user_role_user; Type: TABLE DATA; Schema: public; Owner: ekologia
+--
+
+
+
+--
+-- Data for Name: user_statut; Type: TABLE DATA; Schema: public; Owner: ekologia
+--
+
 
 
 --
 -- Data for Name: wiki; Type: TABLE DATA; Schema: public; Owner: ekologia
 --
 
-INSERT INTO wiki (id, title, language, canonical, editable, visible, group_id, parent_id) VALUES (2, 'aze', 'fr', 'aze', true, true, 1, NULL);
-INSERT INTO wiki (id, title, language, canonical, editable, visible, group_id, parent_id) VALUES (3, 'Ceci est mon titre', 'fr', 'ceci-est-mon-titre', true, true, 1, NULL);
-INSERT INTO wiki (id, title, language, canonical, editable, visible, group_id, parent_id) VALUES (4, 'test', 'fr', 'test', true, true, 1, NULL);
+INSERT INTO wiki VALUES (2, 'aze', 'fr', 'aze', true, true, 1, NULL);
+INSERT INTO wiki VALUES (3, 'Ceci est mon titre', 'fr', 'ceci-est-mon-titre', true, true, 1, NULL);
+INSERT INTO wiki VALUES (4, 'test', 'fr', 'test', true, true, 1, NULL);
 
 
 --
@@ -267,9 +373,9 @@ SELECT pg_catalog.setval('wikicomment_id_seq', 1, false);
 -- Data for Name: wikiversion; Type: TABLE DATA; Schema: public; Owner: ekologia
 --
 
-INSERT INTO wikiversion (id, date, content, active, wiki_id, user_id, image) VALUES (1, '2015-04-03', 'eaz', true, 2, 26, '/Ekologia/image/wiki-default.png');
-INSERT INTO wikiversion (id, date, content, active, wiki_id, user_id, image) VALUES (2, '2015-04-03', 'Ceci est mon contenu.', true, 3, 26, '/Ekologia/image/wiki-default.png');
-INSERT INTO wikiversion (id, date, content, active, wiki_id, user_id, image) VALUES (3, '2015-04-03', '<script>alert(''plop'')</script>', true, 4, 26, '/Ekologia/image/wiki-default.png');
+INSERT INTO wikiversion VALUES (1, '2015-04-03', 'eaz', true, 2, 26, '/Ekologia/image/wiki-default.png');
+INSERT INTO wikiversion VALUES (2, '2015-04-03', 'Ceci est mon contenu.', true, 3, 26, '/Ekologia/image/wiki-default.png');
+INSERT INTO wikiversion VALUES (3, '2015-04-03', '<script>alert(''plop'')</script>', true, 4, 26, '/Ekologia/image/wiki-default.png');
 
 
 --

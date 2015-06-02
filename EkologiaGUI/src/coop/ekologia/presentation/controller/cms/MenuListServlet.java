@@ -1,15 +1,12 @@
 package coop.ekologia.presentation.controller.cms;
 
-import coop.ekologia.DTO.cms.MenuConfigurationDTO;
-import coop.ekologia.DTO.cms.MenuConfigurationParameterDTO;
-import coop.ekologia.DTO.cms.MenuConfigurationParameterDTO.MenuConfigurationParameterConstraint;
-import coop.ekologia.DTO.cms.MenuDTO;
+import coop.ekologia.DTO.role.RoleUserDTO;
 import coop.ekologia.presentation.EkologiaServlet;
 import coop.ekologia.presentation.constants.CmsConstants;
-import coop.ekologia.presentation.controller.FormErrors;
+import coop.ekologia.presentation.request.GlobalRequestScope;
 import coop.ekologia.presentation.request.RoutingCentral;
-import coop.ekologia.service.cms.MenuServiceInterface;
 import coop.ekologia.service.cms.PageServiceInterface;
+import coop.ekologia.service.role.RoleServiceInterface;
 import coop.ekologia.service.user.UserServiceInterface;
 import coop.ekologia.service.utils.StringUtilitiesInterface;
 
@@ -20,12 +17,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 @WebServlet("/admin/cms/menus")
 public class MenuListServlet extends EkologiaServlet {
@@ -42,8 +37,14 @@ public class MenuListServlet extends EkologiaServlet {
     @EJB
     private PageServiceInterface pageService;
 
+    @EJB
+    private RoleServiceInterface roleService;
+
     @Inject
     private RoutingCentral router;
+
+    @Inject
+    protected GlobalRequestScope globalRequestScope;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -55,10 +56,11 @@ public class MenuListServlet extends EkologiaServlet {
      * This method returns the whole list of roles usable in current application.
      */
     private Map<String, String> getRoles() {
-        // TODO: take roles from database as soon as the development is done.
-        Map<String, String> result = new HashMap<String, String>();
-        result.put("all", "Tous");
-        result.put("admin", "Admin");
-        return result;
+        List<RoleUserDTO> roleUsers = roleService.findAll(globalRequestScope.getLanguage());
+        Map<String, String> roles = new HashMap<String, String>();
+        for (RoleUserDTO roleUserDTO: roleUsers) {
+            roles.put(roleUserDTO.getCode(), roleUserDTO.getDescription());
+        }
+        return Collections.unmodifiableMap(roles);
     }
 }

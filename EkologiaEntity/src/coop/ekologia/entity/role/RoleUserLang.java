@@ -33,5 +33,36 @@ public class RoleUserLang implements Serializable {
 	public RoleUserLang() {
 		super();
 	}
-   
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getLangue() {
+		return langue;
+	}
+
+	public void setLangue(String langue) {
+		this.langue = langue;
+	}
+
+	public RoleUser getRoleUser() {
+		return roleUser;
+	}
+
+	public void setRoleUser(RoleUser roleUser) {
+		this.roleUser = roleUser;
+	}
 }

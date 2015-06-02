@@ -2,9 +2,11 @@ package coop.ekologia.presentation.session;
 
 import coop.ekologia.DTO.cms.MenuApplicationDTO;
 import coop.ekologia.DTO.cms.MenuDTO;
+import coop.ekologia.DTO.role.RoleUserDTO;
 import coop.ekologia.presentation.request.GlobalRequestScope;
 import coop.ekologia.presentation.request.RoutingRegistration;
 import coop.ekologia.service.cms.MenuServiceInterface;
+import coop.ekologia.service.role.RoleServiceInterface;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -26,6 +28,9 @@ public class MenuApplication {
 
     @EJB
     private MenuServiceInterface menuService;
+
+    @EJB
+    private RoleServiceInterface roleService;
 
     @Inject
     private RoutingRegistration router;
@@ -68,8 +73,12 @@ public class MenuApplication {
      * This method returns the whole list of roles usable in current application.
      */
     private List<String> getRoles() {
-        // TODO: take roles from database as soon as the development is done.
-        return Arrays.asList("all", "admin");
+        List<RoleUserDTO> roleUsers = roleService.findAll(globalRequestScope.getLanguage());
+        List<String> roles = new ArrayList<String>();
+        for (RoleUserDTO roleUserDTO: roleUsers) {
+            roles.add(roleUserDTO.getCode());
+        }
+        return Collections.unmodifiableList(roles);
     }
 
     public void invalidate(String language, String role) {

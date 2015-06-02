@@ -1,9 +1,12 @@
 package coop.ekologia.presentation;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import javax.ejb.EJB;
 import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,9 +14,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import coop.ekologia.DTO.role.RoleUserDTO;
 import coop.ekologia.presentation.request.GlobalRequestScope;
 import coop.ekologia.presentation.session.LoginSession;
 import coop.ekologia.presentation.session.MenuApplication;
+import coop.ekologia.service.role.RoleServiceInterface;
 
 public abstract class EkologiaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -26,6 +31,9 @@ public abstract class EkologiaServlet extends HttpServlet {
 
 	@Inject
 	protected MenuApplication menuApplication;
+
+	@EJB
+	private RoleServiceInterface roleService;
 
 	/**
 	 * Returns the absolute path to the jsp.
@@ -69,11 +77,12 @@ public abstract class EkologiaServlet extends HttpServlet {
 	 * This method returns the whole list of roles usable in current application.
 	 */
 	private Map<String, String> getRoles() {
-		// TODO: take roles from database as soon as the development is done.
-		Map<String, String> result = new HashMap<String, String>();
-		result.put("all", "Tous");
-		result.put("admin", "Admin");
-		return result;
+		List<RoleUserDTO> roleUsers = roleService.findAll(globalRequestScope.getLanguage());
+		Map<String, String> roles = new HashMap<String, String>();
+		for (RoleUserDTO roleUserDTO: roleUsers) {
+			roles.put(roleUserDTO.getCode(), roleUserDTO.getDescription());
+		}
+		return Collections.unmodifiableMap(roles);
 	}
     
 	@Deprecated

@@ -1,71 +1,73 @@
 package coop.ekologia.entity.role;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.persistence.*;
-
 /**
  * Entity implementation class for Entity: RoleUser
- *
  */
 @Entity
-@Table(name="role_user")
+@Table(name = "role_user")
+@NamedQueries({
+        @NamedQuery(
+                name = RoleUser.FIND_ALL,
+                query = "SELECT r FROM RoleUser r JOIN r.roleUserLangs rl WHERE rl.langue=:lang"
+        )})
 public class RoleUser implements Serializable {
+    public static final String FIND_ALL = "roleuser.findall";
 
-	
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id")
-	private Integer id;
-	
-	@Column(name="code")
-	private String code;
-	
-	@OneToMany(mappedBy="roleUser")
-	private List<RoleUserLang> roleUserLangs;
-	
-	@OneToMany(mappedBy="roleUser")
-	private List<UserRoleUser> userRoleUsers;
-	
-	public RoleUser() {
-		super();
-	}
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Integer id;
 
-	public Integer getId() {
-		return id;
-	}
+    @Column(name = "code")
+    private String code;
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    @OneToMany(mappedBy = "roleUser")
+    private List<RoleUserLang> roleUserLangs;
 
-	public String getCode() {
-		return code;
-	}
+    @OneToMany(mappedBy = "roleUser")
+    private List<UserRoleUser> userRoleUsers;
 
-	public void setCode(String code) {
-		this.code = code;
-	}
+    public RoleUser() {
+        super();
+    }
 
-	public List<RoleUserLang> getRoleUserLangs() {
-		return roleUserLangs;
-	}
+    public Integer getId() {
+        return id;
+    }
 
-	public void setRoleUserLangs(List<RoleUserLang> roleUserLangs) {
-		this.roleUserLangs = roleUserLangs;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public List<UserRoleUser> getUserRoleUsers() {
-		return userRoleUsers;
-	}
+    public String getCode() {
+        return code;
+    }
 
-	public void setUserRoleUsers(List<UserRoleUser> userRoleUsers) {
-		this.userRoleUsers = userRoleUsers;
-	}
-	
-	
-   
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public List<RoleUserLang> getRoleUserLangs() {
+        return roleUserLangs;
+    }
+
+    public void setRoleUserLangs(List<RoleUserLang> roleUserLangs) {
+        this.roleUserLangs = roleUserLangs;
+    }
+
+    public List<UserRoleUser> getUserRoleUsers() {
+        return userRoleUsers;
+    }
+
+    public void setUserRoleUsers(List<UserRoleUser> userRoleUsers) {
+        this.userRoleUsers = userRoleUsers;
+    }
+
+
 }
